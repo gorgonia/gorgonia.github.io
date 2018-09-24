@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.48" />
-<title>About :: Gorgonia - Deep Learning Library for Go</title>
+<title>Copyright :: Gorgonia - Deep Learning Library for Go</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     
   </head>
-  <body data-url="/">
+  <body data-url="/copyright/">
     
       <header>
   <div class="logo">
@@ -134,7 +134,7 @@
       <a href="/contributing/">Contributing</a>
       </div>
     </li>
-    <li data-nav-id="/copyright/" class="dd-item alwaysopen
+    <li data-nav-id="/copyright/" class="dd-item parent active alwaysopen
         ">
       <div>
       <a href="/copyright/">Copyright</a>
@@ -178,7 +178,7 @@
    Usage</option>
     <option value="/contributing/" >
    Contributing</option>
-    <option value="/copyright/" >
+    <option value="/copyright/"  selected>
    Copyright</option> 
   
     <option value="/support/" >
@@ -205,39 +205,52 @@
       </div>
     
 
+    <h1>Copyright</h1>
     
     
     
-    
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
- 
 
 
-<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/mascot_small.jpg" align="right" /></p>
 
-<p>Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. If this sounds like <a href="http://deeplearning.net/software/theano/">Theano</a> or <a href="https://www.tensorflow.org/">TensorFlow</a>, it&rsquo;s because the idea is quite similar. Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
+<h1 id="licence">Licence</h1>
 
-<p>Gorgonia:</p>
+<p>Gorgonia is licenced under a variant of Apache 2.0. It&rsquo;s for all intents and purposes the same as the Apache 2.0 Licence, with the exception of not being able to commercially profit directly from the package unless you&rsquo;re a Significant Contributor (for example, providing commercial support for the package). It&rsquo;s perfectly fine to profit directly from a derivative of Gorgonia (for example, if you use Gorgonia as a library in your product)</p>
 
-<ul>
-<li>Can perform automatic differentiation</li>
-<li>Can perform symbolic differentiation</li>
-<li>Can perform gradient descent optimizations</li>
-<li>Can perform numerical stabilization</li>
-<li>Provides a number of convenience functions to help create neural networks</li>
-<li>Is fairly quick (comparable to Theano and Tensorflow&rsquo;s speed)</li>
-<li>Supports CUDA/GPGPU computation (OpenCL not yet supported, send a pull request)</li>
-<li>Will support distributed computing</li>
-</ul>
+<p>Everyone is still allowed to use Gorgonia for commercial purposes (example: using it in a software for your business).</p>
 
-<h1 id="goals">Goals</h1>
+<h2 id="various-other-copyright-notices">Various Other Copyright Notices</h2>
 
-<p>The primary goal for Gorgonia is to be a <em>highly performant</em> machine learning/graph computation-based library that can scale across multiple machines. It should bring the appeal of Go (simple compilation and deployment process) to the ML world. It&rsquo;s a long way from there currently, however, the baby steps are already there.</p>
+<p>These are the packages and libraries which inspired and were adapted from in the process of writing Gorgonia (the Go packages that were used were already declared above):</p>
 
-<p>The secondary goal for Gorgonia is to provide a platform for exploration for non-standard deep-learning and neural network related things. This includes things like neo-hebbian learning, corner-cutting algorithms, evolutionary algorithms and the like.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>How it&rsquo;s Used</th>
+<th>Licence</th>
+</tr>
+</thead>
 
+<tbody>
+<tr>
+<td>Numpy</td>
+<td>Inspired large portions. Directly adapted algorithms for a few methods (explicitly labelled in the docs)</td>
+<td>MIT/BSD-like. <a href="https://github.com/numpy/numpy/blob/master/LICENSE.txt">Numpy Licence</a></td>
+</tr>
+
+<tr>
+<td>Theano</td>
+<td>Inspired large portions. (Unsure: number of directly adapted algorithms)</td>
+<td>MIT/BSD-like <a href="http://deeplearning.net/software/theano/LICENSE.html">Theano&rsquo;s licence</a></td>
+</tr>
+
+<tr>
+<td>Caffe</td>
+<td><code>im2col</code> and <code>col2im</code> directly taken from Caffe. Convolution algorithms inspired by the original Caffee methods</td>
+<td><a href="https://github.com/BVLC/caffe/blob/master/LICENSE">Caffe Licence</a></td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -245,7 +258,8 @@
     
         <div class="chevrons">
     <div id="navigation">
-<a class="nav nav-next" href="/about/" title="Why use Gorgonia? " style="margin-right: 0px;"><label>Why use Gorgonia? </label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/contributing/" title="Contributing"> <i class="fa fa-chevron-left"></i><label>Contributing</label></a>
+    <a class="nav nav-next" href="/support/" title="Support" style="margin-right: 0px;"><label>Support</label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -260,12 +274,12 @@
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 23/04/2016
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
     </div>
     
 
     <div class="github-link">
-      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/copyright/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Improve this page</a>
     </div>
   </div>

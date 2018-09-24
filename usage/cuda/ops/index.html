@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.48" />
-<title>About :: Gorgonia - Deep Learning Library for Go</title>
+<title>Op&#39;s supported by CUDA :: Gorgonia - Deep Learning Library for Go</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     
   </head>
-  <body data-url="/">
+  <body data-url="/usage/cuda/ops/">
     
       <header>
   <div class="logo">
@@ -70,10 +70,11 @@
       <a href="/getting-started/">Installation</a>
       </div>
     </li>
-    <li data-nav-id="/usage/" class="dd-item haschildren
+    <li data-nav-id="/usage/" class="dd-item parent haschildren
         ">
       <div>
-      <a href="/usage/">Usage</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      <a href="/usage/">Usage</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
       </div>
         <ul>
       <li data-nav-id="/usage/vm/" class="dd-item">
@@ -97,10 +98,11 @@
           </a>
         </div>
     </li>
-    <li data-nav-id="/usage/cuda/" class="dd-item haschildren
+    <li data-nav-id="/usage/cuda/" class="dd-item parent haschildren
         ">
       <div>
-      <a href="/usage/cuda/">CUDA  </a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      <a href="/usage/cuda/">CUDA  </a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
       </div>
         <ul>
       <li data-nav-id="/usage/cuda/example/" class="dd-item">
@@ -110,7 +112,7 @@
           </a>
         </div>
     </li>
-      <li data-nav-id="/usage/cuda/ops/" class="dd-item">
+      <li data-nav-id="/usage/cuda/ops/" class="dd-item active">
         <div>
           <a href="/usage/cuda/ops/">
             Op&#39;s supported by CUDA
@@ -175,7 +177,18 @@
    Installation</option> 
   
     <option value="/usage/" >
-   Usage</option>
+   Usage</option> 
+      <option value="/usage/vm/" >- VM</option>
+      <option value="/usage/differenciation/" >- Differentiation</option>
+      <option value="/usage/graph/" >- Graph</option>
+    <option value="/usage/cuda/" >
+  - 
+   CUDA  </option> 
+      <option value="/usage/cuda/example/" >-- Example</option>
+      <option value="/usage/cuda/ops/"  selected>-- Op&#39;s supported by CUDA</option>
+      <option value="/usage/cuda/improvements/" >-- Improvements</option>
+  
+  
     <option value="/contributing/" >
    Contributing</option>
     <option value="/copyright/" >
@@ -205,47 +218,52 @@
       </div>
     
 
+    <h1>Op&#39;s supported by CUDA</h1>
     
     
     
-    
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
- 
+    <p>As of now, only the very basic simple ops support CUDA:</p>
 
-
-<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/mascot_small.jpg" align="right" /></p>
-
-<p>Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. If this sounds like <a href="http://deeplearning.net/software/theano/">Theano</a> or <a href="https://www.tensorflow.org/">TensorFlow</a>, it&rsquo;s because the idea is quite similar. Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
-
-<p>Gorgonia:</p>
+<p>Elementwise unary operations:</p>
 
 <ul>
-<li>Can perform automatic differentiation</li>
-<li>Can perform symbolic differentiation</li>
-<li>Can perform gradient descent optimizations</li>
-<li>Can perform numerical stabilization</li>
-<li>Provides a number of convenience functions to help create neural networks</li>
-<li>Is fairly quick (comparable to Theano and Tensorflow&rsquo;s speed)</li>
-<li>Supports CUDA/GPGPU computation (OpenCL not yet supported, send a pull request)</li>
-<li>Will support distributed computing</li>
+<li><code>abs</code></li>
+<li><code>sin</code></li>
+<li><code>cos</code></li>
+<li><code>exp</code></li>
+<li><code>ln</code></li>
+<li><code>log2</code></li>
+<li><code>neg</code></li>
+<li><code>square</code></li>
+<li><code>sqrt</code></li>
+<li><code>inv</code> (reciprocal of a number)</li>
+<li><code>cube</code></li>
+<li><code>tanh</code></li>
+<li><code>sigmoid</code></li>
+<li><code>log1p</code></li>
+<li><code>expm1</code></li>
+<li><code>softplus</code></li>
 </ul>
 
-<h1 id="goals">Goals</h1>
+<p>Elementwise binary operations - only arithmetic operations support CUDA:</p>
 
-<p>The primary goal for Gorgonia is to be a <em>highly performant</em> machine learning/graph computation-based library that can scale across multiple machines. It should bring the appeal of Go (simple compilation and deployment process) to the ML world. It&rsquo;s a long way from there currently, however, the baby steps are already there.</p>
+<ul>
+<li><code>add</code></li>
+<li><code>sub</code></li>
+<li><code>mul</code></li>
+<li><code>div</code></li>
+<li><code>pow</code></li>
+</ul>
 
-<p>The secondary goal for Gorgonia is to provide a platform for exploration for non-standard deep-learning and neural network related things. This includes things like neo-hebbian learning, corner-cutting algorithms, evolutionary algorithms and the like.</p>
-
-
+<p>From a lot of profiling of this author&rsquo;s personal projects, the ones that really matter are <code>tanh</code>, <code>sigmoid</code>, <code>expm1</code>, <code>exp</code> and <code>cube</code> - basically the activation functions. The other operations do work fine with MKL+AVX and aren&rsquo;t the major cause of slowness in a neural network</p>
 
 
     
     
         <div class="chevrons">
     <div id="navigation">
-<a class="nav nav-next" href="/about/" title="Why use Gorgonia? " style="margin-right: 0px;"><label>Why use Gorgonia? </label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/usage/cuda/example/" title="Example"> <i class="fa fa-chevron-left"></i><label>Example</label></a>
+    <a class="nav nav-next" href="/usage/cuda/improvements/" title="Improvements" style="margin-right: 0px;"><label>Improvements</label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -260,12 +278,12 @@
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 23/04/2016
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
     </div>
     
 
     <div class="github-link">
-      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/usage/cuda/ops.md" target="blank"><i class="fa fa-code-fork"></i>
         Improve this page</a>
     </div>
   </div>

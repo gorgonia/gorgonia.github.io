@@ -3,6 +3,7 @@ languageCode = "en-us"
 metadataformat = "yaml"
 title = "Gorgonia - Deep Learning Library for Go"
 theme = "docdock"
+publishdir = "../"
 
 disqusShortname = ""
 googleAnalytics = ""

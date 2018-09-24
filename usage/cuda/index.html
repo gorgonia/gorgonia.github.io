@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.48" />
-<title>About :: Gorgonia - Deep Learning Library for Go</title>
+<title>CUDA   :: Gorgonia - Deep Learning Library for Go</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     
   </head>
-  <body data-url="/">
+  <body data-url="/usage/cuda/">
     
       <header>
   <div class="logo">
@@ -70,10 +70,11 @@
       <a href="/getting-started/">Installation</a>
       </div>
     </li>
-    <li data-nav-id="/usage/" class="dd-item haschildren
+    <li data-nav-id="/usage/" class="dd-item parent haschildren
         ">
       <div>
-      <a href="/usage/">Usage</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      <a href="/usage/">Usage</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
       </div>
         <ul>
       <li data-nav-id="/usage/vm/" class="dd-item">
@@ -97,10 +98,11 @@
           </a>
         </div>
     </li>
-    <li data-nav-id="/usage/cuda/" class="dd-item haschildren
+    <li data-nav-id="/usage/cuda/" class="dd-item parent active haschildren
         ">
       <div>
-      <a href="/usage/cuda/">CUDA  </a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      <a href="/usage/cuda/">CUDA  </a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
       </div>
         <ul>
       <li data-nav-id="/usage/cuda/example/" class="dd-item">
@@ -175,7 +177,18 @@
    Installation</option> 
   
     <option value="/usage/" >
-   Usage</option>
+   Usage</option> 
+      <option value="/usage/vm/" >- VM</option>
+      <option value="/usage/differenciation/" >- Differentiation</option>
+      <option value="/usage/graph/" >- Graph</option>
+    <option value="/usage/cuda/"  selected>
+  - 
+   CUDA  </option> 
+      <option value="/usage/cuda/example/" >-- Example</option>
+      <option value="/usage/cuda/ops/" >-- Op&#39;s supported by CUDA</option>
+      <option value="/usage/cuda/improvements/" >-- Improvements</option>
+  
+  
     <option value="/contributing/" >
    Contributing</option>
     <option value="/copyright/" >
@@ -205,39 +218,29 @@
       </div>
     
 
+    <h1>CUDA  </h1>
     
     
     
-    
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
- 
 
+<p>Gorgonia comes with CUDA support out of the box. However, usage is specialized. To use CUDA, you must build your application with the build tag <code>cuda</code>, like so:</p>
 
-<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/mascot_small.jpg" align="right" /></p>
+<pre><code>go build -tags='cuda' .
+</code></pre>
 
-<p>Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. If this sounds like <a href="http://deeplearning.net/software/theano/">Theano</a> or <a href="https://www.tensorflow.org/">TensorFlow</a>, it&rsquo;s because the idea is quite similar. Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
+<p>Furthermore, there are some additional requirements:</p>
 
-<p>Gorgonia:</p>
+<ol>
+<li><a href="https://developer.nvidia.com/cuda-toolkit">CUDA toolkit 9.0</a> is required. Installing this installs the <code>nvcc</code> compiler which is required to run your code with CUDA.</li>
+<li>Be sure to follow the <a href="http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions">post-installation steps</a></li>
+<li><code>go install gorgonia.org/gorgonia/cmd/cudagen</code>. This installs the <code>cudagen</code> program. Running <code>cudagen</code> will generate the relevant CUDA related code for Gorgonia. Note that you will need a folder at <code>src\gorgonia.org\gorgonia\cuda modules\target</code></li>
+<li>The CUDA ops must be manually enabled in your code with the <code>UseCudaFor</code> option.</li>
+<li><code>runtime.LockOSThread()</code> must be called in the main function where the VM is running. CUDA requires thread affinity, and therefore the OS thread must be locked.</li>
+</ol>
 
-<ul>
-<li>Can perform automatic differentiation</li>
-<li>Can perform symbolic differentiation</li>
-<li>Can perform gradient descent optimizations</li>
-<li>Can perform numerical stabilization</li>
-<li>Provides a number of convenience functions to help create neural networks</li>
-<li>Is fairly quick (comparable to Theano and Tensorflow&rsquo;s speed)</li>
-<li>Supports CUDA/GPGPU computation (OpenCL not yet supported, send a pull request)</li>
-<li>Will support distributed computing</li>
-</ul>
+<p>Because <code>nvcc</code> only plays well with <code>gcc</code> version 6 and below (the current version is 7), this is also quite helpful:</p>
 
-<h1 id="goals">Goals</h1>
-
-<p>The primary goal for Gorgonia is to be a <em>highly performant</em> machine learning/graph computation-based library that can scale across multiple machines. It should bring the appeal of Go (simple compilation and deployment process) to the ML world. It&rsquo;s a long way from there currently, however, the baby steps are already there.</p>
-
-<p>The secondary goal for Gorgonia is to provide a platform for exploration for non-standard deep-learning and neural network related things. This includes things like neo-hebbian learning, corner-cutting algorithms, evolutionary algorithms and the like.</p>
-
+<p><code>sudo ln -s /path/to/gcc-6 /usr/local/cuda-9.0/bin/gcc</code></p>
 
 
 
@@ -245,7 +248,8 @@
     
         <div class="chevrons">
     <div id="navigation">
-<a class="nav nav-next" href="/about/" title="Why use Gorgonia? " style="margin-right: 0px;"><label>Why use Gorgonia? </label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/usage/graph/" title="Graph"> <i class="fa fa-chevron-left"></i><label>Graph</label></a>
+    <a class="nav nav-next" href="/usage/cuda/example/" title="Example" style="margin-right: 0px;"><label>Example</label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -260,12 +264,12 @@
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 23/04/2016
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
     </div>
     
 
     <div class="github-link">
-      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/usage/cuda/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Improve this page</a>
     </div>
   </div>

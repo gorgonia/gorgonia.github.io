@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Usage on Gorgonia - Deep Learning Library for Go</title>
+    <link>https://gorgonia.org/usage/</link>
+    <description>Recent content in Usage on Gorgonia - Deep Learning Library for Go</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Sep 2018 21:32:15 +0200</lastBuildDate>
+    
+	<atom:link href="https://gorgonia.org/usage/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VM</title>
+      <link>https://gorgonia.org/usage/vm/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/vm/</guid>
+      <description>There are two VMs in the current version of Gorgonia:
+ TapeMachine LispMachine  They function differently and take different inputs. The TapeMachine is useful for executing expressions that are generally static (that is to say the computation graph does not change). Due to its static nature, the TapeMachine is good for running expressions that are compiled-once-run-many-times (such as linear regression, SVM and the like).
+The LispMachine on the other hand was designed to take a graph as an input, and executes directly on the nodes of the graph.</description>
+    </item>
+    
+    <item>
+      <title>Differentiation</title>
+      <link>https://gorgonia.org/usage/differenciation/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/differenciation/</guid>
+      <description>Gorgonia performs both symbolic and automatic differentiation. There are subtle differences between the two processes. The author has found that it&amp;rsquo;s best to think of it this way - Automatic differentiation is differentiation that happens at runtime, concurrently with the execution of the graph, while symbolic differentiation is differentiation that happens during the compilation phase.
+Runtime of course, refers to the execution of the expression graph, not the program&amp;rsquo;s actual runtime.</description>
+    </item>
+    
+    <item>
+      <title>Graph</title>
+      <link>https://gorgonia.org/usage/graph/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/graph/</guid>
+      <description>A lot has been said about a computation graph or an expression graph. But what is it exactly? Think of it as an AST for the math expression that you want. Here&amp;rsquo;s the graph for the examples (but with a vector and a scalar addition instead) above:
+By the way, Gorgonia comes with nice-ish graph printing abilities. Here&amp;rsquo;s an example of a graph of the equation y = x² and its derivation:</description>
+    </item>
+    
+  </channel>
+</rss>

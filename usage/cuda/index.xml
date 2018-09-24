@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CUDA   on Gorgonia - Deep Learning Library for Go</title>
+    <link>https://gorgonia.org/usage/cuda/</link>
+    <description>Recent content in CUDA   on Gorgonia - Deep Learning Library for Go</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Sep 2018 21:32:15 +0200</lastBuildDate>
+    
+	<atom:link href="https://gorgonia.org/usage/cuda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Example</title>
+      <link>https://gorgonia.org/usage/cuda/example/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/cuda/example/</guid>
+      <description>So how do we use CUDA? Say we&amp;rsquo;ve got a file, main.go:
+import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;runtime&amp;#34; T &amp;#34;gorgonia.org/gorgonia&amp;#34; &amp;#34;gorgonia.org/tensor&amp;#34; ) func main() { g := T.NewGraph() x := T.NewMatrix(g, T.Float32, T.WithName(&amp;#34;x&amp;#34;), T.WithShape(100, 100)) y := T.NewMatrix(g, T.Float32, T.WithName(&amp;#34;y&amp;#34;), T.WithShape(100, 100)) xpy := T.Must(T.Add(x, y)) xpy2 := T.Must(T.Tanh(xpy)) m := T.NewTapeMachine(g, T.UseCudaFor(&amp;#34;tanh&amp;#34;)) T.Let(x, tensor.New(tensor.WithShape(100, 100), tensor.WithBacking(tensor.Random(tensor.Float32, 100*100)))) T.Let(y, tensor.New(tensor.WithShape(100, 100), tensor.WithBacking(tensor.Random(tensor.Float32, 100*100)))) runtime.LockOSThread() for i := 0; i &amp;lt; 1000; i++ { if err := m.</description>
+    </item>
+    
+    <item>
+      <title>Op&#39;s supported by CUDA</title>
+      <link>https://gorgonia.org/usage/cuda/ops/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/cuda/ops/</guid>
+      <description>As of now, only the very basic simple ops support CUDA:
+Elementwise unary operations:
+ abs sin cos exp ln log2 neg square sqrt inv (reciprocal of a number) cube tanh sigmoid log1p expm1 softplus  Elementwise binary operations - only arithmetic operations support CUDA:
+ add sub mul div pow  From a lot of profiling of this author&amp;rsquo;s personal projects, the ones that really matter are tanh, sigmoid, expm1, exp and cube - basically the activation functions.</description>
+    </item>
+    
+    <item>
+      <title>Improvements</title>
+      <link>https://gorgonia.org/usage/cuda/improvements/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/cuda/improvements/</guid>
+      <description>In a trivial benchmark, careful use of CUDA (in this case, used to call sigmoid) shows impressive improvements over non-CUDA code (bearing in mind the CUDA kernel is extremely naive and not optimized):
+BenchmarkOneMilCUDA-8 300	3348711 ns/op BenchmarkOneMil-8 50	33169036 ns/op  </description>
+    </item>
+    
+  </channel>
+</rss>

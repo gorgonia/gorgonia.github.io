@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.48" />
-<title>About :: Gorgonia - Deep Learning Library for Go</title>
+<title>Graph :: Gorgonia - Deep Learning Library for Go</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     
   </head>
-  <body data-url="/">
+  <body data-url="/usage/graph/">
     
       <header>
   <div class="logo">
@@ -70,10 +70,11 @@
       <a href="/getting-started/">Installation</a>
       </div>
     </li>
-    <li data-nav-id="/usage/" class="dd-item haschildren
+    <li data-nav-id="/usage/" class="dd-item parent haschildren
         ">
       <div>
-      <a href="/usage/">Usage</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      <a href="/usage/">Usage</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
       </div>
         <ul>
       <li data-nav-id="/usage/vm/" class="dd-item">
@@ -90,7 +91,7 @@
           </a>
         </div>
     </li>
-      <li data-nav-id="/usage/graph/" class="dd-item">
+      <li data-nav-id="/usage/graph/" class="dd-item active">
         <div>
           <a href="/usage/graph/">
             Graph
@@ -175,7 +176,14 @@
    Installation</option> 
   
     <option value="/usage/" >
-   Usage</option>
+   Usage</option> 
+      <option value="/usage/vm/" >- VM</option>
+      <option value="/usage/differenciation/" >- Differentiation</option>
+      <option value="/usage/graph/"  selected>- Graph</option>
+    <option value="/usage/cuda/" >
+  - 
+   CUDA  </option>
+  
     <option value="/contributing/" >
    Contributing</option>
     <option value="/copyright/" >
@@ -205,47 +213,52 @@
       </div>
     
 
+    <h1>Graph</h1>
     
     
     
     
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
- 
 
+<p>A lot has been said about a computation graph or an expression graph. But what is it exactly? Think of it as an AST for the math expression that you want. Here&rsquo;s the graph for the examples (but with a vector and a scalar addition instead) above:</p>
 
-<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/mascot_small.jpg" align="right" /></p>
+<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/exprGraph_example1.png" alt="graph1" /></p>
 
-<p>Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. If this sounds like <a href="http://deeplearning.net/software/theano/">Theano</a> or <a href="https://www.tensorflow.org/">TensorFlow</a>, it&rsquo;s because the idea is quite similar. Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
+<p>By the way, Gorgonia comes with nice-ish graph printing abilities. Here&rsquo;s an example of a graph of the equation <code>y = x²</code> and its derivation:</p>
 
-<p>Gorgonia:</p>
+<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/exprGraph_example2.png" alt="graph1" /></p>
+
+<p>To read the graph is easy. The expression builds from bottom up, while the derivations build from top down. This way the derivative of each node is roughly on the same level.</p>
+
+<p>Red-outlined nodes indicate that it&rsquo;s a root node. Green outlined nodes indicate that they&rsquo;re a leaf node. Nodes with a yellow background indicate that it&rsquo;s an input node. The dotted arrows indicate which node is the gradient node for the pointed-to node.</p>
+
+<p>Concretely, it says that <code>c42011e840</code> (<code>dy/dx</code>) is the gradient node of the input <code>c42011e000</code> (which is <code>x</code>).</p>
+
+<h3 id="node-rendering">Node Rendering</h3>
+
+<p>A Node is rendered thusly:</p>
+
+<table>
+<tr><td>ID</td><td>node name :: type</td></tr>
+<tr><td>OP*</td><td>op name :: type</td></tr>
+<tr><td colspan="2">shape</td></tr>
+<tr><td colspan="2">compilation metadata</td></tr>
+<tr><td>Value†</td><td>Gradient</td></tr>
+</table>
+
+<h3 id="additional-notes">Additional Notes</h3>
 
 <ul>
-<li>Can perform automatic differentiation</li>
-<li>Can perform symbolic differentiation</li>
-<li>Can perform gradient descent optimizations</li>
-<li>Can perform numerical stabilization</li>
-<li>Provides a number of convenience functions to help create neural networks</li>
-<li>Is fairly quick (comparable to Theano and Tensorflow&rsquo;s speed)</li>
-<li>Supports CUDA/GPGPU computation (OpenCL not yet supported, send a pull request)</li>
-<li>Will support distributed computing</li>
+<li>If it&rsquo;s an input node, then the Op row will not show up.</li>
+<li>If there are no Values bound to the node, it will show up as NIL. However, when there are values and gradients, it will try to as best as possible display the values bound to the node.</li>
 </ul>
-
-<h1 id="goals">Goals</h1>
-
-<p>The primary goal for Gorgonia is to be a <em>highly performant</em> machine learning/graph computation-based library that can scale across multiple machines. It should bring the appeal of Go (simple compilation and deployment process) to the ML world. It&rsquo;s a long way from there currently, however, the baby steps are already there.</p>
-
-<p>The secondary goal for Gorgonia is to provide a platform for exploration for non-standard deep-learning and neural network related things. This includes things like neo-hebbian learning, corner-cutting algorithms, evolutionary algorithms and the like.</p>
-
-
 
 
     
     
         <div class="chevrons">
     <div id="navigation">
-<a class="nav nav-next" href="/about/" title="Why use Gorgonia? " style="margin-right: 0px;"><label>Why use Gorgonia? </label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/usage/differenciation/" title="Differentiation"> <i class="fa fa-chevron-left"></i><label>Differentiation</label></a>
+    <a class="nav nav-next" href="/usage/cuda/" title="CUDA  " style="margin-right: 0px;"><label>CUDA  </label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -260,12 +273,12 @@
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 23/04/2016
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
     </div>
     
 
     <div class="github-link">
-      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/usage/graph.md" target="blank"><i class="fa fa-code-fork"></i>
         Improve this page</a>
     </div>
   </div>
