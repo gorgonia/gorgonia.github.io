@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.48" />
-<title>About :: Gorgonia - Deep Learning Library for Go</title>
+<title>Contributing :: Gorgonia - Deep Learning Library for Go</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
     
   </head>
-  <body data-url="/">
+  <body data-url="/contributing/">
     
       <header>
   <div class="logo">
@@ -128,7 +128,7 @@
     </li>
         </ul>
     </li>
-    <li data-nav-id="/contributing/" class="dd-item
+    <li data-nav-id="/contributing/" class="dd-item parent active
         ">
       <div>
       <a href="/contributing/">Contributing</a>
@@ -176,8 +176,9 @@
   
     <option value="/usage/" >
    Usage</option>
-    <option value="/contributing/" >
-   Contributing</option>
+    <option value="/contributing/"  selected>
+   Contributing</option> 
+  
     <option value="/copyright/" >
    Copyright</option> 
   
@@ -205,39 +206,32 @@
       </div>
     
 
+    <h1>Contributing</h1>
     
     
     
-    
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
- 
 
 
-<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/mascot_small.jpg" align="right" /></p>
 
-<p>Gorgonia is a library that helps facilitate machine learning in Go. Write and evaluate mathematical equations involving multidimensional arrays easily. If this sounds like <a href="http://deeplearning.net/software/theano/">Theano</a> or <a href="https://www.tensorflow.org/">TensorFlow</a>, it&rsquo;s because the idea is quite similar. Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
+<p>Obviously since you are most probably reading this on Github, Github will form the major part of the workflow for contributing to this package.</p>
 
-<p>Gorgonia:</p>
+<p>See also: CONTRIBUTING.md</p>
+
+<h2 id="contributors-and-significant-contributors">Contributors and Significant Contributors</h2>
+
+<p>All contributions are welcome. However, there is a new class of contributor, called Significant Contributors.</p>
+
+<p>A Significant Contributor is one who has shown <em>deep understanding</em> of how the library works and/or its environs.  Here are examples of what constitutes a Significant Contribution:</p>
 
 <ul>
-<li>Can perform automatic differentiation</li>
-<li>Can perform symbolic differentiation</li>
-<li>Can perform gradient descent optimizations</li>
-<li>Can perform numerical stabilization</li>
-<li>Provides a number of convenience functions to help create neural networks</li>
-<li>Is fairly quick (comparable to Theano and Tensorflow&rsquo;s speed)</li>
-<li>Supports CUDA/GPGPU computation (OpenCL not yet supported, send a pull request)</li>
-<li>Will support distributed computing</li>
+<li>Wrote significant amounts of documentation pertaining to <strong>why</strong>/the mechanics of particular functions/methods and how the different parts affect one another</li>
+<li>Wrote code, and tests around the more intricately connected parts of Gorgonia</li>
+<li>Wrote code and tests, and have at least 5 pull requests accepted</li>
+<li>Provided expert analysis on parts of the package (for example, you may be a floating point operations expert who optimized one function)</li>
+<li>Answered at least 10 support questions.</li>
 </ul>
 
-<h1 id="goals">Goals</h1>
-
-<p>The primary goal for Gorgonia is to be a <em>highly performant</em> machine learning/graph computation-based library that can scale across multiple machines. It should bring the appeal of Go (simple compilation and deployment process) to the ML world. It&rsquo;s a long way from there currently, however, the baby steps are already there.</p>
-
-<p>The secondary goal for Gorgonia is to provide a platform for exploration for non-standard deep-learning and neural network related things. This includes things like neo-hebbian learning, corner-cutting algorithms, evolutionary algorithms and the like.</p>
-
+<p>Significant Contributors list will be updated once a month (if anyone even uses Gorgonia that is).</p>
 
 
 
@@ -245,7 +239,8 @@
     
         <div class="chevrons">
     <div id="navigation">
-<a class="nav nav-next" href="/about/" title="Why use Gorgonia? " style="margin-right: 0px;"><label>Why use Gorgonia? </label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/usage/cuda/improvements/" title="Improvements"> <i class="fa fa-chevron-left"></i><label>Improvements</label></a>
+    <a class="nav nav-next" href="/copyright/" title="Copyright" style="margin-right: 0px;"><label>Copyright</label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -260,12 +255,12 @@
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 23/04/2016
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
     </div>
     
 
     <div class="github-link">
-      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/gorgonia/gorgonia.github.io/src/content/contributing/_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Improve this page</a>
     </div>
   </div>

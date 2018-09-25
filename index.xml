@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on Gorgonia - Deep Learning Library for Go</title>
+    <link>https://gorgonia.org/</link>
+    <description>Recent content in About on Gorgonia - Deep Learning Library for Go</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 23 Apr 2016 15:21:22 +0200</lastBuildDate>
+    
+	<atom:link href="https://gorgonia.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>FAQ</title>
+      <link>https://gorgonia.org/support/faq/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/support/faq/</guid>
+      <description>Why are there seemingly random runtime.GC() calls in the tests? The answer to this is simple - the design of the package uses CUDA in a particular way: specifically, a CUDA device and context is tied to a VM, instead of at the package level. This means for every VM created, a different CUDA context is created per device per VM. This way all the operations will play nicely with other applications that may be using CUDA (this needs to be stress-tested, however).</description>
+    </item>
+    
+    <item>
+      <title>VM</title>
+      <link>https://gorgonia.org/usage/vm/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/vm/</guid>
+      <description>There are two VMs in the current version of Gorgonia:
+ TapeMachine LispMachine  They function differently and take different inputs. The TapeMachine is useful for executing expressions that are generally static (that is to say the computation graph does not change). Due to its static nature, the TapeMachine is good for running expressions that are compiled-once-run-many-times (such as linear regression, SVM and the like).
+The LispMachine on the other hand was designed to take a graph as an input, and executes directly on the nodes of the graph.</description>
+    </item>
+    
+    <item>
+      <title>Differentiation</title>
+      <link>https://gorgonia.org/usage/differenciation/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/differenciation/</guid>
+      <description>Gorgonia performs both symbolic and automatic differentiation. There are subtle differences between the two processes. The author has found that it&amp;rsquo;s best to think of it this way - Automatic differentiation is differentiation that happens at runtime, concurrently with the execution of the graph, while symbolic differentiation is differentiation that happens during the compilation phase.
+Runtime of course, refers to the execution of the expression graph, not the program&amp;rsquo;s actual runtime.</description>
+    </item>
+    
+    <item>
+      <title>Graph</title>
+      <link>https://gorgonia.org/usage/graph/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/graph/</guid>
+      <description>A lot has been said about a computation graph or an expression graph. But what is it exactly? Think of it as an AST for the math expression that you want. Here&amp;rsquo;s the graph for the examples (but with a vector and a scalar addition instead) above:
+By the way, Gorgonia comes with nice-ish graph printing abilities. Here&amp;rsquo;s an example of a graph of the equation y = x² and its derivation:</description>
+    </item>
+    
+    <item>
+      <title>Example</title>
+      <link>https://gorgonia.org/usage/cuda/example/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/cuda/example/</guid>
+      <description>So how do we use CUDA? Say we&amp;rsquo;ve got a file, main.go:
+import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;runtime&amp;#34; T &amp;#34;gorgonia.org/gorgonia&amp;#34; &amp;#34;gorgonia.org/tensor&amp;#34; ) func main() { g := T.NewGraph() x := T.NewMatrix(g, T.Float32, T.WithName(&amp;#34;x&amp;#34;), T.WithShape(100, 100)) y := T.NewMatrix(g, T.Float32, T.WithName(&amp;#34;y&amp;#34;), T.WithShape(100, 100)) xpy := T.Must(T.Add(x, y)) xpy2 := T.Must(T.Tanh(xpy)) m := T.NewTapeMachine(g, T.UseCudaFor(&amp;#34;tanh&amp;#34;)) T.Let(x, tensor.New(tensor.WithShape(100, 100), tensor.WithBacking(tensor.Random(tensor.Float32, 100*100)))) T.Let(y, tensor.New(tensor.WithShape(100, 100), tensor.WithBacking(tensor.Random(tensor.Float32, 100*100)))) runtime.LockOSThread() for i := 0; i &amp;lt; 1000; i++ { if err := m.</description>
+    </item>
+    
+    <item>
+      <title>Op&#39;s supported by CUDA</title>
+      <link>https://gorgonia.org/usage/cuda/ops/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/cuda/ops/</guid>
+      <description>As of now, only the very basic simple ops support CUDA:
+Elementwise unary operations:
+ abs sin cos exp ln log2 neg square sqrt inv (reciprocal of a number) cube tanh sigmoid log1p expm1 softplus  Elementwise binary operations - only arithmetic operations support CUDA:
+ add sub mul div pow  From a lot of profiling of this author&amp;rsquo;s personal projects, the ones that really matter are tanh, sigmoid, expm1, exp and cube - basically the activation functions.</description>
+    </item>
+    
+    <item>
+      <title>Improvements</title>
+      <link>https://gorgonia.org/usage/cuda/improvements/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/usage/cuda/improvements/</guid>
+      <description>In a trivial benchmark, careful use of CUDA (in this case, used to call sigmoid) shows impressive improvements over non-CUDA code (bearing in mind the CUDA kernel is extremely naive and not optimized):
+BenchmarkOneMilCUDA-8 300	3348711 ns/op BenchmarkOneMil-8 50	33169036 ns/op  </description>
+    </item>
+    
+  </channel>
+</rss>
