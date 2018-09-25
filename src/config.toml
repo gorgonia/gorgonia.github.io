@@ -11,7 +11,7 @@ pygmentsUseClasses =true
 pygmentsCodeFences=true
 
 [params]
-        editURL = "https://github.com/gorgonia/gorgonia.github.io/src/content/"
+        editURL = "https://github.com/gorgonia/gorgonia.github.io/tree/master/src/content/"
         themeVariant = "blue" # choose theme variant "green", "gold" , "gray", "blue" (default)
         themeStyle = "flex" # "original" or "flex" # default "flex"
 	author = "Gorgonia Authors"
