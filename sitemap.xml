@@ -78,6 +78,10 @@
   </url>
   
   <url>
+    <loc>https://gorgonia.org/_footer/</loc>
+  </url>
+  
+  <url>
     <loc>https://gorgonia.org/categories/</loc>
     <priority>0</priority>
   </url>
