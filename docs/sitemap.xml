@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://gorgonia.org/support/faq/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/about/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/vm/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/differenciation/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/graph/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/cuda/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/getting-started/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/cuda/example/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/cuda/ops/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/usage/cuda/improvements/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/contributing/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/copyright/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/support/</loc>
+    <lastmod>2018-09-24T21:32:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/</loc>
+    <lastmod>2016-04-23T15:21:22+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/_footer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gorgonia.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

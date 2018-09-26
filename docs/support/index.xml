@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Support on Gorgonia - Deep Learning Library for Go</title>
+    <link>https://gorgonia.org/support/</link>
+    <description>Recent content in Support on Gorgonia - Deep Learning Library for Go</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Sep 2018 21:32:15 +0200</lastBuildDate>
+    
+	<atom:link href="https://gorgonia.org/support/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>FAQ</title>
+      <link>https://gorgonia.org/support/faq/</link>
+      <pubDate>Mon, 24 Sep 2018 21:32:15 +0200</pubDate>
+      
+      <guid>https://gorgonia.org/support/faq/</guid>
+      <description>Why are there seemingly random runtime.GC() calls in the tests? The answer to this is simple - the design of the package uses CUDA in a particular way: specifically, a CUDA device and context is tied to a VM, instead of at the package level. This means for every VM created, a different CUDA context is created per device per VM. This way all the operations will play nicely with other applications that may be using CUDA (this needs to be stress-tested, however).</description>
+    </item>
+    
+  </channel>
+</rss>

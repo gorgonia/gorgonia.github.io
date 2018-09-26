@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gorgonia - Deep Learning Library for Go</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.47.1" />
+<title>Graph :: Gorgonia - Deep Learning Library for Go</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/theme-flex/style.css" rel="stylesheet">
+
+	<link href="/theme-flex/variant-blue.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/gorgonia.org\/";
+</script>
+<meta name="description" content="Gorgonia is a suite of libraries for creating performant deep learning and machine learning applications in Go">
+<meta name="author" content="Gorgonia Authors">
+
+
+    
+  </head>
+  <body data-url="/usage/graph/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <a class="baselink" href="https://gorgonia.org/">Gorgonia - Deep Learning Library for Go</a>
+  
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/gorgonia/gorgonia"  rel="noopener">
+                  <i class='fa fa-github'></i> <label>Github repo</label>
+                </a>
+            </li>
+            <li class="" role="">
+                <a href="https://godoc.org/gorgonia.org/gorgonia"  rel="noopener">
+                  <i class='fa fa-bookmark'></i> <label>GoDoc</label>
+                </a>
+            </li>
+    </nav>
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+          <li data-nav-id="/" class="dd-item">
+          <a href="/">
+            <i class="fa fa-fw fa-home"></i>
+          </a>
+          </li>
+    <li data-nav-id="/about/" class="dd-item
+        ">
+      <div>
+      <a href="/about/">Why use Gorgonia? </a>
+      </div>
+    </li>
+    <li data-nav-id="/getting-started/" class="dd-item alwaysopen
+        ">
+      <div>
+      <a href="/getting-started/">Installation</a>
+      </div>
+    </li>
+    <li data-nav-id="/usage/" class="dd-item parent haschildren
+        ">
+      <div>
+      <a href="/usage/">Usage</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/usage/vm/" class="dd-item">
+        <div>
+          <a href="/usage/vm/">
+            VM
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/differenciation/" class="dd-item">
+        <div>
+          <a href="/usage/differenciation/">
+            Differentiation
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/graph/" class="dd-item active">
+        <div>
+          <a href="/usage/graph/">
+            Graph
+          </a>
+        </div>
+    </li>
+    <li data-nav-id="/usage/cuda/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="/usage/cuda/">CUDA  </a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/usage/cuda/example/" class="dd-item">
+        <div>
+          <a href="/usage/cuda/example/">
+            Example
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/cuda/ops/" class="dd-item">
+        <div>
+          <a href="/usage/cuda/ops/">
+            Op&#39;s supported by CUDA
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/cuda/improvements/" class="dd-item">
+        <div>
+          <a href="/usage/cuda/improvements/">
+            Improvements
+          </a>
+        </div>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/contributing/" class="dd-item
+        ">
+      <div>
+      <a href="/contributing/">Contributing</a>
+      </div>
+    </li>
+    <li data-nav-id="/copyright/" class="dd-item alwaysopen
+        ">
+      <div>
+      <a href="/copyright/">Copyright</a>
+      </div>
+    </li>
+    <li data-nav-id="/support/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="/support/">Support</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/support/faq/" class="dd-item">
+        <div>
+          <a href="/support/faq/">
+            FAQ
+          </a>
+        </div>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page">
+    
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          
+    <option value="/about/" >
+   Why use Gorgonia? </option>
+    <option value="/getting-started/" >
+   Installation</option> 
+  
+    <option value="/usage/" >
+   Usage</option> 
+      <option value="/usage/vm/" >- VM</option>
+      <option value="/usage/differenciation/" >- Differentiation</option>
+      <option value="/usage/graph/"  selected>- Graph</option>
+    <option value="/usage/cuda/" >
+  - 
+   CUDA  </option>
+  
+    <option value="/contributing/" >
+   Contributing</option>
+    <option value="/copyright/" >
+   Copyright</option> 
+  
+    <option value="/support/" >
+   Support</option>
+
+
+
+        </select>
+      </center>
+    </div>
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="/js/lunr.min.js"></script>
+        <script type="text/javascript" src="/js/auto-complete.js"></script>
+        <link href="/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/gorgonia.org\/";
+          
+        </script>
+        <script type="text/javascript" src="/js/search.js"></script>
+      </div>
+    
+
+    <h1>Graph</h1>
+    
+    
+    
+    
+
+<p>A lot has been said about a computation graph or an expression graph. But what is it exactly? Think of it as an AST for the math expression that you want. Here&rsquo;s the graph for the examples (but with a vector and a scalar addition instead) above:</p>
+
+<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/exprGraph_example1.png" alt="graph1" /></p>
+
+<p>By the way, Gorgonia comes with nice-ish graph printing abilities. Here&rsquo;s an example of a graph of the equation <code>y = x²</code> and its derivation:</p>
+
+<p><img src="https://raw.githubusercontent.com/gorgonia/gorgonia/master/media/exprGraph_example2.png" alt="graph1" /></p>
+
+<p>To read the graph is easy. The expression builds from bottom up, while the derivations build from top down. This way the derivative of each node is roughly on the same level.</p>
+
+<p>Red-outlined nodes indicate that it&rsquo;s a root node. Green outlined nodes indicate that they&rsquo;re a leaf node. Nodes with a yellow background indicate that it&rsquo;s an input node. The dotted arrows indicate which node is the gradient node for the pointed-to node.</p>
+
+<p>Concretely, it says that <code>c42011e840</code> (<code>dy/dx</code>) is the gradient node of the input <code>c42011e000</code> (which is <code>x</code>).</p>
+
+<h3 id="node-rendering">Node Rendering</h3>
+
+<p>A Node is rendered thusly:</p>
+
+<table>
+<tr><td>ID</td><td>node name :: type</td></tr>
+<tr><td>OP*</td><td>op name :: type</td></tr>
+<tr><td colspan="2">shape</td></tr>
+<tr><td colspan="2">compilation metadata</td></tr>
+<tr><td>Value†</td><td>Gradient</td></tr>
+</table>
+
+<h3 id="additional-notes">Additional Notes</h3>
+
+<ul>
+<li>If it&rsquo;s an input node, then the Op row will not show up.</li>
+<li>If there are no Values bound to the node, it will show up as NIL. However, when there are values and gradients, it will try to as best as possible display the values bound to the node.</li>
+</ul>
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/usage/differenciation/" title="Differentiation"> <i class="fa fa-chevron-left"></i><label>Differentiation</label></a>
+    <a class="nav nav-next" href="/usage/cuda/" title="CUDA  " style="margin-right: 0px;"><label>CUDA  </label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+  
+    <div class="date">
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
+    </div>
+    
+
+    <div class="github-link">
+      <a href="https://github.com/gorgonia/gorgonia.github.io/tree/master/src/content/usage/graph.md" target="blank"><i class="fa fa-code-fork"></i>
+        Improve this page</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    
+  
+
+
+
+	</div>
+</footer>
+
+<script src="/js/clipboard.min.js"></script>
+
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
+
+
+
+<script src="/theme-flex/script.js"></script>
+
+    
+
+    
+    
+
+    
+  </body>
+</html>

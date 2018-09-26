@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gorgonia - Deep Learning Library for Go</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.47.1" />
+<title>Differentiation :: Gorgonia - Deep Learning Library for Go</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/theme-flex/style.css" rel="stylesheet">
+
+	<link href="/theme-flex/variant-blue.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/gorgonia.org\/";
+</script>
+<meta name="description" content="Gorgonia is a suite of libraries for creating performant deep learning and machine learning applications in Go">
+<meta name="author" content="Gorgonia Authors">
+
+
+    
+  </head>
+  <body data-url="/usage/differenciation/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <a class="baselink" href="https://gorgonia.org/">Gorgonia - Deep Learning Library for Go</a>
+  
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/gorgonia/gorgonia"  rel="noopener">
+                  <i class='fa fa-github'></i> <label>Github repo</label>
+                </a>
+            </li>
+            <li class="" role="">
+                <a href="https://godoc.org/gorgonia.org/gorgonia"  rel="noopener">
+                  <i class='fa fa-bookmark'></i> <label>GoDoc</label>
+                </a>
+            </li>
+    </nav>
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+          <li data-nav-id="/" class="dd-item">
+          <a href="/">
+            <i class="fa fa-fw fa-home"></i>
+          </a>
+          </li>
+    <li data-nav-id="/about/" class="dd-item
+        ">
+      <div>
+      <a href="/about/">Why use Gorgonia? </a>
+      </div>
+    </li>
+    <li data-nav-id="/getting-started/" class="dd-item alwaysopen
+        ">
+      <div>
+      <a href="/getting-started/">Installation</a>
+      </div>
+    </li>
+    <li data-nav-id="/usage/" class="dd-item parent haschildren
+        ">
+      <div>
+      <a href="/usage/">Usage</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/usage/vm/" class="dd-item">
+        <div>
+          <a href="/usage/vm/">
+            VM
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/differenciation/" class="dd-item active">
+        <div>
+          <a href="/usage/differenciation/">
+            Differentiation
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/graph/" class="dd-item">
+        <div>
+          <a href="/usage/graph/">
+            Graph
+          </a>
+        </div>
+    </li>
+    <li data-nav-id="/usage/cuda/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="/usage/cuda/">CUDA  </a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/usage/cuda/example/" class="dd-item">
+        <div>
+          <a href="/usage/cuda/example/">
+            Example
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/cuda/ops/" class="dd-item">
+        <div>
+          <a href="/usage/cuda/ops/">
+            Op&#39;s supported by CUDA
+          </a>
+        </div>
+    </li>
+      <li data-nav-id="/usage/cuda/improvements/" class="dd-item">
+        <div>
+          <a href="/usage/cuda/improvements/">
+            Improvements
+          </a>
+        </div>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/contributing/" class="dd-item
+        ">
+      <div>
+      <a href="/contributing/">Contributing</a>
+      </div>
+    </li>
+    <li data-nav-id="/copyright/" class="dd-item alwaysopen
+        ">
+      <div>
+      <a href="/copyright/">Copyright</a>
+      </div>
+    </li>
+    <li data-nav-id="/support/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="/support/">Support</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/support/faq/" class="dd-item">
+        <div>
+          <a href="/support/faq/">
+            FAQ
+          </a>
+        </div>
+    </li>
+        </ul>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page">
+    
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          
+    <option value="/about/" >
+   Why use Gorgonia? </option>
+    <option value="/getting-started/" >
+   Installation</option> 
+  
+    <option value="/usage/" >
+   Usage</option> 
+      <option value="/usage/vm/" >- VM</option>
+      <option value="/usage/differenciation/"  selected>- Differentiation</option>
+      <option value="/usage/graph/" >- Graph</option>
+    <option value="/usage/cuda/" >
+  - 
+   CUDA  </option>
+  
+    <option value="/contributing/" >
+   Contributing</option>
+    <option value="/copyright/" >
+   Copyright</option> 
+  
+    <option value="/support/" >
+   Support</option>
+
+
+
+        </select>
+      </center>
+    </div>
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="Search...">
+        </div>
+        <script type="text/javascript" src="/js/lunr.min.js"></script>
+        <script type="text/javascript" src="/js/auto-complete.js"></script>
+        <link href="/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "https:\/\/gorgonia.org\/";
+          
+        </script>
+        <script type="text/javascript" src="/js/search.js"></script>
+      </div>
+    
+
+    <h1>Differentiation</h1>
+    
+    
+    
+    <p>Gorgonia performs both symbolic and automatic differentiation. There are subtle differences between the two processes. The author has found that it&rsquo;s best to think of it this way - Automatic differentiation is differentiation that happens at runtime, concurrently with the execution of the graph, while symbolic differentiation is differentiation that happens during the compilation phase.</p>
+
+<p>Runtime of course, refers to the execution of the expression graph, not the program&rsquo;s actual runtime.</p>
+
+<p>With the introduction to the two VMs, it&rsquo;s easy to see how Gorgonia can perform both symbolic and automatic differentiation. Using the same example as above, the reader should note that there was no differentiation done. Instead, let&rsquo;s try with a <code>LispMachine</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+
+	<span class="p">.</span> <span class="s">&#34;gorgonia.org/gorgonia&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">g</span> <span class="o">:=</span> <span class="nx">NewGraph</span><span class="p">()</span>
+
+	<span class="kd">var</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span> <span class="o">*</span><span class="nx">Node</span>
+	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+
+	<span class="c1">// define the expression
+</span><span class="c1"></span>	<span class="nx">x</span> <span class="p">=</span> <span class="nx">NewScalar</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span> <span class="nx">Float64</span><span class="p">,</span> <span class="nx">WithName</span><span class="p">(</span><span class="s">&#34;x&#34;</span><span class="p">))</span>
+	<span class="nx">y</span> <span class="p">=</span> <span class="nx">NewScalar</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span> <span class="nx">Float64</span><span class="p">,</span> <span class="nx">WithName</span><span class="p">(</span><span class="s">&#34;y&#34;</span><span class="p">))</span>
+	<span class="nx">z</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// set initial values then run
+</span><span class="c1"></span>	<span class="nx">Let</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+	<span class="nx">Let</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+
+	<span class="c1">// by default, LispMachine performs forward mode and backwards mode execution
+</span><span class="c1"></span>	<span class="nx">m</span> <span class="o">:=</span> <span class="nx">NewLispMachine</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nx">RunAll</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;z: %v\n&#34;</span><span class="p">,</span> <span class="nx">z</span><span class="p">.</span><span class="nx">Value</span><span class="p">())</span>
+
+	<span class="nx">xgrad</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">Grad</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;dz/dx: %v\n&#34;</span><span class="p">,</span> <span class="nx">xgrad</span><span class="p">)</span>
+
+	<span class="nx">ygrad</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">y</span><span class="p">.</span><span class="nx">Grad</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;dz/dy: %v\n&#34;</span><span class="p">,</span> <span class="nx">ygrad</span><span class="p">)</span>
+
+	<span class="c1">// Output:
+</span><span class="c1"></span>	<span class="c1">// z: 4.5
+</span><span class="c1"></span>	<span class="c1">// dz/dx: 1
+</span><span class="c1"></span>	<span class="c1">// dz/dy: 1
+</span><span class="c1"></span><span class="p">}</span></code></pre></div>
+<p>Of course, Gorgonia also supports the more traditional symbolic differentiation like in Theano:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;log&#34;</span>
+
+	<span class="p">.</span> <span class="s">&#34;gorgonia.org/gorgonia&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">g</span> <span class="o">:=</span> <span class="nx">NewGraph</span><span class="p">()</span>
+
+	<span class="kd">var</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span> <span class="o">*</span><span class="nx">Node</span>
+	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+
+	<span class="c1">// define the expression
+</span><span class="c1"></span>	<span class="nx">x</span> <span class="p">=</span> <span class="nx">NewScalar</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span> <span class="nx">Float64</span><span class="p">,</span> <span class="nx">WithName</span><span class="p">(</span><span class="s">&#34;x&#34;</span><span class="p">))</span>
+	<span class="nx">y</span> <span class="p">=</span> <span class="nx">NewScalar</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span> <span class="nx">Float64</span><span class="p">,</span> <span class="nx">WithName</span><span class="p">(</span><span class="s">&#34;y&#34;</span><span class="p">))</span>
+	<span class="nx">z</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// symbolically differentiate z with regards to x and y
+</span><span class="c1"></span>	<span class="c1">// this adds the gradient nodes to the graph g
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">grads</span> <span class="nx">Nodes</span>
+	<span class="nx">grads</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">Grad</span><span class="p">(</span><span class="nx">z</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">// create a VM to run the program on
+</span><span class="c1"></span>	<span class="nx">machine</span> <span class="o">:=</span> <span class="nx">NewTapeMachine</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span>
+
+	<span class="c1">// set initial values then run
+</span><span class="c1"></span>	<span class="nx">Let</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+	<span class="nx">Let</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">machine</span><span class="p">.</span><span class="nx">RunAll</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;z: %v\n&#34;</span><span class="p">,</span> <span class="nx">z</span><span class="p">.</span><span class="nx">Value</span><span class="p">())</span>
+
+	<span class="nx">xgrad</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">Grad</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;dz/dx: %v | %v\n&#34;</span><span class="p">,</span> <span class="nx">xgrad</span><span class="p">,</span> <span class="nx">grads</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+	<span class="nx">ygrad</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">y</span><span class="p">.</span><span class="nx">Grad</span><span class="p">()</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&#34;dz/dy: %v | %v\n&#34;</span><span class="p">,</span> <span class="nx">ygrad</span><span class="p">,</span> <span class="nx">grads</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+	<span class="c1">// Output:
+</span><span class="c1"></span>	<span class="c1">// z: 4.5
+</span><span class="c1"></span>	<span class="c1">// dz/dx: 1 | 1 :: float64{1}
+</span><span class="c1"></span>	<span class="c1">// dz/dy: 1 | 1 :: float64{1}
+</span><span class="c1"></span><span class="p">}</span></code></pre></div>
+<p>Currently Gorgonia only performs backwards mode automatic differentiation (aka backpropagation), although one may observe the vestiges of an older version which supported forwards mode differentiation in the existence of <code>*dualValue</code>. It may return in the future.</p>
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/usage/vm/" title="VM"> <i class="fa fa-chevron-left"></i><label>VM</label></a>
+    <a class="nav nav-next" href="/usage/graph/" title="Graph" style="margin-right: 0px;"><label>Graph</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+  
+    <div class="date">
+        <i class='fa fa-calendar'></i> Last update on 24/09/2018
+    </div>
+    
+
+    <div class="github-link">
+      <a href="https://github.com/gorgonia/gorgonia.github.io/tree/master/src/content/usage/differenciation.md" target="blank"><i class="fa fa-code-fork"></i>
+        Improve this page</a>
+    </div>
+  </div>
+
+
+	<div>
+
+
+  
+    
+  
+
+
+
+	</div>
+</footer>
+
+<script src="/js/clipboard.min.js"></script>
+
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
+
+
+
+<script src="/theme-flex/script.js"></script>
+
+    
+
+    
+    
+
+    
+  </body>
+</html>
