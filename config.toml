@@ -14,7 +14,6 @@ pygmentsCodeFences = true
 	author = "Gorgonia Authors"
 	description = "Gorgonia is a suite of libraries for creating performant deep learning and machine learning applications in Go"
     editURL = "https://github.com/gorgonia/gorgonia.github.io/tree/master/src/content/"
-    themeVariant = "blue" # choose theme variant "green", "gold" , "gray", "blue" (default)
     themeStyle = "flex" # "original" or "flex" # default "flex"
     copyright = "Released under the MIT license"
     enableGitInfo = true
