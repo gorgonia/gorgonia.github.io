@@ -11,8 +11,8 @@ pygmentsCodeFences = true
 
 [params]
     name = "Gorgonia"
-	author = "Gorgonia Authors"
-	description = "Gorgonia is a suite of libraries for creating performant deep learning and machine learning applications in Go"
+    author = "Gorgonia Authors"
+    description = "Gorgonia is a suite of libraries for creating performant deep learning and machine learning applications in Go"
     editURL = "https://github.com/gorgonia/gorgonia.github.io/tree/master/src/content/"
     themeStyle = "flex" # "original" or "flex" # default "flex"
     copyright = "Released under the MIT license"
