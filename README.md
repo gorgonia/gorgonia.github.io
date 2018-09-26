@@ -1,6 +1,4 @@
-## Hugo Source for http://gorgonia.org
-
-Hugo source for [gorgonia](http://gorgonia.org).
+## Hugo Source for [gorgonia.org](http://gorgonia.org)
 
 ### Building
 
