@@ -6,8 +6,8 @@ theme = "docdock"
 
 disqusShortname = ""
 googleAnalytics = ""
-pygmentsUseClasses =true
-pygmentsCodeFences=true
+pygmentsUseClasses = true
+pygmentsCodeFences = true
 
 [params]
     name = "Gorgonia"
@@ -19,6 +19,10 @@ pygmentsCodeFences=true
     copyright = "Released under the MIT license"
     enableGitInfo = true
     ordersectionsby = "weight" # ordersectionsby = "title"
+
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
 
 
 [[menu.shortcuts]]
