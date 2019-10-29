@@ -7,7 +7,7 @@ aliases = [
     "/tensor/internal",
     "/tensor/internal/execution",
     "/tensor/internal/serialization",
-    "/tensor/internal/storage",
+    "/tensor/internal/storage"
 ]
 +++
 

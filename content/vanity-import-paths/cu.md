@@ -5,7 +5,7 @@ vanity = "https://github.com/gorgonia/cu"
 aliases = [
     "/cu/blas",
     "/cu/dnn",
-    "/cu/nvrtc",
+    "/cu/nvrtc"
 ]
 +++
 
