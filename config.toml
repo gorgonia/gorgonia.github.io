@@ -39,20 +39,10 @@ url = "https://github.com/gorgonia/gorgonia"
 weight = 10
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-camera'></i> Material"
-url = "material"
-weight = 21
-
-[[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
 identifier = "godoc"
 url = "https://godoc.org/gorgonia.org/gorgonia"
 weight = 11
-
-[[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-url = "/credits"
-weight = 30
 
 [Languages.fr]
 title = "Documentation du thème Hugo Learn"
@@ -66,19 +56,7 @@ url = "https://github.com/gorgonia.org/gorgonia"
 weight = 10
 
 [[Languages.fr.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-camera'></i> Material"
-url = "material"
-weight = 21
-
-[[Languages.fr.menu.shortcuts]]
 name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
 identifier = "godoc"
 url = "https://godoc.org/gorgonia.org/gorgonia"
 weight = 11
-
-[[Languages.fr.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bullhorn'></i> Crédits"
-url = "/credits"
-weight = 30
-
-
