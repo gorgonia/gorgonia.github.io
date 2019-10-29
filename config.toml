@@ -18,13 +18,13 @@ defaultContentLanguageInSubdir= true
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = "gorgonia"
 
-[outputs]
-home = [ "HTML", "RSS", "JSON"]
-
-[Permalinks]
 # vanity imports for Go,
 # see https://npf.io/2016/10/vanity-imports-with-hugo/
-    vanity-import-paths = "/:filename/"
+[Permalinks]
+  vanity-import-paths = "/:filename/"
+
+[outputs]
+    home = [ "HTML", "RSS", "JSON"]
 
 [Languages]
 [Languages.en]
@@ -60,3 +60,4 @@ name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
 identifier = "godoc"
 url = "https://godoc.org/gorgonia.org/gorgonia"
 weight = 11
+
