@@ -1,12 +1,12 @@
 baseURL = "/"
 languageCode = "en-US"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 
 title = "Gorgonia"
 theme = "hugo-theme-learn"
 themesdir = "./themes"
 metaDataFormat = "toml"
-defaultContentLanguageInSubdir= true
 
 [params]
   editURL = "https://github.com/gorgonia/gorgonia.github.io/edit/master/content/"
