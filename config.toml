@@ -5,7 +5,7 @@ defaultContentLanguage = "en"
 title = "Gorgonia"
 theme = "hugo-theme-learn"
 themesdir = "./themes"
-metaDataFormat = "yaml"
+metaDataFormat = "toml"
 defaultContentLanguageInSubdir= true
 
 [params]
@@ -21,10 +21,10 @@ defaultContentLanguageInSubdir= true
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
-[permalinks]
-    # vanity imports for Go,
-    # see https://npf.io/2016/10/vanity-imports-with-hugo/
-	goget = "/:filename/"
+[Permalinks]
+# vanity imports for Go,
+# see https://npf.io/2016/10/vanity-imports-with-hugo/
+    vanity-import-paths = "/:filename/"
 
 [Languages]
 [Languages.en]

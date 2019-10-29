@@ -12,5 +12,4 @@ aliases = [
     "/gorgonia/blase",
     "/gorgonia/cuda",
 ]
-draft = false
 +++
