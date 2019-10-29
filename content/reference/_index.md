@@ -1,13 +1,15 @@
 +++
-title = "Reference"
+title = "Reference guide"
 date = 2019-10-28T11:40:55+01:00
 weight = 5
 chapter = true
 pre = "<b>X. </b>"
 +++
 
-### Chapter X
+This is the reference guide of Gorgonia. The goal of the articles in this section are:
 
-# Some Chapter title
+* being information-oriented
+* describing the machinery
+* being accurate and complete
 
-Lorem Ipsum.
+Analogy: a reference encyclopaedia article

@@ -2,6 +2,7 @@
 title: "Hello World"
 date: 2019-10-29T17:54:31+01:00
 draft: false
+weight: -100
 ---
 
 This is a step by step tutorial to do a very simple computation with Gorgonia.
@@ -23,15 +24,15 @@ graph LR;
 
 To compute the result, we use 4 steps:
 
-* Make a similar [graph](/about/exprgraph) with Gorgonia
-* sets some [values](/about/value) on the [nodes](/about/node) `x` and `y` then
-* instanciate a graph on a [gorgonia vm](/about/vm)
-* extract the [value](/about/value) from node `z`
+* Make a similar [graph](/reference/exprgraph) with Gorgonia
+* sets some [values](/reference/value) on the [nodes](/reference/node) `x` and `y` then
+* instanciate a graph on a [gorgonia vm](/reference/vm)
+* extract the [value](/reference/value) from node `z`
     *
 
 ### Create a graph
 
-Create an empty [expression graph](/about/exprgraph) with this method:
+Create an empty [expression graph](/reference/exprgraph) with this method:
 
 ```go
 g := gorgonia.NewGraph()
@@ -39,7 +40,7 @@ g := gorgonia.NewGraph()
 
 ### Create the nodes
 
-We will create some [nodes](/about/node) and associate them to the ExprGraph.
+We will create some [nodes](/reference/node) and associate them to the ExprGraph.
 
 ```go
 var x, y, z *gorgonia.Node
@@ -58,7 +59,7 @@ the functions take the exprgraph as argument; the resulting node is automaticall
 {{% /notice %}}
 
 
-Now create the addition operator; this operator takes two [nodes](/about/node) and returns a new node z:
+Now create the addition operator; this operator takes two [nodes](/reference/node) and returns a new node z:
 
 ```
 if z, err = gorgonia.Add(x, y); err != nil {
@@ -84,8 +85,8 @@ gorgonia.Let(y, 2.5)
 
 ### Run the graph
 
-To run the graph and compute the result, we need to instanciate a [VM](/about/vm).
-Let's use the [TapeMachine](/about/vm/tapemachine):
+To run the graph and compute the result, we need to instanciate a [VM](/reference/vm).
+Let's use the [TapeMachine](/reference/vm/tapemachine):
 
 ```go
 machine := gorgonia.NewTapeMachine(g)
@@ -108,7 +109,7 @@ If a second run is needed, it is mandatory to call the `Reset()` method of the `
 ### Get the result
 
 Now the node `z` holds the result.
-We can extract its [value](/about/value) by calling the `Value()` method:
+We can extract its [value](/reference/value) by calling the `Value()` method:
 
 ```go
 fmt.Printf("%v", z.Value())

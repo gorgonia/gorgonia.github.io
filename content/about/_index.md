@@ -1,15 +1,12 @@
 +++
 title = "About"
 date = 2019-10-28T11:41:02+01:00
-weight = 5
+weight = -9
 chapter = true
 pre = "<b>X. </b>"
 +++
 
-### Explanation
-
-This contains article with a goal to explain how gorgonia works.
-
+This section contains articles with a goal to explain how gorgonia works.
 
 An explanation:
 
@@ -26,5 +23,5 @@ For more information on explanation, please read this [article](https://www.divi
 If you want to provide some explanation on Gorgonia, create a new entry in the doc this way:
 
 ```shell
-hugo new explanation/my-new-explanation.md
+hugo new about/my-new-explanation.md
 ```
