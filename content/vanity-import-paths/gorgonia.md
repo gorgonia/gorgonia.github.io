@@ -1,5 +1,5 @@
 +++
-date = 2019-10-29T23:00:00Z
+date = 2019-10-28T11:41:02+01:00
 title = "Gorgonia"
 vanity = "https://github.com/gorgonia/gorgonia"
 aliases = [
@@ -13,3 +13,5 @@ aliases = [
     "/gorgonia/cuda",
 ]
 +++
+
+
