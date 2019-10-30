@@ -1,7 +1,7 @@
 ---
 title: "How to compute gradient (differentiation)"
 date: 2019-10-29T20:07:07+01:00
-draft: true
+draft: false
 ---
 
 
@@ -221,7 +221,7 @@ func main() {
 		fmt.Printf("df/dy: %v\n", ygrad)
 	}
 	if xgrad, err := z.Grad(); err == nil {
-		fmt.Printf("df/dx: %v\n", xgrad)
+		fmt.Printf("df/dz: %v\n", xgrad)
 	}
 }
 ```
@@ -235,5 +235,5 @@ f(x,y,z)=(x+y)*z
 f(x,y,z) = -12
 df/dx: -4
 df/dy: -4
-df/dx: 3
+df/dz: 3
 ```
