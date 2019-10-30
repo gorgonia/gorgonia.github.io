@@ -9,7 +9,9 @@ This is a step by step tutorial to do a very simple computation with Gorgonia.
 
 Our goal is to use all the plumbing of Gorgonia to do a simple operation:
 
-`x + y = z` with `x = 2` and `y = 5`
+$ f(x,y) = x + y $
+
+with  `x = 2` and `y = 5`
 
 ## how it works
 
