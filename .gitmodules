@@ -1,3 +1,3 @@
-[submodule "src/themes/docdock"]
-	path = src/themes/docdock
-	url = https://github.com/vjeantet/hugo-theme-docdock.git
+[submodule "themes/hugo-theme-learn"]
+	path = themes/hugo-theme-learn
+	url = git@github.com:gorgonia/hugo-theme-learn.git

@@ -1,16 +1,37 @@
-## Hugo Source for [gorgonia.org](http://gorgonia.org)
+# About
 
-### Building
+Thie repository contains the sources and the website of gorgonia.org.
 
-    git clone git@github.com:gorgonia/gorgonia.github.io.git
-    cd gorgonia.github.io
-    git submoudle init && git submodule update
-    make
+The website is hosted in the root dir and the sources in the `./src` subdirectory
 
-### Adding New Content
+## How to contribute:
 
-Launch the built-in hugo server for local development and live reloading:
+```
+git clone https://github.com/gorgonia/gorgonia.github.io.git
+git submodule init
+git submodule update
+```
 
-    make serve
+then test your developments from the `src` subdirectory with:
 
-Content files exist in the `src/content/...` path, you can read about [content management](https://gohugo.io/content-management/) with hugo for more details.
+```
+hugo -D serve
+```
+
+and generate the site with from the `src` subdirectory:
+
+```
+hugo
+```
+
+## vanity import (for the Gorgonia team)
+
+Vanity import paths are handled by hugo.
+
+#### Add a new repository
+
+To add a new go-gettable repository, add a file in the `content/vanity-import-paths` subdir.
+
+#### Add a subpackage
+
+To add a new subpackage to an existing repository, add an entry in the `aliases` array within the md of the repository.
