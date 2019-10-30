@@ -2,6 +2,7 @@ baseURL = "/"
 languageCode = "en-US"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+publishDir = "../"
 
 title = "Gorgonia"
 theme = "hugo-theme-learn"

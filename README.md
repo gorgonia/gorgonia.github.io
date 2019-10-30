@@ -2,7 +2,7 @@
 
 Thie repository contains the sources and the website of gorgonia.org.
 
-The website is hosted in the `public/` subdirectory
+The website is hosted in the root dir and the sources in the `./src` subdirectory
 
 ## How to contribute:
 
@@ -12,13 +12,13 @@ git submodule init
 git submodule update
 ```
 
-then test your developments with:
+then test your developments from the `src` subdirectory with:
 
 ```
 hugo -D serve
 ```
 
-and generate the site with:
+and generate the site with from the `src` subdirectory:
 
 ```
 hugo
