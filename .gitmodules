@@ -1,0 +1,3 @@
+[submodule "themes/hugo-theme-learn"]
+	path = themes/hugo-theme-learn
+	url = git@github.com:gorgonia/hugo-theme-learn.git

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How Gorgonia works on Documentation for Gorgonia</title>
+    <link>/about/</link>
+    <description>Recent content in How Gorgonia works on Documentation for Gorgonia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 28 Oct 2019 11:41:02 +0100</lastBuildDate>
+    
+	<atom:link href="/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
