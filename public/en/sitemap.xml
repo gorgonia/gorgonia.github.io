@@ -3,41 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/en/explanation/</loc>
+    <loc>/tutorials/hello-world/</loc>
+    <lastmod>2019-10-29T17:54:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/getting-started/</loc>
+    <lastmod>2019-10-29T17:42:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
     <lastmod>2019-10-28T11:41:02+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/en/reference/</loc>
-    <lastmod>2019-10-28T11:40:55+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/en/how-to/</loc>
-    <lastmod>2019-10-28T11:40:47+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/en/tutorials/</loc>
+    <loc>/tutorials/</loc>
     <lastmod>2019-10-28T11:40:37+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/en/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/categories/"
-                />
+    <loc>/how-to/</loc>
+    <lastmod>2019-10-28T11:40:47+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/en/</loc>
+    <loc>/reference/</loc>
+    <lastmod>2019-10-28T11:40:55+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/reference/tensor/</loc>
+    <lastmod>2019-10-29T20:02:53+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/reference/solver/</loc>
+    <lastmod>2019-10-29T19:49:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-10-29T14:59:59+01:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -46,12 +53,76 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/"
+                href="/"
                 />
   </url>
   
   <url>
-    <loc>/en/tags/</loc>
+    <loc>/reference/vm/</loc>
+    <lastmod>2019-10-29T14:59:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/cu/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/dawson/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/golgi/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/gorgonia/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/randomkit/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tensor/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/vanity-import-paths/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/vecf32/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/vecf64/</loc>
+    <lastmod>2019-10-28T11:41:02+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -60,7 +131,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/tags/"
+                href="/tags/"
                 />
   </url>
   

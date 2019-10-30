@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>main :: Documentation for Gorgonia</title>
+    <title>Getting Started :: Documentation for Gorgonia</title>
 
     
     <link href="/css/nucleus.css?1572419412" rel="stylesheet">
@@ -46,7 +46,7 @@
 </script>
 
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/getting-started/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -90,9 +90,9 @@
   
     
     <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item
+        parent
         
-        
-        
+        active
         
         
         ">
@@ -388,22 +388,10 @@
                   
                     
                     
-                      <option id="en" value="/" selected>English</option>
+                      <option id="en" value="/getting-started/" selected>English</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="fr" value="/fr/">Français</option>
-                    
                   
               
           
@@ -450,9 +438,55 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/gorgonia/gorgonia.github.io/edit/master/content/getting-started/_index.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>main</a> > Getting Started
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
+        
+          <div id="chapter">
         
         <div id="body-inner">
           
@@ -460,45 +494,67 @@
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
-
- 
 
 
-<h1 id="gorgonia">Gorgonia</h1>
-
-<p>Gorgonia is a library that helps facilitate machine learning in Go.</p>
-
-<p>Write and evaluate mathematical equations involving multidimensional arrays easily.</p>
-
-<p>If this sounds like Theano or TensorFlow, it&rsquo;s because the idea is quite similar.</p>
-
-<p>Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
-
-<h2 id="why-use-gorgonia">Why use Gorgonia?</h2>
-
-<p>The main reason to use Gorgonia is developer comfort. If you&rsquo;re using a Go stack extensively, now you have access to the ability to create production-ready machine learning systems in an environment that you are already familiar and comfortable with.</p>
-
-<p>ML/AI at large is usually split into two stages: the experimental stage where one builds various models, test and retest; and the deployed state where a model after being tested and played with, is deployed. This necessitate different roles like data scientist and data engineer.</p>
-
-<p>Typically the two phases have different tools: Python/Lua (using <a href="http://deeplearning.net/software/theano/">Theano</a>, <a href="http://torch.ch/">Torch</a>, etc) is commonly used for the experimental stage, and then the model is rewritten in some more performant language like C++ (using <a href="http://dlib.net/ml.html">dlib</a>, <a href="http://mlpack.org">mlpack</a> etc). Of course, nowadays the gap is closing and people frequently share the tools between them. Tensorflow is one such tool that bridges the gap.</p>
-
-<p>Gorgonia aims to do the same, but for the Go environment. Gorgonia is currently fairly performant - its speeds are comparable to Theano&rsquo;s and Tensorflow&rsquo;s  CPU implementations. GPU implementations are a bit finnicky to compare due to the heavy cgo tax, but rest assured that this is an area of active improvement.</p>
-
-<h3 id="how-is-this-website-organized">How is this website organized?</h3>
-
-<p>This website is composed of four sections with different goals:</p>
-
-<ul>
-<li><a href="/about">about</a> contains all the informations about how Gorgonia works</li>
-<li><a href="/reference">reference</a></li>
-<li><a href="/how-to">How To</a></li>
-<li><a href="/tutorials">Tutorials</a></li>
-</ul>
 	
-  
+
+<h2 id="getting-gorgonia">Getting gorgonia</h2>
+
+<p>Gorgonia is go-gettable and supports go modules.
+To get the library and its dependencies, simply run</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ go get gorgonia.org/gorgonia</code></pre></div>
+<h2 id="first-code-to-do-a-simple-computation">First code to do a simple computation</h2>
+
+<p>create a simple program to see if the plumbing is ok:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+        <span style="color:#e6db74">&#34;fmt&#34;</span>
+        <span style="color:#e6db74">&#34;log&#34;</span>
+
+        <span style="color:#e6db74">&#34;gorgonia.org/gorgonia&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">g</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewGraph</span>()
+
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Node</span>
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+
+        <span style="color:#75715e">// define the expression
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">x</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewScalar</span>(<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Float64</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">WithName</span>(<span style="color:#e6db74">&#34;x&#34;</span>))
+        <span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewScalar</span>(<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Float64</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">WithName</span>(<span style="color:#e6db74">&#34;y&#34;</span>))
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">z</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+        }
+
+        <span style="color:#75715e">// create a VM to run the program on
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">machine</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewTapeMachine</span>(<span style="color:#a6e22e">g</span>)
+        <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">machine</span>.<span style="color:#a6e22e">Close</span>()
+
+        <span style="color:#75715e">// set initial values then run
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Let</span>(<span style="color:#a6e22e">x</span>, <span style="color:#ae81ff">2.0</span>)
+        <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Let</span>(<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">2.5</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">machine</span>.<span style="color:#a6e22e">RunAll</span>(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+        }
+
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v&#34;</span>, <span style="color:#a6e22e">z</span>.<span style="color:#a6e22e">Value</span>())
+}</code></pre></div>
+<p>running the program should print the result: <code>4.5</code></p>
+
+<p>For further explanation, please see the <a href="/tutorials/hello-world">Hello World tutorial</a>.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+            </div> 
         
         </div> 
         
@@ -530,8 +586,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -548,6 +602,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -827,8 +884,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/" title="main"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/about/" title="How Gorgonia works" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -858,4 +917,3 @@
 
   </body>
 </html>
-

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>main :: Documentation for Gorgonia</title>
+    <title>Hello World :: Documentation for Gorgonia</title>
 
     
     <link href="/css/nucleus.css?1572419412" rel="stylesheet">
@@ -46,7 +46,7 @@
 </script>
 
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/tutorials/hello-world/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -146,7 +146,7 @@
   
     
     <li data-nav-id="/tutorials/" title="Tutorials" class="dd-item
-        
+        parent
         
         
         
@@ -174,7 +174,7 @@
  
   
     
-      <li data-nav-id="/tutorials/hello-world/" title="Hello World" class="dd-item ">
+      <li data-nav-id="/tutorials/hello-world/" title="Hello World" class="dd-item active">
         <a href="/tutorials/hello-world/">
         Hello World
         <i class="fas fa-check read-icon"></i>
@@ -388,22 +388,10 @@
                   
                     
                     
-                      <option id="en" value="/" selected>English</option>
+                      <option id="en" value="/tutorials/hello-world/" selected>English</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="fr" value="/fr/">Français</option>
-                    
                   
               
           
@@ -450,55 +438,236 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/gorgonia/gorgonia.github.io/edit/master/content/tutorials/hello-world.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>main</a> > <a href='/tutorials/'>Tutorials</a> > Hello World
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-it-works">how it works</a>
+<ul>
+<li><a href="#create-a-graph">Create a graph</a></li>
+<li><a href="#create-the-nodes">Create the nodes</a>
+<ul>
+<li><a href="#create-the-placeholder">Create the placeholder</a></li>
+</ul></li>
+<li><a href="#set-the-values">Set the values</a></li>
+<li><a href="#run-the-graph">Run the graph</a></li>
+<li><a href="#get-the-result">Get the result</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#final-result">Final result</a></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Hello World
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
-
- 
 
 
-<h1 id="gorgonia">Gorgonia</h1>
 
-<p>Gorgonia is a library that helps facilitate machine learning in Go.</p>
+<p>This is a step by step tutorial to do a very simple computation with Gorgonia.</p>
 
-<p>Write and evaluate mathematical equations involving multidimensional arrays easily.</p>
+<p>Our goal is to use all the plumbing of Gorgonia to do a simple operation:</p>
 
-<p>If this sounds like Theano or TensorFlow, it&rsquo;s because the idea is quite similar.</p>
+<p><code>x + y = z</code> with <code>x = 2</code> and <code>y = 5</code></p>
 
-<p>Specifically, the library is pretty low-level, like Theano, but has higher goals like Tensorflow.</p>
+<h2 id="how-it-works">how it works</h2>
 
-<h2 id="why-use-gorgonia">Why use Gorgonia?</h2>
+<p>The equation <code>x + y = z</code> can be represented as a graph:</p>
 
-<p>The main reason to use Gorgonia is developer comfort. If you&rsquo;re using a Go stack extensively, now you have access to the ability to create production-ready machine learning systems in an environment that you are already familiar and comfortable with.</p>
 
-<p>ML/AI at large is usually split into two stages: the experimental stage where one builds various models, test and retest; and the deployed state where a model after being tested and played with, is deployed. This necessitate different roles like data scientist and data engineer.</p>
+<div class="mermaid" align="left">
+graph LR;
+    z[z] --> add(Round edge)
+    add[+] --> x
+    add[+] --> y
+</div>
 
-<p>Typically the two phases have different tools: Python/Lua (using <a href="http://deeplearning.net/software/theano/">Theano</a>, <a href="http://torch.ch/">Torch</a>, etc) is commonly used for the experimental stage, and then the model is rewritten in some more performant language like C++ (using <a href="http://dlib.net/ml.html">dlib</a>, <a href="http://mlpack.org">mlpack</a> etc). Of course, nowadays the gap is closing and people frequently share the tools between them. Tensorflow is one such tool that bridges the gap.</p>
 
-<p>Gorgonia aims to do the same, but for the Go environment. Gorgonia is currently fairly performant - its speeds are comparable to Theano&rsquo;s and Tensorflow&rsquo;s  CPU implementations. GPU implementations are a bit finnicky to compare due to the heavy cgo tax, but rest assured that this is an area of active improvement.</p>
-
-<h3 id="how-is-this-website-organized">How is this website organized?</h3>
-
-<p>This website is composed of four sections with different goals:</p>
+<p>To compute the result, we use 4 steps:</p>
 
 <ul>
-<li><a href="/about">about</a> contains all the informations about how Gorgonia works</li>
-<li><a href="/reference">reference</a></li>
-<li><a href="/how-to">How To</a></li>
-<li><a href="/tutorials">Tutorials</a></li>
+<li>Make a similar <a href="/reference/exprgraph">graph</a> with Gorgonia</li>
+<li>sets some <a href="/reference/value">values</a> on the <a href="/reference/node">nodes</a> <code>x</code> and <code>y</code> then</li>
+<li>instanciate a graph on a <a href="/reference/vm">gorgonia vm</a></li>
+<li>extract the <a href="/reference/value">value</a> from node <code>z</code>
+*</li>
 </ul>
+
+<h3 id="create-a-graph">Create a graph</h3>
+
+<p>Create an empty <a href="/reference/exprgraph">expression graph</a> with this method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">g</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewGraph</span>()</code></pre></div>
+<h3 id="create-the-nodes">Create the nodes</h3>
+
+<p>We will create some <a href="/reference/node">nodes</a> and associate them to the ExprGraph.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Node</span></code></pre></div>
+<h4 id="create-the-placeholder">Create the placeholder</h4>
+
+<p><code>x</code> and <code>y</code> are scalar variables, we can create the corresponding node with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">x</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewScalar</span>(<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Float64</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">WithName</span>(<span style="color:#e6db74">&#34;x&#34;</span>))
+<span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewScalar</span>(<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Float64</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">WithName</span>(<span style="color:#e6db74">&#34;y&#34;</span>))</code></pre></div>
+
+<div class="notices note" ><p>the functions take the exprgraph as argument; the resulting node is automatically associated to the graph.</p>
+</div>
+
+
+<p>Now create the addition operator; this operator takes two <a href="/reference/node">nodes</a> and returns a new node z:</p>
+
+<pre><code>if z, err = gorgonia.Add(x, y); err != nil {
+        log.Fatal(err)
+}
+</code></pre>
+
+
+<div class="notices info" ><p>the returning node <code>z</code> is added to the graph even if <code>g</code> is not passed to <code>z</code> or to the <code>Add</code> function.</p>
+</div>
+
+
+<h3 id="set-the-values">Set the values</h3>
+
+<p>We have a ExprGraph that represents the equation <code>z = x + y</code>. Now it&rsquo;s time to assign some values to <code>x</code> and <code>y</code>.</p>
+
+<p>We use the <a href="https://godoc.org/gorgonia.org/gorgonia#Let"><code>Let</code></a> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Let</span>(<span style="color:#a6e22e">x</span>, <span style="color:#ae81ff">2.0</span>)
+<span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Let</span>(<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">2.5</span>)</code></pre></div>
+<h3 id="run-the-graph">Run the graph</h3>
+
+<p>To run the graph and compute the result, we need to instanciate a <a href="/reference/vm">VM</a>.
+Let&rsquo;s use the <a href="/reference/vm/tapemachine">TapeMachine</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">machine</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewTapeMachine</span>(<span style="color:#a6e22e">g</span>)
+<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">machine</span>.<span style="color:#a6e22e">Close</span>()</code></pre></div>
+<p>and run the graph:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">machine</span>.<span style="color:#a6e22e">RunAll</span>(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}</code></pre></div>
+
+<div class="notices warning" ><p>If a second run is needed, it is mandatory to call the <code>Reset()</code> method of the <code>vm</code> object:
+<code>machine.Reset()</code></p>
+</div>
+
+
+<h3 id="get-the-result">Get the result</h3>
+
+<p>Now the node <code>z</code> holds the result.
+We can extract its <a href="/reference/value">value</a> by calling the <code>Value()</code> method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v&#34;</span>, <span style="color:#a6e22e">z</span>.<span style="color:#a6e22e">Value</span>())</code></pre></div>
+
+<div class="notices note" ><p>we could also access the underlying &ldquo;Go&rdquo; value with a call to <code>z.Value().Data()</code> which would return an <code>interface{}</code> holding a <code>float64</code> in our case</p>
+</div>
+
+
+<h1 id="final-result">Final result</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+        <span style="color:#e6db74">&#34;fmt&#34;</span>
+        <span style="color:#e6db74">&#34;log&#34;</span>
+
+        <span style="color:#e6db74">&#34;gorgonia.org/gorgonia&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#a6e22e">g</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewGraph</span>()
+
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Node</span>
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+
+        <span style="color:#75715e">// define the expression
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">x</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewScalar</span>(<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Float64</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">WithName</span>(<span style="color:#e6db74">&#34;x&#34;</span>))
+        <span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewScalar</span>(<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Float64</span>, <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">WithName</span>(<span style="color:#e6db74">&#34;y&#34;</span>))
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">z</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+        }
+
+        <span style="color:#75715e">// create a VM to run the program on
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">machine</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">NewTapeMachine</span>(<span style="color:#a6e22e">g</span>)
+        <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">machine</span>.<span style="color:#a6e22e">Close</span>()
+
+        <span style="color:#75715e">// set initial values then run
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Let</span>(<span style="color:#a6e22e">x</span>, <span style="color:#ae81ff">2.0</span>)
+        <span style="color:#a6e22e">gorgonia</span>.<span style="color:#a6e22e">Let</span>(<span style="color:#a6e22e">y</span>, <span style="color:#ae81ff">2.5</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">machine</span>.<span style="color:#a6e22e">RunAll</span>(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+        }
+
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v&#34;</span>, <span style="color:#a6e22e">z</span>.<span style="color:#a6e22e">Value</span>())
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ go run main.go
+<span style="color:#ae81ff">4</span>.5</code></pre></div>
+
+<footer class=" footline" >
 	
-  
+</footer>
+
+
         
         </div> 
         
@@ -565,6 +734,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -577,6 +747,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -596,6 +767,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -827,8 +1001,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/tutorials/" title="Tutorials"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/getting-started/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/how-to/" title="How To" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
