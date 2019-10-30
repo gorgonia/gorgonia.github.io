@@ -5,6 +5,7 @@ on:
     branches:
     - develop
 
+
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
@@ -21,3 +22,8 @@ jobs:
 
     - name: Build
       run: hugo --minify
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: preprod
