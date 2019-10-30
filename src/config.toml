@@ -11,7 +11,7 @@ metaDataFormat = "toml"
 pygmentsCodeFences = true
 
 [params]
-  editURL = "https://github.com/gorgonia/gorgonia.github.io/edit/master/content/"
+  editURL = "https://github.com/gorgonia/gorgonia.github.io/edit/master/src/content/"
   description = "Documentation for Gorgonia"
   author = "The Gorgonia Authors"
   showVisitedLinks = true
