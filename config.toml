@@ -30,7 +30,7 @@ pygmentsCodeFences = true
 
 [Languages]
 [Languages.en]
-title = "Documentation for Gorgonia"
+title = "Gorgonia"
 weight = 1
 languageName = "English"
 
@@ -47,7 +47,7 @@ url = "https://godoc.org/gorgonia.org/gorgonia"
 weight = 11
 
 [Languages.fr]
-title = "Documentation du thème Hugo Learn"
+title = "Gorgonia"
 weight = 2
 languageName = "Français"
 
