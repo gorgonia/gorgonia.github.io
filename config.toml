@@ -46,6 +46,23 @@ identifier = "godoc"
 url = "https://godoc.org/gorgonia.org/gorgonia"
 weight = 11
 
+[Languages.jp]
+title = "Gorgonia"
+weight = 3
+languageName = "Japanese"
+
+[[Languages.jp.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> GitHub"
+identifier = "ds"
+url = "https://github.com/gorgonia/gorgonia"
+weight = 10
+
+[[Languages.jp.menu.shortcuts]]
+name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
+identifier = "godoc"
+url = "https://godoc.org/gorgonia.org/gorgonia"
+weight = 11
+
 [Languages.fr]
 title = "Gorgonia"
 weight = 2
