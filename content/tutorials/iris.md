@@ -1,7 +1,7 @@
 ---
 title: "Multivariate linear regression on Iris Dataset"
 date: 2019-10-31T14:53:37+01:00
-draft: true
+draft: false
 ---
 
 ## About
