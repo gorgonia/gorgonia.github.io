@@ -54,7 +54,7 @@ languageName = "Français"
 [[Languages.fr.menu.shortcuts]]
 name = "<i class='fab fa-fw fa-github'></i> Repo GitHub"
 identifier = "ds"
-url = "https://github.com/gorgonia.org/gorgonia"
+url = "https://github.com/gorgonia/gorgonia"
 weight = 10
 
 [[Languages.fr.menu.shortcuts]]
