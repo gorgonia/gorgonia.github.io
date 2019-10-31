@@ -1,23 +1,23 @@
 +++
-title = "Getting Started"
+title = "事始め"
 date = 2019-10-29T17:42:44+01:00
 weight = -10
 chapter = true
 pre = "<b>X. </b>"
 +++
 
-## Getting gorgonia
+## Gorgoniaの入手
 
-Gorgonia is go-gettable and supports go modules.
-To get the library and its dependencies, simply run
+Gorgoniaはgo-get可能でありgo modulesをサポートしています。
+ライブラリとその依存物を取得するには単純に以下を実行します。
 
 ```bash
 $ go get gorgonia.org/gorgonia
 ```
 
-## First code to do a simple computation
+## 簡単な計算をする為の初めてのコード
 
-create a simple program to see if the plumbing is ok:
+配管が正常かどうかを確認する簡単なプログラムを作成します:
 
 ```go
 package main
@@ -57,7 +57,7 @@ func main() {
 }
 ```
 
-running the program should print the result: `4.5`
+プログラムを実行するとこの結果が出力されるはずです： `4.5`
 
-For further explanation, please see the [Hello World tutorial](/tutorials/hello-world).
+詳細については[Hello Worldチュートリアル](/tutorials/hello-world)を参照してください。
 
