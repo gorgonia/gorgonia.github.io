@@ -1,14 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on Gorgonia</title><link>/tutorials/</link><description>Recent content in Tutorials on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 29 Oct 2019 17:54:31 +0100</lastBuildDate><atom:link href="/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>/tutorials/hello-world/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>/tutorials/hello-world/</guid><description>This is a step by step tutorial to do a very simple computation with Gorgonia.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on Gorgonia</title><link>/tutorials/</link><description>Recent content in Tutorials on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Mon, 28 Oct 2019 11:40:37 +0100</lastBuildDate><atom:link href="/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>/tutorials/hello-world/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>/tutorials/hello-world/</guid><description>This is a step by step tutorial to do a very simple computation with Gorgonia.
 Our goal is to use all the plumbing of Gorgonia to do a simple operation:
 $ f(x,y) = x + y $
 with x = 2 and y = 5
 how it works The equation x + y = z can be represented as a graph:
-graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y To compute the result, we use 4 steps:</description></item><item><title>こんにちわ世界</title><link>/tutorials/hello-world.jp/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>/tutorials/hello-world.jp/</guid><description>これはGorgoniaでとても簡単な計算を行うための段階的なチュートリアルです。
-私たちのゴールはGorgoniaのすべての配管を使用して簡単な操作を行うことです:
-$ f(x,y) = x + y $
-with x = 2 and y = 5
-どの様に動作するか x + y = z の評価はグラフで表す事ができます:
-graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y 結果を計算する為に4つのステップを使います:
-Make a similar graph with Gorgonia sets some values on the nodes x and y then instanciate a graph on a gorgonia vm extract the value from node z * Create a graph Create an empty expression graph with this method:</description></item><item><title>チュートリアル</title><link>/tutorials/_index.jp/</link><pubDate>Mon, 28 Oct 2019 11:40:37 +0100</pubDate><guid>/tutorials/_index.jp/</guid><description>Gorgoniaのさまざまな使われ方を試し始める為のさまざまなチュートリアル。
-このチュートリアルは:
-学習指向 新たな人でも始められる 1つずつのレッスン 類似品: 子供に料理の仕方を教える方法</description></item></channel></rss>
+graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y To compute the result, we use 4 steps:</description></item></channel></rss>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>チュートリアル on Gorgonia</title><link>/jp/tutorials/</link><description>Recent content in チュートリアル on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Mon, 28 Oct 2019 11:40:37 +0100</lastBuildDate><atom:link href="/jp/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>こんにちわ世界</title><link>/jp/tutorials/hello-world/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>/jp/tutorials/hello-world/</guid><description>これはGorgoniaでとても簡単な計算を行うための段階的なチュートリアルです。
+私たちのゴールはGorgoniaのすべての配管を使用して簡単な操作を行うことです:
+$ f(x,y) = x + y $
+with x = 2 and y = 5
+どの様に動作するか x + y = z の評価はグラフで表す事ができます:
+graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y 結果を計算する為に4つのステップを使います:
+Make a similar graph with Gorgonia sets some values on the nodes x and y then instanciate a graph on a gorgonia vm extract the value from node z * Create a graph Create an empty expression graph with this method:</description></item></channel></rss>
