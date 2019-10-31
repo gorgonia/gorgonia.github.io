@@ -104,24 +104,24 @@ if err = machine.RunAll(); err != nil {
 ```
 
 {{% notice warning %}}
-If a second run is needed, it is mandatory to call the `Reset()` method of the `vm` object:
+2回目の実行が必要な場合`vm`オブジェクトの`Reset()`メソッドを呼び出すことが必須です:
 ` machine.Reset() `
 {{% /notice %}}
 
-### Get the result
+### 値の取得
 
-Now the node `z` holds the result.
-We can extract its [value](/reference/value) by calling the `Value()` method:
+これでノード`z`が結果を保持します。
+[Value](/reference/value)を抽出するには`Value()`メソッドを呼び出します:
 
 ```go
 fmt.Printf("%v", z.Value())
 ```
 
 {{% notice note %}}
-we could also access the underlying "Go" value with a call to `z.Value().Data()` which would return an `interface{}` holding a `float64` in our case
+この場合`float64`を保持する`interface{}`を返す`z.Value().Data()`を呼び出して、基になる"Go"値にアクセスすることもできます。
 {{% /notice %}}
 
-# Final result
+# 最終結果
 
 ```go
 package main
