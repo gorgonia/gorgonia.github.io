@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>チュートリアル on Gorgonia</title><link>/jp/tutorials/</link><description>Recent content in チュートリアル on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Mon, 28 Oct 2019 11:40:37 +0100</lastBuildDate><atom:link href="/jp/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>こんにちわ世界</title><link>/jp/tutorials/hello-world/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>/jp/tutorials/hello-world/</guid><description>これはGorgoniaでとても簡単な計算を行うための段階的なチュートリアルです。
 私たちのゴールはGorgoniaのすべての配管を使用して簡単な操作を行うことです:
 $ f(x,y) = x + y $
-with x = 2 and y = 5
+値は x = 2 と y = 5
 どの様に動作するか x + y = z の評価はグラフで表す事ができます:
 graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y 結果を計算する為に4つのステップを使います:
-Make a similar graph with Gorgonia sets some values on the nodes x and y then instanciate a graph on a gorgonia vm extract the value from node z * Create a graph Create an empty expression graph with this method:</description></item><item><title>Iris データセットでの多変量線形回帰</title><link>/jp/tutorials/iris/</link><pubDate>Thu, 31 Oct 2019 14:53:37 +0100</pubDate><guid>/jp/tutorials/iris/</guid><description>About Gorgoniaを使用して線形回帰モデルを作成します。
+Gorgonia で式の様なグラフを作成する nodes x と y に幾つかの値を設定する gorgonia vm上でグラフを起動する node zからvalueを取り出す * グラフの作成 以下の方法で空の式グラフを作成します:
+g := gorgonia.NewGraph() ノードの作成 いくつかのノードを作成しそれらを ExprGraph に関連付けます。
+var x, y, z *gorgonia.Node プレースホルダの作成 xとyはスカラー変数です。対応するノードは次のように作成できます:
+x = gorgonia.</description></item><item><title>Iris データセットでの多変量線形回帰</title><link>/jp/tutorials/iris/</link><pubDate>Thu, 31 Oct 2019 14:53:37 +0100</pubDate><guid>/jp/tutorials/iris/</guid><description>はじめに Gorgoniaを使用して線形回帰モデルを作成します。
 ゴールは以下に与えられた特性を考慮して花の種別を予測することです:
 sepal_length sepal_width petal_length petal_width 存在する種別は以下の通り:
 setosa virginica versicolor このチュートリアルのゴールはgorgoniaを使用して、与えられたirisデータセットから $\Theta$ の正しい値を見つけ以下のようなcliユーティリティを作成することです:
 ./iris sepal length: 5 sepal width: 3.5 petal length: 1.4 sepal length: 0.2 It is probably a setosa このチュートリアルは学術目的の為の物です。Gorgoniaでこれをどの様にして行うかを説明することがゴールです; これは特定の問題に対する最先端の答えではありません。
-Mathematical representation 良くある花弁の長さと幅だけでなく、がく片の長さと幅の関数であった場合とその種別について考察します。
+数学的表現 良くある花弁の長さと幅だけでなく、がく片の長さと幅の関数であった場合とその種別について考察します。
 したがって $y$ が種別の値であると考える場合に解決すべき方程式は次の通りです:
 $$ y = \theta_0 + \theta_1 * sepal\_length + \theta_2 * sepal\_width + \theta_3 * petal\_length + \theta_4 * petal\_width$$
-if we consider the vectors $x$ and $\Theta$ such as:</description></item></channel></rss>
+ベクトルを考慮した場合の $x$ と $\Theta$ はこうなります:</description></item></channel></rss>
