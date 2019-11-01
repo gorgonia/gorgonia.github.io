@@ -224,7 +224,7 @@ The gradient descent will update the all the values passed into `[]gorgonia.Valu
 ${\displaystyle x^{(k+1)}=x^{(k)}-\gamma \nabla f\left(x^{(k)}\right)}$
 It is important to understand that the solver works on [`Values`](/reference/value) and not on [`Nodes`](/reference/node).
 But to make things easy, ValueGrad is an interface{} fulfilled by the `*Node` structure.
-{% /notice %}}
+{{% /notice %}}
 
 In our case, we want to optimize $\Theta$ and ask the solver will update its value like this:
 
