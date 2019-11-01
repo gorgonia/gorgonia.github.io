@@ -12,12 +12,13 @@ pygmentsCodeFences = true
 
 [params]
   editURL = "https://github.com/gorgonia/gorgonia.github.io/edit/develop/content/"
-  description = "Documentation for Gorgonia"
+  description = "Gorgonia's reference website"
   author = "The Gorgonia Authors"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  images = ["/images/logo/gorgonia-square-transparent.png"]
   themeVariant = "gorgonia"
 
 # vanity imports for Go,
