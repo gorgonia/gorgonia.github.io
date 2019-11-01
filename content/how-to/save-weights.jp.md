@@ -123,7 +123,7 @@ func save(nodes []*gorgonia.Node) error {
 }
 ```
 
-which gives:
+以下が得られる:
 
 ```text
 $  go run main.go
