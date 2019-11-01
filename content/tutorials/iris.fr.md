@@ -1,27 +1,29 @@
 ---
-title: "Iris データセットでの多変量線形回帰"
+title: "Régression linéaire multivariée sur le dataset Iris"
 date: 2019-10-31T14:53:37+01:00
 draft: false
 ---
 
-## はじめに
+## A propos
 
-Gorgoniaを使用して線形回帰モデルを作成します。
+Nous allons utiliser Gorgonia pour créer un modèle de régression linéaire.
 
-ゴールは以下に与えられた特性を考慮して花の種別を予測することです:
+Le but de ce tutoriel est de prédire l'espèce d'une fleur en fonction de ses caractéristiques:
 
-* sepal_length
-* sepal_width
-* petal_length
-* petal_width
+* sepal_length // longueur du sépale
+* sepal_width  // largeur du sépale
+* petal_length // longueur du pétale
+* petal_width  // largeurdu pétale
 
-存在する種別は以下の通り:
+Les espèces que nous voulons prédire sont:
 
 * setosa
 * virginica
 * versicolor
 
-このチュートリアルのゴールはgorgoniaを使用して、与えられたirisデータセットから $\Theta$ の正しい値を見つけ以下のようなcliユーティリティを作成することです:
+Le but de ce tutoriel est de programmer Gorgonia pour qu'il trouve seul les paramètres qui permettent de déterminer la relation entre les attributs
+et le spécimen.
+À la fin, nous écrirons un utilitaire CLI (autonome) dont l'interface sera la suivante:
 
 ```text
 ./iris
@@ -34,19 +36,19 @@ It is probably a setosa
 ```
 
 {{% notice warning %}}
-このチュートリアルは学術目的の為の物です。Gorgoniaでこれをどの様にして行うかを説明することがゴールです;
-これは特定の問題に対する最先端の答えではありません。
+Ce tutoriel est à vocation académique. Son but est de décrire comment réaliser une régression linéaire
+multivariée avec Gorgonia; Ainsi, le modèle utilisé n'est pas la meilleur réponse à ce problème particulier.
 {{% /notice %}}
 
-### 数学的表現
+### Représentation Mathématique
 
-良くある花弁の長さと幅だけでなく、がく片の長さと幅の関数であった場合とその種別について考察します。
+Nous considérons que l'espèce d'une Iris est fonction de la longueur et de la largeur de son sépale ainsi que de la longueur et de la largeur de son pétale.
 
-したがって $y$ が種別の値であると考える場合に解決すべき方程式は次の通りです:
+Par conséquent, soit $y$ une valeur représentant l'espèce, l'équation que nous essayons de résoudre est:
 
 $$ y = \theta_0 + \theta_1 * sepal\\_length + \theta_2 * sepal\\_width + \theta_3 * petal\\_length + \theta_4 * petal\\_width$$
 
-ベクトルを考慮した場合の $x$ と $\Theta$ はこうなります:
+Considérons à présent les vecteurs $x$ et $\Theta$ suivants:
 
 $$ x =  \begin{bmatrix} sepal\\_length & sepal\\_width & petal\\_length & petal\\_width & 1\end{bmatrix}$$
 
@@ -60,41 +62,43 @@ $$
         \end{bmatrix}
 $$
 
-よってこうなります。
+Nous pouvons réécrire l'équation:
 
 $$y = x\cdot\Theta$$
 
-### 線形回帰
+### Régression linéaire
 
-正しい値を見つける為に線形回帰を使用します。
-データを5列(がく片の長さ、がく片の幅、花弁の長さ、花弁の幅、およびバイアスの1)を含む行列 $X$ にエンコードします。
-行列の行は種別を表します。
+Pour trouver les bonnes valeurs de $\Theta$  rendant l'équation vraie pour la majorité des Iris, nous allons utiliser une régression linéaire.
 
-対応する種別をfloat値を持つ列ベクトル $Y$ にエンコードします。
+Nous allons encoder les données d'entrainement (les constats fait sur plusieurs fleurs) dans une matrice $X$.
+$X$ est composée de 5 colonnes: sepal length, sepal width, petal length, petal width et une colonne contenant 1 pour le biais.
+Chaque ligne de la matrice représente une fleur.
+
+Nous allons encoder les espèces dans un vecteur colonne $Y$ composé de nombres flottants.
 
 * setosa = 1.0
 * virginica = 2.0
 * versicolor = 3.0
 
-学習段階ではコストは次のように表す事ができます:
+Lors de la phase d'apprentissage, le coût est exprimé de la manière suivante:
 
 $cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$
 
-勾配降下法を使用してコストを下げ $\Theta$ の正確な値を取得します
+Nous allons utiliser la méthode de descente de gradient pour optimiser le coût et obtenir les valeurs optimales de $\Theta$.
 
 {{% notice info %}}
-正規方程式での値として $\theta$ は取得することができます。
-$$ \theta = \left( X^TX \right)^{-1}X^Ty $$
-gonumでの基本的な実装についてはこの[gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go)を参照してください。
+Il est possible d'avoir les valeurs exactes de $\Theta$ (celle qui minimisent le coût) en utilisant l'équation normale:
+$$ \theta = \left( X^TX \right)^{-1}X^TY $$
+Vous trouverez sur ce [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go)
+une implémentation basique de la solution réalisée avec Gonum.
 {{% /notice %}}
 
+## Génération des données d'entrainement avec gota (dataframe)
 
-## gota(データフレーム)を使用してトレーニングセットを生成する
-
-まずトレーニングデータを生成しましょう。データフレームを使用してスムーズに行います。
+Tout d'abord, générons les données d'entrainement. Nous utiliserons un dataframe pour nous simplifier la tâche.
 
 {{% notice info %}}
-データフレームの使用方法やその他の情報については[howto](/how-to/dataframe/)を参照
+Ce [howto](/how-to/dataframe/) donne plus d'information sur l'utilisation du dataframe
 {{% /notice %}}
 
 
@@ -136,11 +140,11 @@ func getXYMat() (*mat.Dense, *mat.Dense) {
 }
 ```
 
-Gorgoniaで使用できる2つの行列を返します。
+Cette fonction retourne deux matrices que nous pourrons utiliser avec Gorgonia.
 
-### 式グラフを作成する
+### Creation de l'ExprGrap
 
-方程式 $X\cdot\Theta$ は [ExprGraph](/reference/exprgraph) として表されます:
+L'équation $X\cdot\Theta$ est encodée en tant qu'[ExprGraph](/reference/exprgraph):
 
 ```go
 func getXY() (*tensor.Dense, *tensor.Dense) {
@@ -172,30 +176,30 @@ func main() {
     gorgonia.Read(pred, &predicted)
 ```
 
-{{% notice info %}}
-Gorgoniaは高度に最適化されています。良いパフォーマンスを得る為にポインターとメモリを頻繁に使用しています。
-したがって実行時(実行プロセス中)に`*Node`の`Value()`メソッドを呼び出すと誤った結果になる可能性があります。
-もし実行時(例えば学習段階で)に`Value`に格納されている*Nodeの特定の値にアクセスする必要がある場合はその参照を保持する必要があります。
-これが`Read`メソッドを使用している理由です。
-`predicted`は $X\cdot\Theta$ の結果の値を常に格納しています。
+{{% notice warning %}}
+Gorgonia est très optimisé; il fait utilise beaucoup les pointeurs pour optimiser son empreinte mémoire.
+Par conséquemt, appeler la méthode `Value()` d'un `*Node` pendant la phase d'exécution du graphe, peut produire des résultats incorrects.
+Pour accéder à la valeur contenue dans un `*Node` (pendant la phase d'apprentissage par exemple), il est nécessaire de garder une référence
+pointant sur ladite valeur. C'est la raison pour laquelle nous utilisons la méthode `Read`.
+`predicted` contient une référence à la valeur résultante de l'opération $X\cdot\Theta$.
 {{% /notice %}}
 
-## 勾配計算の準備
+## Préparation du calcul du gradient
 
-Gorgoniaの[象徴的な微分](/how-to/differentiation)機能を使います。
+Nous allons utiliser la fonctionnalité de Gorgonia: [Symbolic differentiation](/how-to/differentiation).
 
-まずコスト関数を作成し [solver](/about/solver) を使用して勾配降下を実行しコストを下げます。
+Tout d'abord, nous allons créer une fonction de coût, puis utiliser un [solver](/about/solver) pour faire la descente de gradient.
 
-### コストを保持するノードの作成
+### Creation du "node" qui contiendra le coût de l'équation
 
-コスト($cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$) を追加することにより [exprgraph](/reference/exprgraph)を補完します。
+Completons à présent l'[exprgraph](/reference/exprgraph) en ajoutant le coût (pour rappel, $cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$)
 
 ```go
 squaredError := must(gorgonia.Square(must(gorgonia.Sub(pred, y))))
 cost := must(gorgonia.Mean(squaredError))
 ```
 
-このコストを下げたいので $\Theta$ に関する勾配を評価します:
+Notre but est de minimiser ce coût. Nous allons donc calculer le gradient de la fonction par rapport à $\Theta$:
 
 ```go
 if _, err := gorgonia.Grad(cost, theta); err != nil {
@@ -203,32 +207,34 @@ if _, err := gorgonia.Grad(cost, theta); err != nil {
 }
 ```
 
-### 勾配降下法
+### La descente du gradient
 
-勾配降下のメカニズムを使用します。これは勾配を使用してパラメーター $\Theta$ を段階的に調節することを意味します。
+Nous utilisons le principe de descente de gradient. Ceci signifie que nous utilisons le gradient de la fonction pour
+altérer le paramètre $\Theta$ pas à pas.
 
-基本的な勾配降下はGorgoniaの[Vanilla Solver](https://godoc.org/gorgonia.org/gorgonia#VanillaSolver)によって実装されています。
-学習率 $\gamma$ を0.001に設定します。
+Une implémentation basique de descente de gradient est implémentée dans le [Vanilla Solver](https://godoc.org/gorgonia.org/gorgonia#VanillaSolver) de Gorgonia.
+Nous positionnons le "pas" $\gamma$ à 0.001.
 
 ```go
 solver := gorgonia.NewVanillaSolver(gorgonia.WithLearnRate(0.001))
 ```
 
-そして各ステップで勾配に感謝しつつsolverに $ \ Theta$ パラメーターを更新するように依頼します。
-したがってイテレーションごとにsolverに渡す変数 `update` を設定します。
+À chaque étape, nous allons demander au solver de mettre à jour $\Theta$ grâce au gradient.
+Par conséquent, nous assignons une variable `update` que nous allons passer au solver à chaque itération.
 
 {{% notice info %}}
-勾配降下はこの方程式に従って各ステップで `[]gorgonia.ValueGrad` に渡されるすべての値を更新します。
+La descente de gradient va mettre à jour toutes les valeurs présentes dans le tableau `[]gorgonia.ValueGrad` à chqaue étape
+suivant cette équation:
 ${\displaystyle x^{(k+1)}=x^{(k)}-\gamma \nabla f\left(x^{(k)}\right)}$
-solverは[`Nodes`](/reference/node)ではなく[`Values`](/reference/value)で動作することを理解する事が重要です。
-ただし物事を簡単にする為にValueGradは`*Node`構造によって実現される interface{} になっています。
+Il est important de comprendre que le solver travaille sur des [`Values`](/reference/value) et non des [`Nodes`](/reference/node).
+Cependant, afin de simplifier les choses, l'interface `ValueGrad` est implémenté par la structure `*Node`.
 {{% /notice %}}
 
-この場合 $\Theta$ を最適化し次のようにsolverに値を更新する様に依頼します。
+Dans notre cas, nous voulons trouver les valeurs de $\Theta$; nous demandons au solver de mettre à jour la valeur en suivant cette équation:
 
 ${\displaystyle \Theta^{(k+1)}=\Theta^{(k)}-\gamma \nabla f\left(\Theta^{(k)}\right)}$
 
-そのためには $\Theta$ を`Solver`の`Step`メソッドに渡す必要があります。
+Le solver se charge d'implémenter l'équation. Nous devons simplement passer $\Theta$ a chaque `Step` du `Solver`:
 
 ```go
 update := []gorgonia.ValueGrad{theta}
@@ -238,11 +244,12 @@ if err = solver.Step(update); err != nil {
 }
 ```
 
-#### The learning iterations
+#### L'apprentissage
 
-原理が分かりましたね。幾らかの勾配降下の魔法を起こし得る [vm](/reference/vm) を使用して計算を実行する必要があります。
+À présent que la mécanique est en place, nous devons lancer le calcul grâce à une [vm](/referemce/vm).
+Ce calcul doit être lancé un grand nombre de fois pour que la descente de gradient puisse agir.
 
-[vm](/reference/vm) を作成してグラフを実行します(そして勾配計算を行います):
+Créons à présent une [vm](/reference/vm) pour lancer le calcul.
 
 ```go
 machine := gorgonia.NewTapeMachine(g, gorgonia.BindDualValues(theta))
@@ -250,12 +257,12 @@ defer machine.Close()
 ```
 
 {{% notice warning %}}
-solverにパラメーター $\Theta$ についての勾配を更新するように依頼します。
-そのためTapeMachineに $\Theta$ の値(言わば2次元の値)を保存するよう指示しなければなりません。
-これは [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues) 関数を使用して行います。
+Nous demandons au solver de mettre à jour le paramètre $\Theta$ par rapport au gradient.
+Par conséquent nous devons dire à la TapeMachine de stocker la valeur de $\Theta$ *ainsi que* sa dérivée (sa dual value)
+Ceci est la raison de l'utilisation de la fonction [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues).
 {{% /notice %}}
 
-では各ステップでループを作成してグラフを実行しましょう; さぁ機械が学習します!
+Maintenant nous pouvons créer une boucle et calculer le graphe étape par étape; la machine va apprendre!
 
 ```go
 iter := 1000000
@@ -273,9 +280,9 @@ for i := 0; i < iter; i++ {
 }
 ```
 
-#### 幾らかの情報を取得
+#### Afficer des informations
 
-この呼び出しを使用して学習プロセスの情報をダンプできます
+Nous pouvons afficher des informations sur le processus d'apprentissage en utilisant cet appel:
 
 ```go
 fmt.Printf("theta: %2.2f  Iter: %v Cost: %2.3f Accuracy: %2.2f \r",
@@ -285,7 +292,7 @@ fmt.Printf("theta: %2.2f  Iter: %v Cost: %2.3f Accuracy: %2.2f \r",
         accuracy(predicted.Data().([]float64), y.Value().Data().([]float64)))
 ```
 
-`accuracy` は以下の様に定義しました:
+Avec la fonction `accuracy` définie de la manière suivante:
 
 ```go
 func accuracy(prediction, y []float64) float64 {
@@ -299,15 +306,15 @@ func accuracy(prediction, y []float64) float64 {
 }
 ```
 
-これにより学習プロセス中には以下の様な行が表示されます:
+Ceci affichera une ligne semblable à celle ci pendant la phase d'apprentissage:
 
 ```text
 theta: [ 0.26  -0.41   0.44  -0.62   0.83]  Iter: 26075 Cost: 0.339 Accuracy: 0.61
 ```
 
-### weightsの保存
+### Sauvegarde des données
 
-訓練が完了したら予測を行えるように $\Theta$ の値を保存します:
+Une fois l'entrainement terminé, nous pouvons sauvegarder les valeurs de $\Theta$ pour pouvoir les utiliser dans des prédictions:
 
 ```go
 func save(value gorgonia.Value) error {
@@ -325,9 +332,11 @@ func save(value gorgonia.Value) error {
 }
 ```
 
-## 推論を行う簡単なcliを作る
+## Création d'un utilitaire CLI
 
-まずは訓練フェーズからパラメータを読み込んでみましょう：
+Nous allons à présent créer un utilitaire qui va permettre de donner l'espèce d'une fleur en fonction des paramètres d'entrée.
+
+Tout d'abord, chargeons les paramètres que nous venons de sauvegarder lors de la phase d'entrainement.
 
 ```go
 func main() {
@@ -344,10 +353,10 @@ func main() {
         }
 ```
 
-では前に行った様にモデル(exprgraph)を作成します:
+Ensuite, créeons le modèle (l'exprgraph) d'une manière semblable à ce que nous avons fait auparavant:
 
 {{% notice info %}}
-実際のアプリケーションはおそらく別のパッケージでモデルを共有する事になるでしょう
+Dans un développement logiciel, il serait probablement souhaitable de partager ce code entre les deux outils (training et execution) en l'isolant dans un package.
 {{% /notice %}}
 
 ```go
@@ -359,7 +368,7 @@ x := gorgonia.NodeFromAny(g, xT, gorgonia.WithName("x"))
 y, err := gorgonia.Mul(x, theta)
 ```
 
-そして標準入力から情報を取得するforループに入り計算を実行して結果を表示します:
+Ensuite nous executons une boucle infinie pendant laquelle nous allons demander les infos, calculer et afficher le résultat:
 
 ```go
 machine := gorgonia.NewTapeMachine(g)
@@ -387,7 +396,7 @@ for {
 }
 ```
 
-以下は入力を得る為の便利関数です:
+Voici une fonction utilitaire pour récupérer les entrées:
 
 ```go
 func getInput(s string) float64 {
@@ -404,8 +413,8 @@ func getInput(s string) float64 {
 }
 ```
 
-`go build` や `go run` を実行できます。そして _そう_ !
-特徴を考慮して、あやめの種別を予測できる完全に自律的なcliになりました:
+Il ne reste plus qu'à "builder" le code et voilà!
+Nous avons un utilitaire autonome capable de prédire l'espèce d'une Irir en fonction de ses attributs:
 
 ```text
 $ go run main.go
@@ -423,15 +432,16 @@ It is probably a virginica
 
 # Conclusion
 
-これは段階的な例です。
-thetaの初期値を操作したりGorgoniaの中で物事がどの様に行われるのかを見る為にsolverを変更して試してみましょう。
+Dans cet exemple pas-à-pas, nous avons construit un logiciel complet.
 
-全体のコードはGorgoniaプロジェクトの[example](https://github.com/gorgonia/gorgonia/tree/master/examples)で見つける事ができます。.
+À présent vous pouvez poursuivre les tests en changeant les valeurs initiales de $\Theta$ ou en utilisant un autre solver fournit par Gorgonia.
 
-### ボーナス: 視覚的表現
+Le code complet de ce tutoriel est présent dans le répertoire [examples](https://github.com/gorgonia/gorgonia/tree/master/examples) des sources de Gorgonia.
 
-gonum plotter ライブラリを使えばデータセットを可視化する事ができます。
-これを実現する方法の簡単な例を次に示します:
+### Bonus: visual representation
+
+Il est possible de visualiser le dataset en utilisant la bibliothèque plotter du projet Gonum.
+Voici un exemple.
 
 ![iris](/images/iris/iris.png)
 

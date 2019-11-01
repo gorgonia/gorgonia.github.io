@@ -8,20 +8,20 @@ draft: false
 
 We will use Gorgonia to create a linear regression model.
 
-The goal is, to predict the species of the flowers given the caracteristics:
+The goal is, to predict the species of the Iris flowers given the characteristics:
 
 * sepal_length
 * sepal_width
 * petal_length
 * petal_width
 
-The species available are:
+The species we want to predict are:
 
 * setosa
 * virginica
 * versicolor
 
-The goal of this tutorial is to use gorgonia to find the correct values of $\Theta$ given the iris dataset, in order to write a cli utility that would look like this:
+The goal of this tutorial is to use Gorgonia to find the correct values of $\Theta$ given the iris dataset, in order to write a CLI utility that would look like this:
 
 ```text
 ./iris
@@ -40,13 +40,13 @@ It is not the state of the art answer to this particular problem.
 
 ### Mathematical representation
 
-We will consider that the species if a function of its sepal length and width as well as its petal lenght and width.
+We will consider that the species of Iris if a function of its sepal length and width as well as its petal length and width.
 
 Therefore, if we consider that $y$ is the value of the species, we the equation we would like to solve is:
 
 $$ y = \theta_0 + \theta_1 * sepal\\_length + \theta_2 * sepal\\_width + \theta_3 * petal\\_length + \theta_4 * petal\\_width$$
 
-if we consider the vectors $x$ and $\Theta$ such as:
+Let's consider the vectors $x$ and $\Theta$ such as:
 
 $$ x =  \begin{bmatrix} sepal\\_length & sepal\\_width & petal\\_length & petal\\_width & 1\end{bmatrix}$$
 
@@ -67,8 +67,8 @@ $$y = x\cdot\Theta$$
 ### Linear regression
 
 To find the correct values, we will use a linear regression.
-We will encode the data into a matrix $X$ containing 5 columns (sepal length, sepal width, petal length, petal width and 1 for the bias).
-A row of the matrix represent a species.
+We will encode the data (the true facts from observation of different flowers) into a matrix $X$ containing 5 columns (sepal length, sepal width, petal length, petal width and 1 for the bias).
+A row of the matrix represent a flower.
 
 The we will encode the corresponding species into a column vector $Y$ with float values.
 
@@ -86,13 +86,13 @@ We will use the gradient descent to lower the cost and get the accurate values f
 It is possible to get the exact $\theta$ values with the Normal Equation
 $$ \theta = \left( X^TX \right)^{-1}X^TY $$
 See this [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go) for
-a basic implementation with gonum.
+a basic implementation with Gonum.
 {{% /notice %}}
 
 
 ## Generate the training set with gota (dataframe)
 
-First, let's generate the trainig data. We use a dataframe to do this smoothly.
+First, let's generate the training data. We use a dataframe to do this smoothly.
 
 {{% notice info %}}
 See this [howto](/how-to/dataframe/) for more info about using the dataframe
@@ -254,7 +254,7 @@ defer machine.Close()
 
 {{% notice warning %}}
 We will ask the solver to update the parameter $\Theta$ wrt to its gradient.
-Therefore we must instruct the TapeMachine to store the value of $\Theta$ *as well as* its (its dual value).
+Therefore we must instruct the TapeMachine to store the value of $\Theta$ *as well as* its derivative (its dual value).
 We do this with the [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues) function.
 {{% /notice %}}
 
@@ -327,7 +327,7 @@ func save(value gorgonia.Value) error {
 }
 ```
 
-## Create a simple cli for predictions
+## Create a simple CLI for predictions
 
 First, let's load the parameters from the training phase:
 
@@ -349,7 +349,7 @@ func main() {
 Then, let's create the model (the exprgraph) like we did before:
 
 {{% notice info %}}
-A real application would probably have shared the model in a seperate package
+A real application would probably have shared the model in a separate package
 {{% /notice %}}
 
 ```go
@@ -368,7 +368,7 @@ machine := gorgonia.NewTapeMachine(g)
 values[4] = 1.0
 for {
         values[0] = getInput("sepal length")
-        values[1] = getInput("sepal widt")
+        values[1] = getInput("sepal width")
         values[2] = getInput("petal length")
         values[3] = getInput("petal width")
 
@@ -407,7 +407,7 @@ func getInput(s string) float64 {
 ```
 
 Now we can `go build` or `go run` the code, and _voilà_!
-We have a fully autonomous cli that can predict the iris species regarding its features:
+We have a fully autonomous CLI that can predict the iris species regarding its features:
 
 ```text
 $ go run main.go
@@ -426,13 +426,13 @@ It is probably a virginica
 # Conclusion
 
 This is a step by step example.
-You can now play with the init values of theta, or change to solver to see how thing goes within Gorgonia.
+You can now play with the initialization values of theta, or change to solver to see how thing goes within Gorgonia.
 
 The full code can be found in the [example](https://github.com/gorgonia/gorgonia/tree/master/examples) of the Gorgonia project.
 
 ### Bonus: visual representation
 
-It is possible to visualize the dataset using the gonum plotter libraries.
+It is possible to visualize the dataset using the Gonum plotter libraries.
 Here is a simple example on how to achieve it:
 
 ![iris](/images/iris/iris.png)
