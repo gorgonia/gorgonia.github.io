@@ -74,32 +74,31 @@ Nous allons encoder les données d'entrainement (les constats fait sur plusieurs
 $X$ est composée de 5 colonnes: sepal length, sepal width, petal length, petal width et une colonne contenant 1 pour le biais.
 Chaque ligne de la matrice représente une fleur.
 
-We will encode the corresponding species into a column vector $Y$ with float values.
+Nous allons encoder les espèces dans un vecteur colonne $Y$ composé de nombres flottants.
 
 * setosa = 1.0
 * virginica = 2.0
 * versicolor = 3.0
 
-In the learning phase, the cost is expressed like this:
+Lors de la phase d'apprentissage, le coût est exprimé de la manière suivante:
 
 $cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$
 
-We will use the gradient descent to lower the cost and get the accurate values for $\Theta$
+Nous allons utiliser la méthode de descente de gradient pour optimiser le coût et obtenir les valeurs optimales de $\Theta$.
 
 {{% notice info %}}
-It is possible to get the exact $\theta$ values with the Normal Equation
+Il est possible d'avoir les valeurs exactes de $\Theta$ (celle qui minimisent le coût) en utilisant l'équation normale:
 $$ \theta = \left( X^TX \right)^{-1}X^TY $$
-See this [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go) for
-a basic implementation with gonum.
+Vous trouverez sur ce [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go)
+une implémentation basique de la solution réalisée avec Gonum.
 {{% /notice %}}
 
+## Génération des données d'entrainement avec gota (dataframe)
 
-## Generate the training set with gota (dataframe)
-
-First, let's generate the trainig data. We use a dataframe to do this smoothly.
+Tout d'abord, générons les données d'entrainement. Nous utiliserons un dataframe pour nous simplifier la tâche.
 
 {{% notice info %}}
-See this [howto](/how-to/dataframe/) for more info about using the dataframe
+Ce [howto](/how-to/dataframe/) donne plus d'information sur l'utilisation du dataframe
 {{% /notice %}}
 
 
@@ -141,11 +140,11 @@ func getXYMat() (*mat.Dense, *mat.Dense) {
 }
 ```
 
-This returns two matrices we can use in Gorgonia.
+Cette fonction retourne deux matrices que nous pourrons utiliser avec Gorgonia.
 
-### Create the expression graph
+### Creation de l'ExprGrap
 
-The equation $X\cdot\Theta$ is represented as an [ExprGraph](/reference/exprgraph):
+L'équation $X\cdot\Theta$ est encodée en tant qu'[ExprGraph](/reference/exprgraph):
 
 ```go
 func getXY() (*tensor.Dense, *tensor.Dense) {
@@ -177,30 +176,30 @@ func main() {
     gorgonia.Read(pred, &predicted)
 ```
 
-{{% notice info %}}
-Gorgonia is higly optimized; it heavily plays with pointers and memory to get good performances.
-Therefore, calling the `Value()` method of a `*Node` at runtime (during the execution process), may lead to incorrect results.
-If we need to access a specific value of a *Node at runtime (for example during the learning phase), we need to keep a reference to its
-underlying `Value`. This is why we use the `Read` method here.
-`predicted` will hold a Value containing the result of $X\cdot\Theta$ at anytime.
+{{% notice warning %}}
+Gorgonia est très optimisé; il fait utilise beaucoup les pointeurs pour optimiser son empreinte mémoire.
+Par conséquemt, appeler la méthode `Value()` d'un `*Node` pendant la phase d'exécution du graphe, peut produire des résultats incorrects.
+Pour accéder à la valeur contenue dans un `*Node` (pendant la phase d'apprentissage par exemple), il est nécessaire de garder une référence
+pointant sur ladite valeur. C'est la raison pour laquelle nous utilisons la méthode `Read`.
+`predicted` contient une référence à la valeur résultante de l'opération $X\cdot\Theta$.
 {{% /notice %}}
 
-## Preparing the gradient computation
+## Préparation du calcul du gradient
 
-We will use Gorgonia's [Symbolic differentiation](/how-to/differentiation) capability.
+Nous allons utiliser la fonctionnalité de Gorgonia: [Symbolic differentiation](/how-to/differentiation).
 
-First, we will create the cost function, and use a [solver](/about/solver) to perform a gradient descent to lower the cost.
+Tout d'abord, nous allons créer une fonction de coût, puis utiliser un [solver](/about/solver) pour faire la descente de gradient.
 
-### Create the node holding the cost
+### Creation du "node" qui contiendra le coût de l'équation
 
-We complete the [exprgraph](/reference/exprgraph) by adding the cost ($cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$)
+Completons à présent l'[exprgraph](/reference/exprgraph) en ajoutant le coût (pour rappel, $cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$)
 
 ```go
 squaredError := must(gorgonia.Square(must(gorgonia.Sub(pred, y))))
 cost := must(gorgonia.Mean(squaredError))
 ```
 
-We want to lower this cost, so we evaluate the gradient wrt to $\Theta$:
+Notre but est de minimiser ce coût. Nous allons donc calculer le gradient de la fonction par rapport à $\Theta$:
 
 ```go
 if _, err := gorgonia.Grad(cost, theta); err != nil {
@@ -208,33 +207,34 @@ if _, err := gorgonia.Grad(cost, theta); err != nil {
 }
 ```
 
-### The gradient descent
+### La descente du gradient
 
-We are using the mechanism of the gradient descent. This means that we use the gradient to modulate the parameters $\Theta$
-step by step.
+Nous utilisons le principe de descente de gradient. Ceci signifie que nous utilisons le gradient de la fonction pour
+altérer le paramètre $\Theta$ pas à pas.
 
-The basic gradient descent is implemented by [Vanilla Solver](https://godoc.org/gorgonia.org/gorgonia#VanillaSolver) of Gorgonia.
-We set the learning rate $\gamma$ to be 0.001.
+Une implémentation basique de descente de gradient est implémentée dans le [Vanilla Solver](https://godoc.org/gorgonia.org/gorgonia#VanillaSolver) de Gorgonia.
+Nous positionnons le "pas" $\gamma$ à 0.001.
 
 ```go
 solver := gorgonia.NewVanillaSolver(gorgonia.WithLearnRate(0.001))
 ```
 
-And at each step, we will ask the solver to update the $\Theta$ parameters thanks to its gradient.
-Therefore, we set an `update` variable that we will pass to the solver at each iteration
+À chaque étape, nous allons demander au solver de mettre à jour $\Theta$ grâce au gradient.
+Par conséquent, nous assignons une variable `update` que nous allons passer au solver à chaque itération.
 
 {{% notice info %}}
-The gradient descent will update the all the values passed into `[]gorgonia.ValueGrad` at each step according this equation:
+La descente de gradient va mettre à jour toutes les valeurs présentes dans le tableau `[]gorgonia.ValueGrad` à chqaue étape
+suivant cette équation:
 ${\displaystyle x^{(k+1)}=x^{(k)}-\gamma \nabla f\left(x^{(k)}\right)}$
-It is important to understand that the solver works on [`Values`](/reference/value) and not on [`Nodes`](/reference/node).
-But to make things easy, ValueGrad is an interface{} fulfiled by the `*Node` structure.
+Il est important de comprendre que le solver travaille sur des [`Values`](/reference/value) et non des [`Nodes`](/reference/node).
+Cependant, afin de simplifier les choses, l'interface `ValueGrad` est implémenté par la structure `*Node`.
 {{% /notice %}}
 
-In our case, we want to optimize $\Theta$ and ask the solver will update its value like this:
+Dans notre cas, nous voulons trouver les valeurs de $\Theta$; nous demandons au solver de mettre à jour la valeur en suivant cette équation:
 
 ${\displaystyle \Theta^{(k+1)}=\Theta^{(k)}-\gamma \nabla f\left(\Theta^{(k)}\right)}$
 
-To do so, we need to pass $\Theta$ to the `Step` method of the `Solver`:
+Le solver se charge d'implémenter l'équation. Nous devons simplement passer $\Theta$ a chaque `Step` du `Solver`:
 
 ```go
 update := []gorgonia.ValueGrad{theta}
@@ -244,12 +244,12 @@ if err = solver.Step(update); err != nil {
 }
 ```
 
-#### The learning iterations
+#### L'apprentissage
 
-Now that we have the principle, we need to run the computation with a [vm](/reference/vm) several times so the gradient
-descent's magic can happen.
+À présent que la mécanique est en place, nous devons lancer le calcul grâce à une [vm](/referemce/vm).
+Ce calcul doit être lancé un grand nombre de fois pour que la descente de gradient puisse agir.
 
-Let's create a [vm](/reference/vm) to execute the graph (and do the gradient computation):
+Créons à présent une [vm](/reference/vm) pour lancer le calcul.
 
 ```go
 machine := gorgonia.NewTapeMachine(g, gorgonia.BindDualValues(theta))
@@ -257,12 +257,12 @@ defer machine.Close()
 ```
 
 {{% notice warning %}}
-We will ask the solver to update the parameter $\Theta$ wrt to its gradient.
-Therefore we must instruct the TapeMachine to store the value of $\Theta$ *as well as* its (its dual value).
-We do this with the [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues) function.
+Nous demandons au solver de mettre à jour le paramètre $\Theta$ par rapport au gradient.
+Par conséquent nous devons dire à la TapeMachine de stocker la valeur de $\Theta$ *ainsi que* sa dérivée (sa dual value)
+Ceci est la raison de l'utilisation de la fonction [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues).
 {{% /notice %}}
 
-Now let's create the loop and execute the graph at each step; the machine will learn!
+Maintenant nous pouvons créer une boucle et calculer le graphe étape par étape; la machine va apprendre!
 
 ```go
 iter := 1000000
@@ -280,9 +280,10 @@ for i := 0; i < iter; i++ {
 }
 ```
 
-#### Getting some infos
+#### Afficer des informations
 
-We can dump some info about the learning process by using this call
+Nous pouvons afficher des informations sur le processus d'apprentissage en utilisant cet appel:
+
 ```go
 fmt.Printf("theta: %2.2f  Iter: %v Cost: %2.3f Accuracy: %2.2f \r",
         theta.Value(),
@@ -291,7 +292,7 @@ fmt.Printf("theta: %2.2f  Iter: %v Cost: %2.3f Accuracy: %2.2f \r",
         accuracy(predicted.Data().([]float64), y.Value().Data().([]float64)))
 ```
 
-with `accuracy` defined like this:
+Avec la fonction `accuracy` définie de la manière suivante:
 
 ```go
 func accuracy(prediction, y []float64) float64 {
@@ -305,15 +306,15 @@ func accuracy(prediction, y []float64) float64 {
 }
 ```
 
-This will display a line like this during the learning process:
+Ceci affichera une ligne semblable à celle ci pendant la phase d'apprentissage:
 
 ```text
 theta: [ 0.26  -0.41   0.44  -0.62   0.83]  Iter: 26075 Cost: 0.339 Accuracy: 0.61
 ```
 
-### Save the weights
+### Sauvegarde des données
 
-Once the training is done, we save the values of $\Theta$ to be able to do some predictions:
+Une fois l'entrainement terminé, nous pouvons sauvegarder les valeurs de $\Theta$ pour pouvoir les utiliser dans des prédictions:
 
 ```go
 func save(value gorgonia.Value) error {
@@ -331,9 +332,11 @@ func save(value gorgonia.Value) error {
 }
 ```
 
-## Create a simple cli for predictions
+## Création d'un utilitaire CLI
 
-First, let's load the parameters from the training phase:
+Nous allons à présent créer un utilitaire qui va permettre de donner l'espèce d'une fleur en fonction des paramètres d'entrée.
+
+Tout d'abord, chargeons les paramètres que nous venons de sauvegarder lors de la phase d'entrainement.
 
 ```go
 func main() {
@@ -350,10 +353,10 @@ func main() {
         }
 ```
 
-Then, let's create the model (the exprgraph) like we did before:
+Ensuite, créeons le modèle (l'exprgraph) d'une manière semblable à ce que nous avons fait auparavant:
 
 {{% notice info %}}
-A real application would probably have shared the model in a seperate package
+Dans un développement logiciel, il serait probablement souhaitable de partager ce code entre les deux outils (training et execution) en l'isolant dans un package.
 {{% /notice %}}
 
 ```go
@@ -365,7 +368,7 @@ x := gorgonia.NodeFromAny(g, xT, gorgonia.WithName("x"))
 y, err := gorgonia.Mul(x, theta)
 ```
 
-Then enter a for loop that will get info from stdin, do the computation and display the result:
+Ensuite nous executons une boucle infinie pendant laquelle nous allons demander les infos, calculer et afficher le résultat:
 
 ```go
 machine := gorgonia.NewTapeMachine(g)
@@ -393,7 +396,7 @@ for {
 }
 ```
 
-This is a helper function to get the input:
+Voici une fonction utilitaire pour récupérer les entrées:
 
 ```go
 func getInput(s string) float64 {
@@ -410,8 +413,8 @@ func getInput(s string) float64 {
 }
 ```
 
-Now we can `go build` or `go run` the code, and _voilà_!
-We have a fully autonomous cli that can predict the iris species regarding its features:
+Il ne reste plus qu'à "builder" le code et voilà!
+Nous avons un utilitaire autonome capable de prédire l'espèce d'une Irir en fonction de ses attributs:
 
 ```text
 $ go run main.go
@@ -429,15 +432,16 @@ It is probably a virginica
 
 # Conclusion
 
-This is a step by step example.
-You can now play with the init values of theta, or change to solver to see how thing goes within Gorgonia.
+Dans cet exemple pas-à-pas, nous avons construit un logiciel complet.
 
-The full code can be found in the [example](https://github.com/gorgonia/gorgonia/tree/master/examples) of the Gorgonia project.
+À présent vous pouvez poursuivre les tests en changeant les valeurs initiales de $\Theta$ ou en utilisant un autre solver fournit par Gorgonia.
+
+Le code complet de ce tutoriel est présent dans le répertoire [examples](https://github.com/gorgonia/gorgonia/tree/master/examples) des sources de Gorgonia.
 
 ### Bonus: visual representation
 
-It is possible to visualize the dataset using the gonum plotter libraries.
-Here is a simple example on how to achieve it:
+Il est possible de visualiser le dataset en utilisant la bibliothèque plotter du projet Gonum.
+Voici un exemple.
 
 ![iris](/images/iris/iris.png)
 
