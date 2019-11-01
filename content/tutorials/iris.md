@@ -254,7 +254,7 @@ defer machine.Close()
 
 {{% notice warning %}}
 We will ask the solver to update the parameter $\Theta$ wrt to its gradient.
-Therefore we must instruct the TapeMachine to store the value of $\Theta$ *as well as* its (its dual value).
+Therefore we must instruct the TapeMachine to store the value of $\Theta$ *as well as* its derivative (its dual value).
 We do this with the [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues) function.
 {{% /notice %}}
 
