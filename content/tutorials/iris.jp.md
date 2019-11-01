@@ -4,7 +4,7 @@ date: 2019-10-31T14:53:37+01:00
 draft: false
 ---
 
-## About
+## はじめに
 
 Gorgoniaを使用して線形回帰モデルを作成します。
 
@@ -38,7 +38,7 @@ It is probably a setosa
 これは特定の問題に対する最先端の答えではありません。
 {{% /notice %}}
 
-### Mathematical representation
+### 数学的表現
 
 良くある花弁の長さと幅だけでなく、がく片の長さと幅の関数であった場合とその種別について考察します。
 
@@ -46,7 +46,7 @@ It is probably a setosa
 
 $$ y = \theta_0 + \theta_1 * sepal\\_length + \theta_2 * sepal\\_width + \theta_3 * petal\\_length + \theta_4 * petal\\_width$$
 
-if we consider the vectors $x$ and $\Theta$ such as:
+ベクトルを考慮した場合の $x$ と $\Theta$ はこうなります:
 
 $$ x =  \begin{bmatrix} sepal\\_length & sepal\\_width & petal\\_length & petal\\_width & 1\end{bmatrix}$$
 
@@ -64,7 +64,7 @@ $$
 
 $$y = x\cdot\Theta$$
 
-### Linear regression
+### 線形回帰
 
 正しい値を見つける為に線形回帰を使用します。
 データを5列(がく片の長さ、がく片の幅、花弁の長さ、花弁の幅、およびバイアスの1)を含む行列 $X$ にエンコードします。
@@ -80,13 +80,12 @@ $$y = x\cdot\Theta$$
 
 $cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$
 
-勾配降下法を使用してコストを下げ $\ Theta$ の正確な値を取得します
+勾配降下法を使用してコストを下げ $\Theta$ の正確な値を取得します
 
 {{% notice info %}}
-It is possible to get the exact $\theta$ values with the Normal Equation
-$$ \theta = \left( X^TX \right)^{-1}X^TY $$
-See this [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go) for
-a basic implementation with gonum.
+正規方程式での値として $\theta$ は取得することができます。
+$$ \theta = \left( X^TX \right)^{-1}X^Ty $$
+gonumでの基本的な実装についてはこの[gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go)を参照してください。
 {{% /notice %}}
 
 
@@ -139,7 +138,7 @@ func getXYMat() (*mat.Dense, *mat.Dense) {
 
 Gorgoniaで使用できる2つの行列を返します。
 
-### Create the expression graph
+### 式グラフを作成する
 
 方程式 $X\cdot\Theta$ は [ExprGraph](/reference/exprgraph) として表されます:
 
@@ -196,7 +195,7 @@ squaredError := must(gorgonia.Square(must(gorgonia.Sub(pred, y))))
 cost := must(gorgonia.Mean(squaredError))
 ```
 
-このコストを下げたいので $\ Theta$ に関する勾配を評価します:
+このコストを下げたいので $\Theta$ に関する勾配を評価します:
 
 ```go
 if _, err := gorgonia.Grad(cost, theta); err != nil {
@@ -206,10 +205,10 @@ if _, err := gorgonia.Grad(cost, theta); err != nil {
 
 ### 勾配降下法
 
-勾配降下のメカニズムを使用します。これは勾配を使用してパラメーター $\ Theta$ を段階的に調節することを意味します。
+勾配降下のメカニズムを使用します。これは勾配を使用してパラメーター $\Theta$ を段階的に調節することを意味します。
 
 基本的な勾配降下はGorgoniaの[Vanilla Solver](https://godoc.org/gorgonia.org/gorgonia#VanillaSolver)によって実装されています。
-学習率 $\ gamma$ を0.001に設定します。
+学習率 $\gamma$ を0.001に設定します。
 
 ```go
 solver := gorgonia.NewVanillaSolver(gorgonia.WithLearnRate(0.001))
@@ -225,11 +224,11 @@ solverは[`Nodes`](/reference/node)ではなく[`Values`](/reference/value)で�
 ただし物事を簡単にする為にValueGradは`*Node`構造によって実現される interface{} になっています。
 {{% /notice %}}
 
-この場合 $\ Theta$ を最適化し次のようにsolverに値を更新する様に依頼します。
+この場合 $\Theta$ を最適化し次のようにsolverに値を更新する様に依頼します。
 
 ${\displaystyle \Theta^{(k+1)}=\Theta^{(k)}-\gamma \nabla f\left(\Theta^{(k)}\right)}$
 
-そのためには $\ Theta$ を`Solver`の`Step`メソッドに渡す必要があります。
+そのためには $\Theta$ を`Solver`の`Step`メソッドに渡す必要があります。
 
 ```go
 update := []gorgonia.ValueGrad{theta}
@@ -251,8 +250,8 @@ defer machine.Close()
 ```
 
 {{% notice warning %}}
-solverにパラメーター $\ Theta$ についての勾配を更新するように依頼します。
-そのためTapeMachineに $\ Theta$ の値(言わば2次元の値)を保存するよう指示しなければなりません。
+solverにパラメーター $\Theta$ についての勾配を更新するように依頼します。
+そのためTapeMachineに $\Theta$ の値(言わば2次元の値)を保存するよう指示しなければなりません。
 これは [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues) 関数を使用して行います。
 {{% /notice %}}
 
@@ -308,7 +307,7 @@ theta: [ 0.26  -0.41   0.44  -0.62   0.83]  Iter: 26075 Cost: 0.339 Accuracy: 0.
 
 ### weightsの保存
 
-訓練が完了したら予測を行えるように $\ Theta$ の値を保存します:
+訓練が完了したら予測を行えるように $\Theta$ の値を保存します:
 
 ```go
 func save(value gorgonia.Value) error {

@@ -11,7 +11,7 @@ weight: -100
 
 $ f(x,y) = x + y $
 
-with  `x = 2` and `y = 5`
+値は `x = 2` と `y = 5`
 
 ## どの様に動作するか
 
@@ -26,30 +26,31 @@ graph LR;
 
 結果を計算する為に4つのステップを使います:
 
-* Make a similar [graph](/reference/exprgraph) with Gorgonia
-* sets some [values](/reference/value) on the [nodes](/reference/node) `x` and `y` then
-* instanciate a graph on a [gorgonia vm](/reference/vm)
-* extract the [value](/reference/value) from node `z`
+* Gorgonia で[式](/reference/exprgraph)の様なグラフを作成する
+* [nodes](/reference/node) `x` と `y` に幾つかの[値](/reference/value)を設定する
+* [gorgonia vm](/reference/vm)上でグラフを起動する
+* node `z`から[value](/reference/value)を取り出す
     *
 
-### Create a graph
+### グラフの作成
 
-Create an empty [expression graph](/reference/exprgraph) with this method:
+以下の方法で空の[式グラフ](/reference/exprgraph)を作成します:
 
 ```go
 g := gorgonia.NewGraph()
 ```
 
-### Create the nodes
+### ノードの作成
 
-We will create some [nodes](/reference/node) and associate them to the ExprGraph.
+いくつかの[ノード](/reference/node)を作成しそれらを ExprGraph に関連付けます。
 
 ```go
 var x, y, z *gorgonia.Node
 ```
 
-#### Create the placeholder
-`x` and `y` are scalar variables, we can create the corresponding node with:
+#### プレースホルダの作成
+
+`x`と`y`はスカラー変数です。対応するノードは次のように作成できます:
 
 ```go
 x = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("x"))
@@ -57,11 +58,11 @@ y = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("y"))
 ```
 
 {{% notice note %}}
-the functions take the exprgraph as argument; the resulting node is automatically associated to the graph.
+関数は引数としてexprgraphを取ります; 結果のノードは自動的にグラフに関連付けられます。
 {{% /notice %}}
 
 
-Now create the addition operator; this operator takes two [nodes](/reference/node) and returns a new node z:
+次に加算演算子を作成します。この演算子は2つの[ノード](/reference/node)を取り新しいノードzを返します:
 
 ```
 if z, err = gorgonia.Add(x, y); err != nil {
@@ -70,32 +71,32 @@ if z, err = gorgonia.Add(x, y); err != nil {
 ```
 
 {{% notice info %}}
-the returning node `z` is added to the graph even if `g` is not passed to `z` or to the `Add` function.
+戻り値のノード`z`は`g`が`z`または`Add`関数に渡されていない場合でもグラフには追加されます。
 {{% /notice %}}
 
 
-### Set the values
+### 値の設定
 
-We have a ExprGraph that represents the equation `z = x + y`. Now it's time to assign some values to `x` and `y`.
+式 `z = x + y` を表す ExprGraph ができました。では`x`と`y`にいくつかの値を割り当てます。
 
-We use the [`Let`](https://godoc.org/gorgonia.org/gorgonia#Let) function:
+関数 [`Let`](https://godoc.org/gorgonia.org/gorgonia#Let) を使います:
 
 ```go
 gorgonia.Let(x, 2.0)
 gorgonia.Let(y, 2.5)
 ```
 
-### Run the graph
+### グラフの実行
 
-To run the graph and compute the result, we need to instanciate a [VM](/reference/vm).
-Let's use the [TapeMachine](/reference/vm/tapemachine):
+グラフを実行して結果を計算するには [VM](/reference/vm) をインスタンス化する必要があります。
+[TapeMachine](/reference/vm/tapemachine)を使いましょう:
 
 ```go
 machine := gorgonia.NewTapeMachine(g)
 defer machine.Close()
 ```
 
-and run the graph:
+そしてグラフの実行:
 
 ```go
 if err = machine.RunAll(); err != nil {
