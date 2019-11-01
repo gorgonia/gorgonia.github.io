@@ -78,13 +78,13 @@ The we will encode the corresponding species into a column vector $Y$ with float
 
 In the learning phase, the cost is expressed like this:
 
-$cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-y^{(i)})^2$
+$cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$
 
 We will use the gradient descent to lower the cost and get the accurate values for $\Theta$
 
 {{% notice info %}}
 It is possible to get the exact $\theta$ values with the Normal Equation
-$$ \theta = \left( X^TX \right)^{-1}X^Ty $$
+$$ \theta = \left( X^TX \right)^{-1}X^TY $$
 See this [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go) for
 a basic implementation with gonum.
 {{% /notice %}}
@@ -189,7 +189,7 @@ First, we will create the cost function, and use a [solver](/about/solver) to pe
 
 ### Create the node holding the cost
 
-We complete the [exprgraph](/reference/exprgraph) by adding the cost ($cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-y^{(i)})^2$)
+We complete the [exprgraph](/reference/exprgraph) by adding the cost ($cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$)
 
 ```go
 squaredError := must(gorgonia.Square(must(gorgonia.Sub(pred, y))))
