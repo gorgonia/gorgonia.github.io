@@ -55,7 +55,6 @@ xDF := df.Drop("species")
 ```
 ## データフレームを行列に変換する
 
-To make things easier, we will convert our dataframe into a `Matrix` as defined by gonum (see [the matrix godoc](https://godoc.org/gonum.org/v1/gonum/mat#Matrix)).
 物事を簡単にするために、データフレームをgonumで定義されている`Matrix`に変換します([matrixのgodoc](https://godoc.org/gonum.org/v1/gonum/mat#Matrix)を参照)。
 `matrix`はインタフェースです。gotaのデータフレームは`Matrix`インターフェイスを満たしません。gotaのドキュメントに記載されているように、
 `Matrix`インターフェイスを満たすために、データフレームのラッパーを作成します。
