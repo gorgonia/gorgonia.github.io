@@ -78,7 +78,7 @@ $$y = x\cdot\Theta$$
 
 学習段階ではコストは次のように表す事ができます:
 
-$cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-y^{(i)})^2$
+$cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$
 
 勾配降下法を使用してコストを下げ $\Theta$ の正確な値を取得します
 
@@ -188,7 +188,7 @@ Gorgoniaの[象徴的な微分](/how-to/differentiation)機能を使います。
 
 ### コストを保持するノードの作成
 
-コスト($cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-y^{(i)})^2$) を追加することにより [exprgraph](/reference/exprgraph)を補完します。
+コスト($cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$) を追加することにより [exprgraph](/reference/exprgraph)を補完します。
 
 ```go
 squaredError := must(gorgonia.Square(must(gorgonia.Sub(pred, y))))
