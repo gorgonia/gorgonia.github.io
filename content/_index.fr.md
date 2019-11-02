@@ -48,7 +48,4 @@ actif.
 
 Ce site web est composé de 4 sections ayant différents objectifs:
 
-* [À propos](/about) contient des informations sur le fonctionnement de Gorgonia
-* [Reference](/reference) contient des informations de références sur les fonctionnalités de Gorgonia
-* [How To](/how-to)
-* [Tutoriels](/tutorials)
+{{% children description="true" %}}

@@ -1,5 +1,6 @@
 ---
 title: "How to compute gradient (differentiation)"
+description: "How to compute gradient (differentiation)"
 date: 2019-10-29T20:07:07+01:00
 draft: true
 ---

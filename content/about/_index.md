@@ -1,6 +1,7 @@
 +++
 title = "How Gorgonia works"
 date = 2019-10-28T11:41:02+01:00
+description = "Articles with a goal to explain how gorgonia works."
 weight = -9
 chapter = true
 pre = "<b>X. </b>"
@@ -14,3 +15,5 @@ The articles in this section should:
 * provides background and context
 
 Analogy: an article on culinary social history
+
+{{% children description="true" %}}
