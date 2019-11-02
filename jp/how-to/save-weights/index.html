@@ -1,0 +1,139 @@
+<!doctype html><html lang=jp class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.58.3"><meta name=description content="Gorgonia's reference website"><meta name=author content="The Gorgonia Authors"><link rel=icon href=/images/favicon.png type=image/png><title>Weightsの保存 :: Gorgonia</title><link href=/css/nucleus.css?1572683537 rel=stylesheet><link href=/css/fontawesome-all.min.css?1572683537 rel=stylesheet><link href=/css/hybrid.css?1572683537 rel=stylesheet><link href=/css/featherlight.min.css?1572683537 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1572683537 rel=stylesheet><link href=/css/auto-complete.css?1572683537 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1572683537 rel=stylesheet><link href=/css/theme.css?1572683537 rel=stylesheet><link href=/css/hugo-theme.css?1572683537 rel=stylesheet><link href=/css/theme-gorgonia.css?1572683537 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1572683537></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style><script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><meta property=og:title content=Weightsの保存><meta property=og:description content='ゴール このハウツーのゴールはノードの値を保存して復元する方法を説明することです。
+実装 現状できる最善の方法は、対応するノードの値を保存して復元することです。
+テンソルはGobEncodeおよびGobDecodeインターフェースを実現しており、これが最良のオプションです。 バックエンドを要素のスライスとして保存することもできますがこれは少し複雑です。
+これを行うサンプルコードを以下に示します(まったく最適化していません。自由に修正してください):
+package main import ( "encoding/gob" "fmt" "log" "os" "gorgonia.org/gorgonia" "gorgonia.org/tensor" ) var ( backup = "/tmp/example_gorgonia" ) func main() { g := gorgonia.NewGraph() var x, y, z *gorgonia.Node var err error // Create the graph  x = gorgonia.NewTensor(g, gorgonia.Float64, 2, gorgonia.WithShape(2, 2), gorgonia.WithName("x")) y = gorgonia.NewTensor(g, gorgonia.Float64, 2, gorgonia.WithShape(2, 2), gorgonia.WithName("y")) if z, err = gorgonia.Add(x, y); err != nil { log.'><meta property=og:type content=article><meta property=og:url content=/jp/how-to/save-weights/><meta property=og:image content=https://gorgonia.org/images/opengraph.png><meta property=article:published_time content=2019-10-29T20:07:16+01:00><meta property=article:modified_time content=2019-10-29T20:07:16+01:00><meta property=og:site_name content=Gorgonia><meta name=twitter:card content=summary_large_image><meta name=twitter:image content=https://gorgonia.org/images/opengraph.png><meta name=twitter:title content=Weightsの保存><meta name=twitter:description content='ゴール このハウツーのゴールはノードの値を保存して復元する方法を説明することです。
+実装 現状できる最善の方法は、対応するノードの値を保存して復元することです。
+テンソルはGobEncodeおよびGobDecodeインターフェースを実現しており、これが最良のオプションです。 バックエンドを要素のスライスとして保存することもできますがこれは少し複雑です。
+これを行うサンプルコードを以下に示します(まったく最適化していません。自由に修正してください):
+package main import ( "encoding/gob" "fmt" "log" "os" "gorgonia.org/gorgonia" "gorgonia.org/tensor" ) var ( backup = "/tmp/example_gorgonia" ) func main() { g := gorgonia.NewGraph() var x, y, z *gorgonia.Node var err error // Create the graph  x = gorgonia.NewTensor(g, gorgonia.Float64, 2, gorgonia.WithShape(2, 2), gorgonia.WithName("x")) y = gorgonia.NewTensor(g, gorgonia.Float64, 2, gorgonia.WithShape(2, 2), gorgonia.WithName("y")) if z, err = gorgonia.Add(x, y); err != nil { log.'></head><body data-url=/jp/how-to/save-weights/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><img src=/images/logo/Logo_horizontal.png></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label><input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1572683537></script><script type=text/javascript src=/js/auto-complete.js?1572683537></script><script type=text/javascript>var baseurl="\/\/jp";</script><script type=text/javascript src=/js/search.js?1572683537></script></div><div class=highlightable><ul class=topics><li data-nav-id=/jp/getting-started/ title=事始め class=dd-item><a href=/jp/getting-started/><b>X. </b>事始め
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/jp/about/ title=Gorgoniaの仕組み class=dd-item><a href=/jp/about/><b>X. </b>Gorgoniaの仕組み
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/jp/tutorials/ title=チュートリアル class=dd-item><a href=/jp/tutorials/><b>X. </b>チュートリアル
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/jp/tutorials/hello-world/ title=こんにちわ世界 class=dd-item><a href=/jp/tutorials/hello-world/>こんにちわ世界
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/jp/tutorials/iris/ title="Iris データセットでの多変量線形回帰" class=dd-item><a href=/jp/tutorials/iris/>Iris データセットでの多変量線形回帰
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/jp/how-to/ title=ハウツー class="dd-item
+        parent"><a href=/jp/how-to/><b>X. </b>ハウツー
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/jp/how-to/dataframe/ title="データフレームからテンソルを作成 (gota)" class=dd-item><a href=/jp/how-to/dataframe/>データフレームからテンソルを作成 (gota)
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/jp/how-to/save-weights/ title=Weightsの保存 class="dd-item active"><a href=/jp/how-to/save-weights/>Weightsの保存
+<i class="fas fa-check read-icon"></i></a></li></ul></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=https://github.com/gorgonia/gorgonia><i class="fab fa-fw fa-github"></i>GitHub</a></li><li><a class=padding href=https://godoc.org/gorgonia.org/gorgonia><i class="fas fa-fw fa-bookmark"></i>Godoc</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value;">
+<option id=en value=/how-to/save-weights/>English</option>
+<option id=jp value=/jp/how-to/save-weights/ selected>Japanese</option></select><svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><path d="M0 63.75l127.5 127.5L255 63.75z" /></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i>Clear History</a></li></ul></section><section id=footer><center><a class=github-button href=https://github.com/gorgonia/gorgonia data-icon=octicon-star data-show-count=true aria-label="Star gorgonia/gorgonia on GitHub">Star</a><p>Built with <a href=https://github.com/matcornic/hugo-theme-learn><i class="fas fa-heart"></i></a>from <a href=https://getgrav.org>Grav</a> and <a href=https://gohugo.io/>Hugo</a></p></center><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=top-github-link><a class=github-link title="Edit this page" href=https://github.com/gorgonia/gorgonia.github.io/edit/develop/content/how-to/save-weights.jp.md target=blank><i class="fas fa-code-branch"></i><span id=top-github-link-text>Edit this page</span></a></div><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i></a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span><span class=links><a href=/jp/>main</a> > <a href=/jp/how-to/>ハウツー</a> > Weightsの保存</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#ゴール>ゴール</a></li><li><a href=#実装>実装</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Weightsの保存</h1><h2 id=ゴール>ゴール</h2><p>このハウツーのゴールはノードの<a href=/reference/value>値</a>を保存して復元する方法を説明することです。</p><h2 id=実装>実装</h2><p>現状できる最善の方法は、対応するノードの値を保存して復元することです。</p><p>テンソルは<code>GobEncode</code>および<code>GobDecode</code>インターフェースを実現しており、これが最良のオプションです。 バックエンドを要素のスライスとして保存することもできますがこれは少し複雑です。</p><p>これを行うサンプルコードを以下に示します(まったく最適化していません。自由に修正してください):</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+
+<span style=color:#f92672>import</span> (
+        <span style=color:#e6db74>&#34;encoding/gob&#34;</span>
+        <span style=color:#e6db74>&#34;fmt&#34;</span>
+        <span style=color:#e6db74>&#34;log&#34;</span>
+        <span style=color:#e6db74>&#34;os&#34;</span>
+
+        <span style=color:#e6db74>&#34;gorgonia.org/gorgonia&#34;</span>
+        <span style=color:#e6db74>&#34;gorgonia.org/tensor&#34;</span>
+)
+
+<span style=color:#66d9ef>var</span> (
+        <span style=color:#a6e22e>backup</span> = <span style=color:#e6db74>&#34;/tmp/example_gorgonia&#34;</span>
+)
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+        <span style=color:#a6e22e>g</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>NewGraph</span>()
+
+        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>z</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Node</span>
+        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>
+
+        <span style=color:#75715e>// Create the graph
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>x</span> = <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>NewTensor</span>(<span style=color:#a6e22e>g</span>,
+                <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Float64</span>,
+                <span style=color:#ae81ff>2</span>,
+                <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>WithShape</span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>),
+                <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>WithName</span>(<span style=color:#e6db74>&#34;x&#34;</span>))
+        <span style=color:#a6e22e>y</span> = <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>NewTensor</span>(<span style=color:#a6e22e>g</span>,
+                <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Float64</span>,
+                <span style=color:#ae81ff>2</span>,
+                <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>WithShape</span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>),
+                <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>WithName</span>(<span style=color:#e6db74>&#34;y&#34;</span>))
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>z</span>, <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>)
+        }
+
+        <span style=color:#75715e>// Init variables
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>xT</span>, <span style=color:#a6e22e>yT</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>readFromBackup</span>()
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;cannot read backup, doing init&#34;</span>, <span style=color:#a6e22e>err</span>)
+                <span style=color:#a6e22e>xT</span> = <span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>NewDense</span>(<span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Float64</span>, []<span style=color:#66d9ef>int</span>{<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>}, <span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>WithBacking</span>([]<span style=color:#66d9ef>float64</span>{<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>}))
+                <span style=color:#a6e22e>yT</span> = <span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>NewDense</span>(<span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Float64</span>, []<span style=color:#66d9ef>int</span>{<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>}, <span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>WithBacking</span>([]<span style=color:#66d9ef>float64</span>{<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>}))
+        }
+        <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Let</span>(<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>xT</span>)
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>)
+        }
+        <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Let</span>(<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>yT</span>)
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>)
+        }
+
+        <span style=color:#75715e>// create a VM to run the program on
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>machine</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>NewTapeMachine</span>(<span style=color:#a6e22e>g</span>)
+        <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>machine</span>.<span style=color:#a6e22e>Close</span>()
+
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>machine</span>.<span style=color:#a6e22e>RunAll</span>(); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>)
+        }
+
+        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%v&#34;</span>, <span style=color:#a6e22e>z</span>.<span style=color:#a6e22e>Value</span>())
+        <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>save</span>([]<span style=color:#f92672>*</span><span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Node</span>{<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span>})
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Fatal</span>(<span style=color:#a6e22e>err</span>)
+        }
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>readFromBackup</span>() (<span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>Tensor</span>, <span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>Tensor</span>, <span style=color:#66d9ef>error</span>) {
+        <span style=color:#a6e22e>f</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Open</span>(<span style=color:#a6e22e>backup</span>)
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>err</span>
+        }
+        <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>Close</span>()
+        <span style=color:#a6e22e>dec</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>gob</span>.<span style=color:#a6e22e>NewDecoder</span>(<span style=color:#a6e22e>f</span>)
+        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>xT</span>, <span style=color:#a6e22e>yT</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>tensor</span>.<span style=color:#a6e22e>Dense</span>
+        <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;decoding xT&#34;</span>)
+        <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>dec</span>.<span style=color:#a6e22e>Decode</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>xT</span>)
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>err</span>
+        }
+        <span style=color:#a6e22e>log</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;decoding yT&#34;</span>)
+        <span style=color:#a6e22e>err</span> = <span style=color:#a6e22e>dec</span>.<span style=color:#a6e22e>Decode</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>yT</span>)
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>, <span style=color:#66d9ef>nil</span>, <span style=color:#a6e22e>err</span>
+        }
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>xT</span>, <span style=color:#a6e22e>yT</span>, <span style=color:#66d9ef>nil</span>
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>save</span>(<span style=color:#a6e22e>nodes</span> []<span style=color:#f92672>*</span><span style=color:#a6e22e>gorgonia</span>.<span style=color:#a6e22e>Node</span>) <span style=color:#66d9ef>error</span> {
+        <span style=color:#a6e22e>f</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Create</span>(<span style=color:#a6e22e>backup</span>)
+        <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+        }
+        <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>Close</span>()
+        <span style=color:#a6e22e>enc</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>gob</span>.<span style=color:#a6e22e>NewEncoder</span>(<span style=color:#a6e22e>f</span>)
+        <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>node</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#a6e22e>nodes</span> {
+                <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>enc</span>.<span style=color:#a6e22e>Encode</span>(<span style=color:#a6e22e>node</span>.<span style=color:#a6e22e>Value</span>())
+                <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+                        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+                }
+        }
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span>
+}</code></pre></div><p>以下が得られる:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>$  go run main.go
+2019/10/28 08:07:26 cannot read backup, doing init open /tmp/example_gorgonia: no such file or directory
+⎡0  2⎤
+⎣4  6⎦
+$  go run main.go
+2019/10/28 08:07:29 decoding xT
+2019/10/28 08:07:29 decoding yT
+⎡0  2⎤
+⎣4  6⎦</code></pre></div><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/jp/how-to/dataframe/ title="データフレームからテンソルを作成 (gota)"><i class="fa fa-chevron-left"></i></a><a class="nav nav-next" href=/jp/how-to/dataframe/ title="データフレームからテンソルを作成 (gota)" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1572683537></script><script src=/js/perfect-scrollbar.min.js?1572683537></script><script src=/js/perfect-scrollbar.jquery.min.js?1572683537></script><script src=/js/jquery.sticky.js?1572683537></script><script src=/js/featherlight.min.js?1572683537></script><script src=/js/highlight.pack.js?1572683537></script><script>hljs.initHighlightingOnLoad();</script><script src=/js/modernizr.custom-3.6.0.js?1572683537></script><script src=/js/learn.js?1572683537></script><script src=/js/hugo-learn.js?1572683537></script><link href=/mermaid/mermaid.css?1572683537 rel=stylesheet><script src=/mermaid/mermaid.js?1572683537></script><script>mermaid.initialize({startOnLoad:true});</script></body></html>
