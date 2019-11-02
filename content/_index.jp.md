@@ -30,7 +30,4 @@ Gorgoniaは同じ場所を目指していますがGo環境を提供します。G
 
 このウェブサイトはさまざまなゴールを持つ4つのセクションで構成されています:
 
-* [はじめに](/about) Gorgoniaの仕組みに関する全ての情報が含まれます
-* [リファレンス](/reference)
-* [ハウツー](/how-to)
-* [チュートリアル](/tutorials)
+{{% children description="true" %}}

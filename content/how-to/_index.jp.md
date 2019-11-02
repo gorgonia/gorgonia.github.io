@@ -1,6 +1,7 @@
 +++
 title = "ハウツー"
 date = 2019-10-28T11:40:47+01:00
+description = "Various howto solve a specific problem with Gorgonia"
 weight = -7
 chapter = true
 pre = "<b>X. </b>"
@@ -17,3 +18,5 @@ Gorgoniaでさまざまな機械学習を行う方法。
 * 理解可能な手順で構成します
 
 類似品：料理本のレシピ
+
+{{% children %}}
