@@ -1,5 +1,6 @@
 +++
 title = "Getting Started"
+description = "Quick start with Gorgonia"
 date = 2019-10-29T17:42:44+01:00
 weight = -10
 chapter = true

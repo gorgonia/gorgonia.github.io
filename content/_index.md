@@ -30,7 +30,4 @@ Gorgonia aims to do the same, but for the Go environment. Gorgonia is currently 
 
 This website is composed of four sections with different goals:
 
-* [about](/about) contains all the informations about how Gorgonia works
-* [reference](/reference)
-* [How To](/how-to)
-* [Tutorials](/tutorials)
+{{% children description="true" %}}
