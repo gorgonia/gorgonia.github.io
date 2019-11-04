@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://gorgonia.org/"
 languageCode = "en-US"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
