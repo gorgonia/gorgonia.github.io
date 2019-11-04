@@ -329,7 +329,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 #body img, #body .video-container {
     margin: 3rem auto;
     display: block;
-    text-align: center;
+    text-align: left;
 }
 #body img.border, #body .video-container.border {
     border: 2px solid #e6e6e6 !important;
@@ -436,7 +436,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     border-bottom: 4px solid #F0F2F4;
 }
 #chapter p {
-    text-align: center;
+    text-align: left;
     font-size: 1.2rem;
 }
 #footer {
