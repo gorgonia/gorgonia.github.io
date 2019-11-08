@@ -106,3 +106,4 @@ ht := G.Must(
         G.Must(G.Tanh(ct)),
     ))
 ```
+![graph](/images/lstm.svg)
