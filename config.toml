@@ -9,6 +9,9 @@ theme = "hugo-theme-learn"
 themesdir = "./themes"
 metaDataFormat = "toml"
 pygmentsCodeFences = true
+pygmentsUseClasses = false
+pygmentsCodefencesGuessSyntax = true
+pygmentsStyle = "tango"
 
 [params]
   editURL = "https://github.com/gorgonia/gorgonia.github.io/edit/develop/content/"
