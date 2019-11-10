@@ -635,8 +635,6 @@ code {
     border-radius: 2px;
     white-space: nowrap;
     color: #5e5e5e;
-    background: #FFF7DD;
-    border: 1px solid #fbf0cb;
     padding: 0px 2px;
 }
 code + .copy-to-clipboard {
@@ -656,13 +654,24 @@ pre {
     line-height: 1.15;
 }
 pre code {
-    color: whitesmoke;
+    font: 500 90%/1 Roboto Mono,monospace;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 500;
+    font-stretch: normal;
+    font-size: 90%;
+    line-height: 1;
+    font-family: "Roboto Mono", monospace;
+
     background: inherit;
     white-space: inherit;
     border: 0;
     padding: 0;
     margin: 0;
-    font-size: 15px;
+
 }
 hr {
     border-bottom: 4px solid #F0F2F4;
