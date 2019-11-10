@@ -84,7 +84,8 @@ b, strong, label, th {
     fill: #fff !important;
 }
 #sidebar {
-    font-weight: 300 !important;
+    border: 1px solid #dadce0;
+    font-weight: 200 !important;
 }
 fieldset {
     border: 1px solid #ddd;
@@ -176,10 +177,10 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     background-color: #322A38;
     position: fixed;
     top: 0;
-    width: 300px;
+    width: 250px;
     bottom: 0;
     left: 0;
-    font-weight: 400;
+    font-weight: 200;
     font-size: 15px;
 }
 #sidebar a {
@@ -267,6 +268,8 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 #sidebar ul.topics > li > a {
     line-height: 2rem;
     font-size: 1.1rem;
+    border-top: 1px solid #dadce0;
+    padding: 5px 0;
 }
 #sidebar ul.topics > li > a b {
     opacity: 0.5;
@@ -323,7 +326,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 }
 #body {
     position: relative;
-    margin-left: 300px;
+    margin-left: 250px;
     min-height: 100%;
 }
 #body img, #body .video-container {
@@ -347,7 +350,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     border: 1px solid #ccc;
 }
 #body .padding {
-    padding: 3rem 6rem;
+    padding: 3rem 5rem;
 }
 @media only all and (max-width: 59.938em) {
     #body .padding {
@@ -413,18 +416,20 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     right: 0;
 }
 #body-inner {
+    width: 100%;
+    padding: 20px;
     margin-bottom: 5rem;
+    border: 1px solid #dadce0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 10px;
 }
 #chapter {
     display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100%;
-    padding: 2rem 0;
 }
 #chapter #body-inner {
     padding-bottom: 3rem;
-    max-width: 80%;
 }
 #chapter h3 {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
@@ -631,8 +636,6 @@ code {
     border-radius: 2px;
     white-space: nowrap;
     color: #5e5e5e;
-    background: #FFF7DD;
-    border: 1px solid #fbf0cb;
     padding: 0px 2px;
 }
 code + .copy-to-clipboard {
@@ -652,13 +655,24 @@ pre {
     line-height: 1.15;
 }
 pre code {
-    color: whitesmoke;
+    font: 500 90%/1 Roboto Mono,monospace;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 500;
+    font-stretch: normal;
+    font-size: 90%;
+    line-height: 1;
+    font-family: "Roboto Mono", monospace;
+
     background: inherit;
     white-space: inherit;
     border: 0;
     padding: 0;
     margin: 0;
-    font-size: 15px;
+
 }
 hr {
     border-bottom: 4px solid #F0F2F4;
