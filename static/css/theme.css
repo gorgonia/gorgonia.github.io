@@ -84,6 +84,7 @@ b, strong, label, th {
     fill: #fff !important;
 }
 #sidebar {
+    border: 1px solid #dadce0;
     font-weight: 200 !important;
 }
 fieldset {
