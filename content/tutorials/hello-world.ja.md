@@ -64,7 +64,7 @@ y = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName("y"))
 
 次に加算演算子を作成します。この演算子は2つの[ノード](/reference/node)を取り新しいノードzを返します:
 
-```
+```go
 if z, err = gorgonia.Add(x, y); err != nil {
         log.Fatal(err)
 }

@@ -63,7 +63,7 @@ the functions take the exprgraph as argument; the resulting node is automaticall
 
 Now create the addition operator; this operator takes two [nodes](/reference/node) and returns a new node z:
 
-```
+```go
 if z, err = gorgonia.Add(x, y); err != nil {
         log.Fatal(err)
 }

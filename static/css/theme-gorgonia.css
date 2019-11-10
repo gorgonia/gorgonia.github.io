@@ -12,21 +12,22 @@
     --MAIN-ANCHOR-color: #1C90F3; /* color of anchors on titles */
 
     /*--MENU-HEADER-BG-color:#1C90F3; /* Background color of menu header */
-    --MENU-HEADER-BG-color:#E5E6E4; /* Background color of menu header */
+    --MENU-HEADER-BG-color:#ffffff; /* Background color of menu header */
     */
     --MENU-HEADER-BORDER-color:#FFFFFF; /*Color of menu header border */
 
-    --MENU-SEARCH-BG-color:#231A72; /* Search field background color (by default borders + icons) */
-    --MENU-SEARCH-BOX-color: #231A72; /* Override search field border color */
+    --MENU-SEARCH-BG-color: rgb(241, 243, 244); /* Search field background color (by default borders + icons) */
+    --MENU-SEARCH-BOX-color: #401870; /* Override search field border color */
     /*--MENU-SEARCH-BOX-ICONS-color: #a1d2fd;*/ /* Override search field icons color */
     --MENU-SEARCH-BOX-ICONS-color: #DE4552; /* Override search field icons color */
 
-    --MENU-SECTIONS-ACTIVE-BG-color:#804080; /* Background color of the active section and its childs */
-    --MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
-    --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
-    --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
+    --MENU-SECTIONS-ACTIVE-BG-color:#ffffff; /* Background color of the active section and its childs */
+    /*--MENU-SECTIONS-BG-color:#252c31; /* Background color of other sections */
+    --MENU-SECTIONS-BG-color:#ffffff; /* Background color of other sections */
+    --MENU-SECTIONS-LINK-color: #000000; /* Color of links in menu */
+    --MENU-SECTIONS-LINK-HOVER-color: #804080;  /* Color of links in menu, when hovered */
     --MENU-SECTION-ACTIVE-CATEGORY-color: #FFFFFF; /* Color of active category text */
-    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #972C63; /* Color of background for the active category (only) */
+    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #e8f0fe; /* Color of background for the active category (only) */
 
     --MENU-VISITED-color: #33a1ff; /* Color of 'page visited' icons in menu */
     --MENU-SECTION-HR-color: #DE4552; /* Color of <hr> separator in menu */
@@ -35,6 +36,7 @@
 
 body {
     color: var(--MAIN-TEXT-color) !important;
+    font-family: Roboto, "Noto Sans", "Noto Sans JP", "Noto Sans KR", "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
 }
 
 textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
@@ -72,6 +74,7 @@ a:hover {
     -ms-transition: width 0.5s ease;
     transition: width 0.5s ease;
     background-color: var(--MAIN-LINK-HOVER-color);
+    font-family: Roboto, "Noto Sans", "Noto Sans JP", "Noto Sans KR", "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
 }
 #sidebar {
 	background-color: var(--MENU-SECTIONS-BG-color);
@@ -87,6 +90,19 @@ a:hover {
 }
 #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
     background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: Roboto, "Noto Sans", "Noto Sans JP", "Noto Sans KR", "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
 }
 #sidebar .searchbox * {
     color: var(--MENU-SEARCH-BOX-ICONS-color);
@@ -101,8 +117,34 @@ a:hover {
 }
 
 #sidebar ul li.active > a {
+    /*background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);*/
+    /*color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;*/
     background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
-    color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
+    /*background: #e8f0fe;*/
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(232, 240, 254);
+    border-radius: 0 22px 22px 0;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: Roboto, "Noto Sans", "Noto Sans JP", "Noto Sans KR", "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew", "Noto Sans Bengali", sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
 }
 
 #sidebar hr {

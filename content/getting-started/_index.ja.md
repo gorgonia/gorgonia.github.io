@@ -4,7 +4,6 @@ date = 2019-10-29T17:42:44+01:00
 weight = -10
 description = "Quick start with Gorgonia"
 chapter = true
-pre = "<b>X. </b>"
 +++
 
 ## Gorgoniaの入手
