@@ -4,7 +4,6 @@ date = 2019-10-28T11:40:47+01:00
 description = "Various howto solve a specific problem with Gorgonia"
 weight = -7
 chapter = true
-pre = "<b>X. </b>"
 +++
 
 How to do different machine-learning things with Gorgonia.

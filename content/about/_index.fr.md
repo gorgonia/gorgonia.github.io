@@ -4,7 +4,6 @@ date = 2019-10-28T11:41:02+01:00
 description = "Suite d'articles pour expliquer le fonctionnement de Gorgonia"
 weight = -9
 chapter = true
-pre = "<b>X. </b>"
 +++
 
 # À propos
