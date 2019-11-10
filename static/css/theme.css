@@ -415,18 +415,20 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     right: 0;
 }
 #body-inner {
+    width: 100%;
+    padding: 20px;
     margin-bottom: 5rem;
+    border: 1px solid #dadce0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 10px;
 }
 #chapter {
     display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100%;
-    padding: 2rem 0;
 }
 #chapter #body-inner {
     padding-bottom: 3rem;
-    max-width: 80%;
 }
 #chapter h3 {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
