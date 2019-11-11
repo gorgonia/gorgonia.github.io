@@ -1,0 +1,33 @@
+{{ partial "header.html" . }}
+
+  <link href="{{"css/landing.css" | relURL}}{{ if not .Site.Params.disableAssetsBusting }}?{{ now.Unix }}{{ end }}" rel="stylesheet" />
+
+
+  <a id="logo" href="{{"getting-started" | relLangURL }}"><img src="https://gorgonia.org/images/logo/gorgonia.svg"></a>
+  <h1 id="landing-intro" class="center">Deep learning in Go</h1>
+  <p class="center">Write and evaluate mathematical equations involving multidimensional arrays easily.</p>
+
+  <div class="row">
+    <a class="row-item box" href="{{"getting-started" | relLangURL}}">
+      <h4 class="box-title"><i class="fas fa-play pre-title"></i></h4>
+      <div class="box-jump">
+        <p>Getting started</p>
+      </div>
+    </a>
+  </div>
+  <div class="row">
+    <a class="row-item box" href="{{"/tutorials/iris" | relLangURL}}">
+      <h4 class="box-title"><i class="fas fa-chart-line pre-title"></i></h4>
+      <div class="box-jump">
+        <p>Your first linear regression</p>
+      </div>
+    </a>
+    <a class="row-item box" href="{{"/tutorials/mnist" | relLangURL}}">
+      <h4 class="box-title"><i class="fas fa-graduation-cap pre-title"></i></h4>
+      <div class="box-jump">
+        <p>Your first neural network</p>
+      </div>
+    </a>
+  </div>
+
+{{ partial "footer.html" . }}
