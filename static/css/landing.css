@@ -21,7 +21,6 @@
 }
 
 body {
-    background: linear-gradient(-45deg, #de5442,#972c63, #401870,#231a72, #ffffff);
 	background-size: 400% 400%;
 /*	animation: gradientBG 15s ease ;*/
 }
@@ -61,10 +60,10 @@ body {
 /* Landing page css */
 
 .box {
-    margin: 1.5rem;
-    padding: 1.5rem;
+    margin: 1.2rem;
+    padding: 1.2rem;
     box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-    border: 1px solid #fcfcfc;
+    border: 5px solid #fafafa;
     height: 100%;
 }
 
