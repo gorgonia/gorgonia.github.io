@@ -9,8 +9,8 @@ weight: -98
 
 This a step by step tutorial to build and train a convolution neural network on the MNIST dataset.
 
-The complete code can be found in the `examples` directory of the main Gorgonia repository.
-The goal of this tutorial is to explain in detail the code. Further explanation on how it works can be found in the
+The complete code can be found in the `examples` directory of the principal Gorgonia repository.
+The goal of this tutorial is to explain in detail the code. Further explanation of how it works can be found in the
 book [Go Machine Learning Projects](https://www.packtpub.com/eu/big-data-and-business-intelligence/go-machine-learning-projects)
 
 ### The dataset
@@ -26,8 +26,8 @@ The training and testing sets can be downloaded from [Yann LeCun's MNIST website
 * [t10k-images-idx3-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz):   test set images (1648877 bytes)
 * [t10k-labels-idx1-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz):   test set labels (4542 bytes)
 
-As explained on the website, those files holds multiple images or labels encoded in binary.
-Every image/label starts with a magic number. The `encoding/binary` package of the standard library of Go make it easy to read those files.
+As explained on the website, those files hold multiple images or labels encoded in binary.
+Every image/label starts with a magic number. The `encoding/binary` package of the standard library of Go makes it easy to read those files.
 
 ##### The `mnist` package
 
@@ -36,7 +36,7 @@ As a commodity, Gorgonia has created a package `mnist` in the `examples` subdire
 The function [`readImageFile`](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/mnist/io.go#L50:6) creates an array of bytes
 that represents all the images contained in the reader.
 
-A similar [`readLabelFile`](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/mnist/io.go#L21) function extract the labels.
+A similar [`readLabelFile`](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/mnist/io.go#L21) function extracts the labels.
 
 ```go
 // Image holds the pixel intensities of an image.
@@ -51,7 +51,7 @@ func readImageFile(r io.Reader, e error) (imgs []RawImage, err error)
 func readLabelFile(r io.Reader, e error) (labels []Label, err error)
 ```
 
-Then two functions takes care of the conversion from `RawImage` and `Label` into `tensor.Tensor`:
+Then two functions take care of the conversion from `RawImage` and `Label` into `tensor.Tensor`:
 
 * [prepareX](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/mnist/mnist.go#L70)
 * [prepareY](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/mnist/mnist.go#L99)
@@ -78,7 +78,7 @@ func Load(typ, loc string, as tensor.Dtype) (inputs, targets tensor.Tensor, err 
 
 Now, let's create a simple main file to validate that the data are loaded.
 
-This layout of test directory is expected:
+This layout of the test directory is expected:
 
 ```shell
 $ ls -alhg *
@@ -129,7 +129,7 @@ train inputs: (60000, 784)
 train data: (60000, 10)
 ```
 
-We have 60000 pictures of $28x28=784$ pixels, 60000 corresponding labels "one-hot" encoded, and 10000 test files in the test set.
+We have 60000 pictures of $28\times28=784$ pixels, 60000 corresponding labels "one-hot" encoded, and 10000 test files in the test set.
 
 #### Image representation
 
@@ -169,13 +169,13 @@ func main() {
 }
 ```
 {{% notice info %}}
-We are using the `native` package to easily access the underlying []float64 backend. This operation does not generate new data.
+We are using the `native` package to access the underlying `[]float64` backend easily. This operation does not generate new data.
 {{% /notice %}}
 
 This produce this png file:
 ![5](/images/mnist_5.png?width=10pc)
 
-and the corresponding label vector that indicates that it is a '5':
+and the corresponding label vector that indicates that it is a `5`:
 ```shell
 $ go run main.go
 [0.1 0.1 0.1 0.1 0.1 0.9 0.1 0.1 0.1 0.1]
@@ -183,7 +183,7 @@ $ go run main.go
 
 ## The convolution neural net
 
-We are building a 5 layers convolution network. $x_0$ is the input image as defined previously.
+We are building a 5 layers convolution network. $x_0$ is the input image, as defined previously.
 
 The first three layers $i$ are defined this way:
 
@@ -217,14 +217,20 @@ type convnet struct {
 
 #### Definition of the learnables
 
-The convolution is using a standard $3x3$ kernel, and 32 filters.
+The convolution is using a standard $3\times3$ kernel, and 32 filters.
 As the images of the dataset are in black and white, we are using only one channel. This lead to the following definition of the weights:
 
 * $W_0 \in \mathbb{R}^{32\times 1\times3\times3}$ for the first convolution operator
 * $W_1 \in \mathbb{R}^{64\times 32\times3\times3}$ for the second convolution operator
 * $W_2 \in \mathbb{R}^{128\times 64\times3\times3}$ for the third convolution operator
-* $W_3 \in \mathbb{R}^{128*3*3\times 625}$ we are preparing the final matrix multiplication, so we need to reshape the 4D input into a matrix (128x3x3).
+* $W_3 \in \mathbb{R}^{128*3*3\times 625}$ we are preparing the final matrix multiplication, so we need to reshape the 4D input into a matrix (128x3x3). 625 is an arbitrary number.
 * $W_4 \in \mathbb{R}^{625\times 10}$ to reduce the output size to a single vector of 10 entries
+
+{{% notice note %}}
+In NN optimization, it's commonly known that if you have a middle layer that is smaller than the output and input,
+you are "squeezing" useless information.
+Input is 784; then next layer should be smaller. 625 is a good looking number.
+{{% /notice %}}
 
 The dropout probabilities are fixed to idiomatic values:
 
@@ -267,7 +273,7 @@ The learnables are initialized with some values normally sampled using Glorot et
 
 It is now possible to define the network by adding a method to the convnet structure:
 
-_Note_: error checking are removes for clarity
+_Note_: error checking are, once again, removed for clarity
 
 ```go
 // This function is particularly verbose for educational reasons. In reality, you'd wrap up the layers within a layer struct type and perform per-layer activations
@@ -316,7 +322,7 @@ func (m *convnet) fwd(x *gorgonia.Node) (err error) {
 
 ### Training the neural network
 
-The input we got from the training set are a matrix $numExamplex \times 784$. The convolution operator expects a 4D tensor BCHW. The first thing we need to do is to reshape the input:
+The input we got from the training set are a matrix $numExample \times 784$. The convolution operator expects a 4D tensor BCHW. The first thing we need to do is to reshape the input:
 
 ```go
 numExamples := inputs.Shape()[0]
@@ -423,10 +429,10 @@ That's it, you now have a neural network that can learn.
 
 ### Conclusion
 
-Running the code is relatively slow due to the huge amount of data involved, but it learns.
-You can get the whole code in the [Gorgonia's example directory](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/convnet/main.go#L1).
+Running the code is relatively slow due to the massive amount of data involved, but it learns.
+You can get the full code in the [Gorgonia's example directory](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/convnet/main.go#L1).
 
-To save the weights, the user can create two methods `load` and `save` as decribed in the [iris tutotial](/tutorials/iris).
+To save the weights, the user can create two methods of `load` and `save` as described in the [iris tutorial](/tutorials/iris).
 Then it is let as an exercise to the reader to code a little utility to use this neural network.
 
 Have fun!
