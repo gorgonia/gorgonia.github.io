@@ -65,7 +65,7 @@ Analogy: a reference encyclopaedia article
 Sources of the content in the repo: [`content/reference`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/reference)
 
 ### Multiple languages
-Documentation source is available in multiple languages in /content/. Each page can be translated in any language by adding a two-letter code determined by the ISO 639-1 standard. 
+Documentation source is available in multiple languages in /content/. Each page can be translated in any language by adding a two-letter code determined by the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). 
 A file without any suffix defaults to English.
 
 For example, French documentation of a page is named `page.fr.md`.
