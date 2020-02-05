@@ -45,10 +45,17 @@ url = "https://github.com/gorgonia/gorgonia"
 weight = 10
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
+name = "<i class='fas fa-fw fa-bookmark'></i> API Doc"
 identifier = "godoc"
-url = "https://godoc.org/gorgonia.org/gorgonia"
+url = "https://pkg.go.dev/gorgonia.org/gorgonia?tab=doc"
 weight = 11
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-slack'></i> Contact us"
+identifier = "slack"
+url = "http://gophers.slack.com/messages/gorgonia"
+weight = 12
+
 
 [Languages.ja]
 title = "Gorgonia"
@@ -62,10 +69,16 @@ url = "https://github.com/gorgonia/gorgonia"
 weight = 10
 
 [[Languages.ja.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
+name = "<i class='fas fa-fw fa-bookmark'></i> API Doc"
 identifier = "godoc"
-url = "https://godoc.org/gorgonia.org/gorgonia"
+url = "https://pkg.go.dev/gorgonia.org/gorgonia?tab=doc"
 weight = 11
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-slack'></i> Contact us"
+identifier = "slack"
+url = "http://gophers.slack.com/messages/gorgonia"
+weight = 12
 
 [Languages.fr]
 title = "Gorgonia"
@@ -79,8 +92,14 @@ url = "https://github.com/gorgonia/gorgonia"
 weight = 10
 
 [[Languages.fr.menu.shortcuts]]
-name = "<i class='fas fa-fw fa-bookmark'></i> Godoc"
+name = "<i class='fas fa-fw fa-bookmark'></i> API Doc"
 identifier = "godoc"
-url = "https://godoc.org/gorgonia.org/gorgonia"
+url = "https://pkg.go.dev/gorgonia.org/gorgonia?tab=doc"
 weight = 11
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-slack'></i> Contact us"
+identifier = "slack"
+url = "http://gophers.slack.com/messages/gorgonia"
+weight = 12
 
