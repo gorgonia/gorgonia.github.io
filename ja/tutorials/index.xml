@@ -7,9 +7,9 @@ graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y 結果を計算する�
 Gorgonia で式の様なグラフを作成する nodes x と y に幾つかの値を設定する gorgonia vm上でグラフを起動する node zからvalueを取り出す * グラフの作成 以下の方法で空の式グラフを作成します:
 g := gorgonia.NewGraph() ノードの作成 いくつかのノードを作成しそれらを ExprGraph に関連付けます。
 var x, y, z *gorgonia.Node プレースホルダの作成 xとyはスカラー変数です。対応するノードは次のように作成できます:
-x = gorgonia.</description></item><item><title>簡単なニューラルネットの構築 (MNIST)</title><link>https://gorgonia.org/ja/tutorials/mnist/</link><pubDate>Tue, 29 Oct 2019 20:09:05 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/mnist/</guid><description>About これは MNIST データセットを使って convocation neural network を段階的に構築し練習する為のチュートリアルです。
+x = gorgonia.</description></item><item><title>簡単なニューラルネットの構築 (MNIST)</title><link>https://gorgonia.org/ja/tutorials/mnist/</link><pubDate>Tue, 29 Oct 2019 20:09:05 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/mnist/</guid><description>はじめに これは MNIST データセットを使って convocation neural network を段階的に構築し練習する為のチュートリアルです。
 完全なコードは、Gorgonia メインリポジトリの examples ディレクトリにあります。 このチュートリアルの目的はコードを詳細に説明することです。 仕組みの詳細については、次の書籍で見ることができます。 Go Machine Learning Projects
-The dataset このパートではデータセットの読み込みと表示について説明します。ニューラルネットの個所に直接ジャンプしたい場合はスキップして Convolution Neural Net part に進んでください。
+データセット このパートではデータセットの読み込みと表示について説明します。ニューラルネットの個所に直接ジャンプしたい場合はスキップして Convolution Neural Net part に進んでください。
 学習およびテストセットは次からダウンロードできます。 Yann LeCun&amp;rsquo;s MNIST website
 train-images-idx3-ubyte.gz: training set images (9912422 bytes) train-labels-idx1-ubyte.gz: training set labels (28881 bytes) t10k-images-idx3-ubyte.gz: test set images (1648877 bytes) t10k-labels-idx1-ubyte.gz: test set labels (4542 bytes) Every image/label starts with a magic number. The encoding/binary package of the standard library of Go makes it easy to read those files.</description></item><item><title>Iris データセットでの多変量線形回帰</title><link>https://gorgonia.org/ja/tutorials/iris/</link><pubDate>Thu, 31 Oct 2019 14:53:37 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/iris/</guid><description>はじめに Gorgoniaを使用して線形回帰モデルを作成します。
 ゴールは以下に与えられた特性を考慮して花の種別を予測することです:

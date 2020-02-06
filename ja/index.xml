@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>main on Gorgonia</title><link>https://gorgonia.org/ja/</link><description>Recent content in main on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 29 Oct 2019 14:59:59 +0100</lastBuildDate><atom:link href="https://gorgonia.org/ja/index.xml" rel="self" type="application/rss+xml"/><item><title>こんにちわ世界</title><link>https://gorgonia.org/ja/tutorials/hello-world/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/hello-world/</guid><description>これはGorgoniaでとても簡単な計算を行うための段階的なチュートリアルです。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>main on Gorgonia</title><link>https://gorgonia.org/ja/</link><description>Recent content in main on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 29 Oct 2019 14:59:59 +0100</lastBuildDate><atom:link href="https://gorgonia.org/ja/index.xml" rel="self" type="application/rss+xml"/><item><title>計算グラフ</title><link>https://gorgonia.org/ja/about/computation-graph/</link><pubDate>Sun, 10 Nov 2019 21:09:19 +0100</pubDate><guid>https://gorgonia.org/ja/about/computation-graph/</guid><description>Gorgonia はグラフベース _Note_：この記事は このブログ投稿 からインスピレーションを得ています。
+Tensorflow や Theano など殆どの深層学習ライブラリと同様に、Gorgonia は方程式がグラフで表現できるという概念に依存しています。
+方程式グラフをプログラマーが操作できる ExprGraph オブジェクトとして公開します。
+ですので以下の様に書く代わりに:
+func main() { fmt.Printf(&amp;#34;%v&amp;#34;, 1+1) } プログラマはこう書くのです:
+func main() { // Create a graph. g := gorgonia.NewGraph() // Create a node called &amp;#34;x&amp;#34; with the value 1. x := gorgonia.NodeFromAny(g, 1, gorgonia.WithName(&amp;#34;x&amp;#34;)) // Create a node called &amp;#34;y&amp;#34; with the value 1. y := gorgonia.NodeFromAny(g, 1, gorgonia.WithName(&amp;#34;y&amp;#34;)) // z := x + y z := gorgonia.</description></item><item><title>こんにちわ世界</title><link>https://gorgonia.org/ja/tutorials/hello-world/</link><pubDate>Tue, 29 Oct 2019 17:54:31 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/hello-world/</guid><description>これはGorgoniaでとても簡単な計算を行うための段階的なチュートリアルです。
 私たちのゴールはGorgoniaのすべての配管を使用して簡単な操作を行うことです:
 $ f(x,y) = x + y $
 値は x = 2 と y = 5
@@ -7,9 +12,9 @@ graph LR; z[z] -- add(Round edge) add[+] -- x add[+] -- y 結果を計算する�
 Gorgonia で式の様なグラフを作成する nodes x と y に幾つかの値を設定する gorgonia vm上でグラフを起動する node zからvalueを取り出す * グラフの作成 以下の方法で空の式グラフを作成します:
 g := gorgonia.NewGraph() ノードの作成 いくつかのノードを作成しそれらを ExprGraph に関連付けます。
 var x, y, z *gorgonia.Node プレースホルダの作成 xとyはスカラー変数です。対応するノードは次のように作成できます:
-x = gorgonia.</description></item><item><title>簡単なニューラルネットの構築 (MNIST)</title><link>https://gorgonia.org/ja/tutorials/mnist/</link><pubDate>Tue, 29 Oct 2019 20:09:05 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/mnist/</guid><description>About これは MNIST データセットを使って convocation neural network を段階的に構築し練習する為のチュートリアルです。
+x = gorgonia.</description></item><item><title>簡単なニューラルネットの構築 (MNIST)</title><link>https://gorgonia.org/ja/tutorials/mnist/</link><pubDate>Tue, 29 Oct 2019 20:09:05 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/mnist/</guid><description>はじめに これは MNIST データセットを使って convocation neural network を段階的に構築し練習する為のチュートリアルです。
 完全なコードは、Gorgonia メインリポジトリの examples ディレクトリにあります。 このチュートリアルの目的はコードを詳細に説明することです。 仕組みの詳細については、次の書籍で見ることができます。 Go Machine Learning Projects
-The dataset このパートではデータセットの読み込みと表示について説明します。ニューラルネットの個所に直接ジャンプしたい場合はスキップして Convolution Neural Net part に進んでください。
+データセット このパートではデータセットの読み込みと表示について説明します。ニューラルネットの個所に直接ジャンプしたい場合はスキップして Convolution Neural Net part に進んでください。
 学習およびテストセットは次からダウンロードできます。 Yann LeCun&amp;rsquo;s MNIST website
 train-images-idx3-ubyte.gz: training set images (9912422 bytes) train-labels-idx1-ubyte.gz: training set labels (28881 bytes) t10k-images-idx3-ubyte.gz: test set images (1648877 bytes) t10k-labels-idx1-ubyte.gz: test set labels (4542 bytes) Every image/label starts with a magic number. The encoding/binary package of the standard library of Go makes it easy to read those files.</description></item><item><title>Iris データセットでの多変量線形回帰</title><link>https://gorgonia.org/ja/tutorials/iris/</link><pubDate>Thu, 31 Oct 2019 14:53:37 +0100</pubDate><guid>https://gorgonia.org/ja/tutorials/iris/</guid><description>はじめに Gorgoniaを使用して線形回帰モデルを作成します。
 ゴールは以下に与えられた特性を考慮して花の種別を予測することです:
