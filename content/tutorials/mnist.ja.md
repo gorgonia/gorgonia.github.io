@@ -5,14 +5,14 @@ draft: false
 weight: -98
 ---
 
-## About
+## はじめに
 
 これは MNIST データセットを使って convocation neural network を段階的に構築し練習する為のチュートリアルです。
 
 完全なコードは、Gorgonia メインリポジトリの `examples` ディレクトリにあります。
 このチュートリアルの目的はコードを詳細に説明することです。 仕組みの詳細については、次の書籍で見ることができます。 [Go Machine Learning Projects](https://www.packtpub.com/eu/big-data-and-business-intelligence/go-machine-learning-projects)
 
-### The dataset
+### データセット
 
 {{% notice info %}}
 このパートではデータセットの読み込みと表示について説明します。ニューラルネットの個所に直接ジャンプしたい場合はスキップして [Convolution Neural Net part](#the-convolution-neural-net) に進んでください。
@@ -28,7 +28,7 @@ weight: -98
 Every image/label starts with a magic number. The `encoding/binary` package of the standard library of Go makes it easy to read those files.
 すべての画像やラベルはマジックナンバーで始まります。Goの標準ライブラリの `encoding / binary` パッケージを使用するとこれらのファイルを簡単に読み取ることができます。
 
-##### The `mnist` package
+##### 'mnist' パッケージ
 
 コモディティとして Gorgonia は `examples` サブディレクトリにパッケージ` mnist` を作成しました。データから情報を抽出し `tensors` を作成することをゴールとしています。。
 
@@ -71,7 +71,7 @@ func prepareY(N []Label, dt tensor.Dtype) (retVal tensor.Tensor)
 func Load(typ, loc string, as tensor.Dtype) (inputs, targets tensor.Tensor, err error)
 ```
 
-##### Testing the package
+##### パッケージのテスト
 
 では簡単なメインファイルを作成してデータがロードされることを検証しましょう。
 
@@ -128,7 +128,7 @@ train data: (60000, 10)
 
 テストセットには $28\times28=784 ピクセルの 60000 枚の写真、"one-hot" エンコードされた 60000 個のラベル、および 10000 個のテストファイルがあります。
 
-#### Image representation
+#### 画像の表現
 
 最初の要素の画像を表示してみましょう:
 
@@ -179,7 +179,7 @@ $ go run main.go
 [0.1 0.1 0.1 0.1 0.1 0.9 0.1 0.1 0.1 0.1]
 ```
 
-## The convolution neural net
+## 畳み込みニューラルネット
 
 5層の畳み込みネットワークを構築しています。 $x_0$ は1つ前で定義した入力画像です。
 
@@ -197,7 +197,7 @@ $ x\_{4} = Dropout(ReLU(x_3\cdot W_3)) $
 
 $ y = softmax(x_4\cdot W_4)$
 
-### Variables of the network
+### ネットワークの変数
 
 学習可能なパラメーターは $W_0,W_1,W_2,W_3,W_4$ です。ネットワークの他の変数はドロップアウト確率 $d_0,d_1,d_2,d_3$ です。
 
@@ -213,7 +213,7 @@ type convnet struct {
 }
 ```
 
-#### Definition of the learnables
+#### learnables の定義
 
 畳み込みは標準の $3\times3$ カーネルと32個のフィルターを使用しています。
 データセットの画像は白黒なので1つのチャネルのみを使用しています。これは以下の重みの定義につながります。
@@ -267,7 +267,7 @@ The learnables are initialized with some values normally sampled using Glorot et
 Learnablesは、通常Glorotらのアルゴリズムを使用してサンプリングされたいくつかの値で初期化されます。 詳細情報：[必要なのは適切なinitのみ]（https://arxiv.org/pdf/1511.06422.pdf）Arxivで。
 {{% /notice %}}
 
-### Definition of the network
+### ネットワークの定義
 
 convnet の構造にメソッドを追加することにより、ネットワークを定義できるようになりました:
 
@@ -318,7 +318,7 @@ func (m *convnet) fwd(x *gorgonia.Node) (err error) {
 }
 ```
 
-### Training the neural network
+### ネットワークのトレーニング
 
 トレーニングセットから取得した入力は行列 $numExample \times 784$ です。畳み込み演算子は4Dテンソル BCHW を期待しています。最初にすべき事は入力の形状を変更することです:
 
@@ -337,7 +337,7 @@ y := gorgonia.NewMatrix(g, dt, gorgonia.WithShape(bs, 10), gorgonia.WithName("y"
 m := newConvNet(g)
 m.fwd(x)
 ```
-#### Cost function
+#### コスト関数
 
 単純なクロスエントロピーに基づいて期待される出力を要素ごとに乗算し平均化することにより、値を最小化するコスト関数を定義します:
 
@@ -369,7 +369,7 @@ func (m *convnet) learnables() gorgonia.Nodes {
 }
 ```
 
-##### The training loop
+##### トレーニングループ
 
 まずグラフを実行するための [vm](/reference/vm) と、各ステップで学習可能な値を適応させるためのソルバーが必要です。またソルバーが機能するように2つの学習可能な値に対して実際の値をバインドし、勾配の値を保存する必要があります。
 
@@ -395,7 +395,7 @@ for i := 0; i < *epochs; i++ {
 }
 ```
 
-##### Inside the loop:
+##### ループの中身:
 次に各バッチの入力テンソル ($60000 \times 784$) から値を抽出する必要があります。
 各入力は ($bs\times 784$) です。最初のバッチは 0 から bs-1 までの値、2番目の bs から 2*bs-1 までの値を保持します。そしてテンソルを4Dテンソルに変形します:
 
@@ -424,7 +424,7 @@ vm.Reset()
 
 これで学習できるニューラルネットワークができました。
 
-### Conclusion
+### おわりに
 
 大量のデータが含まれるためコードの実行は比較的遅くなりますが学習はできています。
 [Gorgoniaのサンプルディレクトリ](https://github.com/gorgonia/gorgonia/blob/e6bc7dd8951410b733bb85091d0e4506c25e6f70/examples/convnet/main.go#L1) で完全なコードを見ることができます。
