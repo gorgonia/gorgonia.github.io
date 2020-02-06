@@ -6,9 +6,8 @@ weight = 5
 chapter = true
 +++
 
-## Reference
+## リファレンス
 
-This is the reference guide of Gorgonia. The goal of the articles in this section are:
 これは Gorgonia のリファレンスガイドです。このセクションの記事の目的は次のとおりです:
 
 * 情報指向
