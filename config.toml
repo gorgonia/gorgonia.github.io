@@ -74,7 +74,7 @@ identifier = "godoc"
 url = "https://pkg.go.dev/gorgonia.org/gorgonia?tab=doc"
 weight = 11
 
-[[Languages.en.menu.shortcuts]]
+[[Languages.ja.menu.shortcuts]]
 name = "<i class='fab fa-fw fa-slack'></i> Contact us"
 identifier = "slack"
 url = "http://gophers.slack.com/messages/gorgonia"
@@ -97,7 +97,7 @@ identifier = "godoc"
 url = "https://pkg.go.dev/gorgonia.org/gorgonia?tab=doc"
 weight = 11
 
-[[Languages.en.menu.shortcuts]]
+[[Languages.fr.menu.shortcuts]]
 name = "<i class='fab fa-fw fa-slack'></i> Contact us"
 identifier = "slack"
 url = "http://gophers.slack.com/messages/gorgonia"
