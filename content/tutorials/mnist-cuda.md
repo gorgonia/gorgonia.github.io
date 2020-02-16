@@ -1,0 +1,82 @@
+---
+title: "Convnet with CUDA"
+date: 2020-02-16T22:08:40+01:00
+draft: false
+---
+
+This tutorial describes how to run the simple convolutional neural network on a GPU.
+
+The example used in this tutorial is based on MNIST. Your development environment should be ready as described in the tutorial ["Simple convolution neural net (mnist)"](/tutorials/mnist/)
+
+## Preparing the CUDA binding
+
+The CUDA binding relies on CGO and on the official CUDA toolkit. You can install it manually or, if you use AWS, you can rely on an AMI with all the pre-requisites.
+
+### Installing the CUDA toolkit manually
+
+The installation of the CUDA toolkit is out-of-scope of this tutorial. But you must ensure that:
+
+1. [CUDA toolkit 9.0](https://developer.nvidia.com/cuda-toolkit) is installed. Installing this installs the `nvcc` compiler which is required to run your code with CUDA.
+2. you run the [post-installation steps](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions)
+
+### Using AWS EC2
+
+AWS provides AMI with the CUDA toolkit pre-installed. 
+You can have a list of those AMI thanks to this command:
+
+```shell
+~ aws ec2 describe-images --owners amazon --filters 'Name=state,Values=available' 'Name=name,Values=Deep Learning AMI (Ubuntu)*' --query 'sort_by(Images, &CreationDate)[].Name'
+```
+
+Those AMI have been tested successfully on `g3s.xlarge` against version 0.9.8 of Gorgonia.
+
+## Preparing the code
+
+There is a lot of different hardware. To address the specificities, Gorgonia provides a command that generates binding specifically for your hardware. This function is carried by a specific tool call `cudagen`
+
+{{% notice warning %}}
+`cudagen` does not play well with go modules, you need to turn them off.
+{{% /notice %}}
+
+Those commands installs the cudagen tool and generates the cuda binding.
+```shell
+~ export GO111MODULE=off
+~ go install gorgonia.org/gorgonia/cmd/cudagen
+~ $GOPATH/bin/cudagen
+```
+
+## Running the example
+
+Gorgonia's example directory contains a [`convenet_cuda`](https://github.com/gorgonia/gorgonia/tree/master/examples/convnet_cuda) example.
+This example runs a convolution neural network against the MNIST database.
+
+Assuming that the tests file are in place in `../testdata` (cf the tutorial ["Simple convolution neural net (mnist)"](/tutorials/mnist/) if it's not), you can launch the training phase with a cuda support by simply running:
+
+```text
+time go run -tags='cuda'  main.go -epochs 1 2> /dev/null
+Epoch 0 599 / 600 [====================================================]  99.83%
+```
+
+It is also possible to "monitor" the cuda usage by running the `nvidia-smi` command in a separate window.
+This should display something like this:
+
+```text
+~  nvidia-smi
+Sun Feb 16 22:05:15 2020
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.87.00    Driver Version: 418.87.00    CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla M60           On   | 00000000:00:1E.0 Off |                    0 |
+| N/A   54C    P0    73W / 150W |    841MiB /  7618MiB |     76%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0     18614      C   /tmp/go-build629284435/b001/exe/main         372MiB |
++-----------------------------------------------------------------------------+
+```
