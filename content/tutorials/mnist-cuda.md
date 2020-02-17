@@ -16,8 +16,8 @@ The CUDA binding relies on CGO and the official CUDA toolkit. You can install it
 
 The installation of the CUDA toolkit is out-of-scope of this tutorial. But you must ensure that:
 
-1. [CUDA toolkit](https://developer.nvidia.com/cuda-toolkit) is installed (version 10 has been tested successfully). Installing this installs the `nvcc` compileri, which is required to run your code with CUDA.
-2. you run the [post-installation steps](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions)
+1. [CUDA toolkit](https://developer.nvidia.com/CUDA-toolkit) is installed (version 10 has been tested successfully). Installing this installs the `nvcc` compileri, which is required to run your code with CUDA.
+2. you run the [post-installation steps](http://docs.nvidia.com/CUDA/CUDA-installation-guide-linux/index.html#post-installation-actions)
 
 ### Using AWS EC2
 
@@ -32,32 +32,37 @@ Those AMI have been tested successfully on `g3s.xlarge` against version 0.9.8 of
 
 ## Preparing the code
 
-There is many different hardware. To address the specificities, Gorgonia provides a command that generates binding specifically for your hardware. This function is carried by a specific tool call `cudagen`
+There is many different hardware. To address the specificities, Gorgonia provides a command that generates binding specifically for your hardware. This function is carried by a specific tool call `CUDAgen`
 
 {{% notice warning %}}
-`cudagen` does not play well with go modules, and you need to turn them off.
+`CUDAgen` does not play well with go modules, and you need to turn them off.
 {{% /notice %}}
 
-Those commands install the cudagen tool and generate the cuda binding.
+Those commands install the CUDAgen tool and generate the CUDA binding.
 ```shell
 ~ export GO111MODULE=off
-~ go install gorgonia.org/gorgonia/cmd/cudagen
-~ $GOPATH/bin/cudagen
+~ go install gorgonia.org/gorgonia/cmd/CUDAgen
+~ $GOPATH/bin/CUDAgen
 ```
 
 ## Running the example
 
-Gorgonia's example directory contains a [`convenet_cuda`](https://github.com/gorgonia/gorgonia/tree/master/examples/convnet_cuda) example.
+Gorgonia's example directory contains a [`convenet_CUDA`](https://github.com/gorgonia/gorgonia/tree/master/examples/convnet_CUDA) example.
 This example runs a convolution neural network against the MNIST database.
 
-Assuming that the tests file are in place in `../testdata` (cf the tutorial ["Simple convolution neural net (mnist)"](/tutorials/mnist/) if it's not), you can launch the training phase with a cuda support by simply running:
+{{% notice info %}}
+The code is similar to the `convnet` example; the only difference is in the operators import; 
+This version uses the operators' from the [`nnops`](https://github.com/gorgonia/gorgonia/tree/master/ops/nn). This package holds a couple of operator definitions mostly used in neural networks (`Conv2D`, `Maxpool`, ...); the definitions have a signature that makes them compatible with their counterpart in CUDA. Package `nnops` ensure the compatibility with the CPU version of the operator if CUDA is not used.
+{{% /notice %}}
+
+Assuming that the tests file are in place in `../testdata` (cf the tutorial ["Simple convolution neural net (mnist)"](/tutorials/mnist/) if it's not), you can launch the training phase with a CUDA support by simply running:
 
 ```text
-time go run -tags='cuda'  main.go -epochs 1 2> /dev/null
+time go run -tags='CUDA'  main.go -epochs 1 2> /dev/null
 Epoch 0 599 / 600 [====================================================]  99.83%
 ```
 
-It is also possible to "monitor" the cuda usage by running the `nvidia-smi` command in a separate window.
+It is also possible to "monitor" the CUDA usage by running the `nvidia-smi` command in a separate window.
 This should display something like this:
 
 ```text
