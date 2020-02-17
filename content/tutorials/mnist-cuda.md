@@ -10,13 +10,13 @@ The example used in this tutorial is based on MNIST. Your development environmen
 
 ## Preparing the CUDA binding
 
-The CUDA binding relies on CGO and on the official CUDA toolkit. You can install it manually or, if you use AWS, you can rely on an AMI with all the pre-requisites.
+The CUDA binding relies on CGO and the official CUDA toolkit. You can install it manually or, if you use AWS, you can rely on an AMI with all the pre-requisites.
 
 ### Installing the CUDA toolkit manually
 
 The installation of the CUDA toolkit is out-of-scope of this tutorial. But you must ensure that:
 
-1. [CUDA toolkit 9.0](https://developer.nvidia.com/cuda-toolkit) is installed. Installing this installs the `nvcc` compiler which is required to run your code with CUDA.
+1. [CUDA toolkit](https://developer.nvidia.com/cuda-toolkit) is installed (version 10 has been tested successfully). Installing this installs the `nvcc` compileri, which is required to run your code with CUDA.
 2. you run the [post-installation steps](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions)
 
 ### Using AWS EC2
@@ -32,13 +32,13 @@ Those AMI have been tested successfully on `g3s.xlarge` against version 0.9.8 of
 
 ## Preparing the code
 
-There is a lot of different hardware. To address the specificities, Gorgonia provides a command that generates binding specifically for your hardware. This function is carried by a specific tool call `cudagen`
+There is many different hardware. To address the specificities, Gorgonia provides a command that generates binding specifically for your hardware. This function is carried by a specific tool call `cudagen`
 
 {{% notice warning %}}
-`cudagen` does not play well with go modules, you need to turn them off.
+`cudagen` does not play well with go modules, and you need to turn them off.
 {{% /notice %}}
 
-Those commands installs the cudagen tool and generates the cuda binding.
+Those commands install the cudagen tool and generate the cuda binding.
 ```shell
 ~ export GO111MODULE=off
 ~ go install gorgonia.org/gorgonia/cmd/cudagen
