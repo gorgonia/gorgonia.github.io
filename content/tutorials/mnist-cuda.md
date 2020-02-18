@@ -30,6 +30,10 @@ You can have a list of those AMI thanks to this command:
 
 Those AMI have been tested successfully on `g3s.xlarge` against version 0.9.8 of Gorgonia.
 
+{{% notice info %}}
+For convenience, you can find a [terraform](terraform.io) file to help you kickstarting a VM on AWS EC2 [here](https://github.com/gorgonia/dev/tree/master/infrastructure/aws/gpu) 
+{{% /notice %}}
+
 ## Preparing the code
 
 There is many different hardware. To address the specificities, Gorgonia provides a command that generates binding specifically for your hardware. This function is carried by a specific tool call `CUDAgen`
@@ -47,7 +51,7 @@ Those commands install the CUDAgen tool and generate the CUDA binding.
 
 ## Running the example
 
-Gorgonia's example directory contains a [`convenet_CUDA`](https://github.com/gorgonia/gorgonia/tree/master/examples/convnet_CUDA) example.
+Gorgonia's example directory contains a [`convenet_CUDA`](https://github.com/gorgonia/gorgonia/tree/master/examples/convnet_cuda) example.
 This example runs a convolution neural network against the MNIST database.
 
 {{% notice info %}}
