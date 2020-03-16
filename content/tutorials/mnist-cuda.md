@@ -42,11 +42,11 @@ There is many different hardware. To address the specificities, Gorgonia provide
 `CUDAgen` does not play well with go modules, and you need to turn them off.
 {{% /notice %}}
 
-Those commands install the CUDAgen tool and generate the CUDA binding.
+Those commands install the `cudagen` tool and generate the CUDA binding.
 ```shell
 ~ export GO111MODULE=off
-~ go install gorgonia.org/gorgonia/cmd/CUDAgen
-~ $GOPATH/bin/CUDAgen
+~ go install gorgonia.org/gorgonia/cmd/cudagen
+~ $GOPATH/bin/cudagen
 ```
 
 ## Running the example
