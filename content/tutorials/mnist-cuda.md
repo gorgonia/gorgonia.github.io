@@ -46,6 +46,8 @@ Those commands install the `cudagen` tool and generate the CUDA binding.
 ```shell
 ~ export GO111MODULE=off
 ~ go get gorgonia.org/gorgonia
+~ export CGO_CFLAGS="-I/usr/local/cuda-10.0/include/"
+~ export PATH=$PATH:/usr/local/cuda/bin/
 ~ go get gorgonia.org/cu
 ~ go install gorgonia.org/gorgonia/cmd/cudagen
 ~ $GOPATH/bin/cudagen
