@@ -98,7 +98,7 @@ une implémentation basique de la solution réalisée avec Gonum.
 Tout d'abord, générons les données d'entrainement. Nous utiliserons un dataframe pour nous simplifier la tâche.
 
 {{% notice info %}}
-Ce [howto](/how-to/dataframe/) donne plus d'information sur l'utilisation du dataframe
+Ce [howto](/how-to/dataframe/) donne plus d'informations sur l'utilisation du dataframe
 {{% /notice %}}
 
 
@@ -257,8 +257,8 @@ defer machine.Close()
 ```
 
 {{% notice warning %}}
-Nous demandons au solver de mettre à jour le paramètre $\Theta$ par rapport au gradient.
-Par conséquent nous devons dire à la TapeMachine de stocker la valeur de $\Theta$ *ainsi que* sa dérivée (sa dual value)
+Nous demandons au "solver" de mettre à jour le paramètre $\Theta$ par rapport au gradient.
+Par conséquent nous devons dire à la `TapeMachine` de stocker la valeur de $\Theta$ *ainsi que* sa dérivée (sa "dual value")
 Ceci est la raison de l'utilisation de la fonction [BindDualValues](https://godoc.org/gorgonia.org/gorgonia#BindDualValues).
 {{% /notice %}}
 
@@ -280,7 +280,7 @@ for i := 0; i < iter; i++ {
 }
 ```
 
-#### Afficer des informations
+#### Afficher des informations
 
 Nous pouvons afficher des informations sur le processus d'apprentissage en utilisant cet appel:
 
@@ -314,7 +314,7 @@ theta: [ 0.26  -0.41   0.44  -0.62   0.83]  Iter: 26075 Cost: 0.339 Accuracy: 0.
 
 ### Sauvegarde des données
 
-Une fois l'entrainement terminé, nous pouvons sauvegarder les valeurs de $\Theta$ pour pouvoir les utiliser dans des prédictions:
+Une fois l'entraînement terminé, nous pouvons sauvegarder les valeurs de $\Theta$ pour pouvoir les utiliser dans des prédictions:
 
 ```go
 func save(value gorgonia.Value) error {
@@ -332,7 +332,7 @@ func save(value gorgonia.Value) error {
 }
 ```
 
-## Création d'un utilitaire CLI
+## Création d'un utilitaire en ligne de commande (CLI)
 
 Nous allons à présent créer un utilitaire qui va permettre de donner l'espèce d'une fleur en fonction des paramètres d'entrée.
 
@@ -438,7 +438,7 @@ Dans cet exemple pas-à-pas, nous avons construit un logiciel complet.
 
 Le code complet de ce tutoriel est présent dans le répertoire [examples](https://github.com/gorgonia/gorgonia/tree/master/examples) des sources de Gorgonia.
 
-### Bonus: visual representation
+### Bonus: representation visuelle
 
 Il est possible de visualiser le dataset en utilisant la bibliothèque plotter du projet Gonum.
 Voici un exemple.
