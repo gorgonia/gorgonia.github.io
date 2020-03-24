@@ -75,61 +75,10 @@ From a lot of profiling of this author's personal projects, the ones that really
 
 In a trivial benchmark, careful use of CUDA (in this case, used to call `sigmoid`) shows impressive improvements over non-CUDA code (bearing in mind the CUDA kernel is extremely naive and not optimized):
 
-```
+```test
 BenchmarkOneMilCUDA-8   	     300	   3348711 ns/op
 BenchmarkOneMil-8       	      50	  33169036 ns/op
 ```
-
-
-
-
-## Example
-see this [tutorial](/tutorials/mnist-cuda/) for a complete example
-
-### `Op`s supported by CUDA ###
-
-As of now, only the very basic simple ops support CUDA:
-
-Elementwise unary operations:
-
-* `abs`
-* `sin`
-* `cos`
-* `exp`
-* `ln`
-* `log2`
-* `neg`
-* `square`
-* `sqrt`
-* `inv` (reciprocal of a number)
-* `cube`
-* `tanh`
-* `sigmoid`
-* `log1p`
-* `expm1`
-* `softplus`
-
-Elementwise binary operations - only arithmetic operations support CUDA:
-
-* `add`
-* `sub`
-* `mul`
-* `div`
-* `pow`
-
-From a lot of profiling of this author's personal projects, the ones that really matter are `tanh`, `sigmoid`, `expm1`, `exp` and `cube` - basically the activation functions. The other operations do work fine with MKL+AVX and aren't the major cause of slowness in a neural network
-
-### CUDA improvements ###
-
-In a trivial benchmark, careful use of CUDA (in this case, used to call `sigmoid`) shows impressive improvements over non-CUDA code (bearing in mind the CUDA kernel is extremely naive and not optimized):
-
-```
-BenchmarkOneMilCUDA-8   	     300	   3348711 ns/op
-BenchmarkOneMil-8       	      50	  33169036 ns/op
-```
-
-
-
 
 ## Example
 see this [tutorial](/tutorials/mnist-cuda/) for a complete example
