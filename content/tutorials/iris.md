@@ -233,9 +233,9 @@ ${\displaystyle \Theta^{(k+1)}=\Theta^{(k)}-\gamma \nabla f\left(\Theta^{(k)}\ri
 To do so, we need to pass $\Theta$ to the `Step` method of the `Solver`:
 
 ```go
-update := []gorgonia.ValueGrad{theta}
+model := []gorgonia.ValueGrad{theta}
 // ...
-if err = solver.Step(update); err != nil {
+if err = solver.Step(model); err != nil {
         log.Fatal(err)
 }
 ```
