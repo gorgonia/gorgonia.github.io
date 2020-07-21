@@ -11,7 +11,7 @@ The `cu` package ships with an application called `cudatest` which will be helpf
 
 To install `cudatest`, run
 
-```
+```shell
 go install gorgonia.org/cu/cmd/cudatest
 ```
 
@@ -22,7 +22,7 @@ This also assumes that you already have installed CUDA, and cuDNN.
 
 If you are running multiple GPUs, you might run into a message that looks as follows:
 
-```
+```shell
 Error in initialization, please refer to "https://docs.nvidia.com/cuda/cuda-driver-api/group__CUDA__INITIALIZE.html"
 ```
 
@@ -31,7 +31,7 @@ This usually means that one of your GPUs does not support CUDA. You can still ru
 
 First, use `nvidia-smi` to find the running GPUs. An example is provided below
 
-```
+```shell
 Thu Jul 16 17:41:10 2020
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 450.51.05    Driver Version: 450.51.05    CUDA Version: 11.0     |
@@ -67,13 +67,13 @@ Here, we see that there are two GPUs:
 
 The GeForce GT 1030 does not supoprt CUDA. While the Tesla K20Xm does. To remedy this, simply add this environment variable:
 
-```
+```shell
 CUDA_VISIBLE_DEVICES=0 cudatest
 ```
 
 Something like the following should be returned:
 
-```
+```shell
 $ CUDA_VISIBLE_DEVICES=0 cudatest
 CUDA version: 11000
 CUDA devices: 1
