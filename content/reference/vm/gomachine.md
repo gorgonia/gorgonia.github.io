@@ -7,7 +7,10 @@ draft: false
 
 This page explains the plumbing inside the GoMachine.
 
-A GoMachine is a runtime environment that executes an `*exprgraph`.
+GoMachine is an experimental feature hold in the [`xvm` package](https://github.com/gorgonia/gorgonia/tree/master/x/vm). 
+The API of the package and its name may change.
+
+This document is based on [commit 7538ab3](https://github.com/gorgonia/gorgonia/tree/7538ab3b58ceae68f162c17d19052324bf1dc587)
 
 ## The states of the nodes
 
@@ -236,5 +239,78 @@ func (p *pubsub) run(ctx context.Context) (context.CancelFunc, *sync.WaitGroup) 
 
 This method returns a `context.CancelFunc` and a `sync.WaitGroup` that will be down to zero when all pubsubs are settled after a cancelation. 
 
+#### about `ioValue`
+
+The subscriber have a single input channel; the input values can be sent in any order. The `subscriber's merge` function tracks the order of the subscribers and wrap the value into the `ioValue` structure and add the position of the operator emmiting the value:
+
+```go
+type ioValue struct {
+	pos int
+	v   gorgonia.Value
+}
+```
+
 
 ## The machine
+
+The `Machine` is the only exported structure of the package.
+
+It is a support for nodes and pubsub.
+
+```go
+type Machine struct {
+	nodes  []*node
+	pubsub *pubsub
+}
+```
+
+### Creating a machine
+
+A machine is created from an `*ExprGraph` by calling 
+
+```go
+func NewMachine(g *gorgonia.ExprGraph) *Machine { ... }
+```
+
+Under the hood, it parses the graph and generates a `*node` for each `*gorgonia.Node`. 
+If a node carries an Op (= an object that implements a `Do(... Value) Value` method), a pointer to the Op is added to the structure.
+
+{{%notice info%}}
+for transitioning, the package declares a `Doer` interface.
+This interface is fulfilled by the `*gorgonia.Node` structure.
+{{%/notice%}}
+
+Two special cases are handled:
+
+- the top-level node of the `*ExprGraph` have `outputC = nil`
+- the bottom nodes of the `*ExprGraph` have `inputC = nil`
+
+Then the `NewMachine` calls the `createNetwork` methods to create the `*pubsub` elements.
+
+### Running the machine
+
+a call to the `Run` method of the Machine triggers the computation.
+The call to this function is blocking.
+It returns an error and stop the process if:
+- all the nodes have reached their final states
+- one node's execution state returns an error
+
+in case of error, a cancel signal is automatically sent to the `*pubsub` infrastructure to avoid leackage.
+
+### Closing the machine
+
+After the computation, it is safe to call `Close` to avoid memory leak.
+`Close`closes all the channels hold by the `*node` and the `*pubsub`
+
+## Misc
+
+It is important to notice that the machine is independent from the `*ExprGraph`. Therefore the values hold by the `*gorgonia.Node` are not updated.
+
+To access the data, you must call the `GetResult` method of the machine. This method takes a node ID as input (`*node` and `*gorgonia.Node` have the same IDs)
+
+Ex:
+
+```go
+var add, err := gorgonia.Add(a,b)
+fmt.Println(machine.GetResult(add.ID()))
+```
