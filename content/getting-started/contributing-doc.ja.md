@@ -1,5 +1,5 @@
 ---
-title: "Start contributing to the doc"
+title: "ドキュメントへの貢献を始める"
 date: 2020-01-31T14:59:03+01:00
 draft: false
 ---
@@ -43,7 +43,7 @@ issue の登録、コンテンツの編集、他のユーザーからの変更�
 
 類似: 料理本のレシピ
 
-リポジトリ内のコンテンツのソース: [`content / how-to`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/how-to)
+リポジトリ内のコンテンツのソース: [`content/how-to`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/how-to)
 
 #### 説明
 
@@ -55,47 +55,47 @@ issue の登録、コンテンツの編集、他のユーザーからの変更�
 
 類似: 料理の社会史に関する記事
 
-リポジトリ内のコンテンツのソース: [`content / about`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/about)
+リポジトリ内のコンテンツのソース: [`content/about`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/about)
 
-#### Reference
-A reference guide:
+#### リファレンス
 
-- is information-oriented
-- describes the machinery
-- is accurate and complete
+- 情報指向であり
+- 機構について説明しており
+- 正確で完全であること
 
-Analogy: a reference encyclopaedia article
+類似: 参照百科事典の記事
 
-Sources of the content in the repo: [`content/reference`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/reference)
+リポジトリ内のコンテンツのソース: [`content/reference`](https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/reference)
 
-### Multiple languages
-Documentation source is available in multiple languages in /content/. Each page can be translated in any language by adding a two-letter code determined by the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). 
-A file without any suffix defaults to English.
+### 複数の言語
 
-For example, French documentation of a page is named `page.fr.md`.
+ドキュメントソースは /content/ の中で複数の言語で利用できます。各ページは [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) で決められた2文字のコードを追加することにより、任意の言語に翻訳できます。
+接尾辞のないファイルのデフォルトは英語です。
 
-## Improve documentation
+例えばフランス語のドキュメントページの名前は `page.fr.md` です。
 
-### fix existing content
+## ドキュメントの改善
 
-You can improve the documentation by fixing a bug or a typo in the doc.
-To improve existing content, you file a _pull request (PR)_ after creating a _fork_. Those two terms are [specific to GitHub](https://help.github.com/categories/collaborating-with-issues-and-pull-requests/).
-For the purposes of this topic, you don't need to know everything about them, because you can do everything using your web browser. 
+### 既存のコンテンツの修正
 
-### Create new content.
+ドキュメントのバグやタイプミスを修正することでドキュメントを改善できます。
+既存のコンテンツを改善するには _fork_ を作成した後 _pull request(PR)_ を登録します。これらの2つは[GitHub固有](https://help.github.com/categories/collaborating-with-issues-and-pull-requests/)の用語です。
+このトピックではウェブブラウザを使ってすべてを遂行できるため、それらに関して全てを知る必要はありません。
+
+### 新しいコンテンツの作成
 
 {{% notice info %}}
-The sources of the repository are maintained in the `develop` branch. Therefore, this branch must be the base of a new branch and PR should be point to this branch as well.
+リポジトリのソースは `develop` ブランチで管理されています。よってこのブランチは新しいブランチのベースである必要があり、PR もこのブランチを指している必要があります。
 {{% /notice %}}
-To create a new content, please create a new page in the directory corresponding to the topic of the doc (see the paragraph [Layout of the documentation](#layout-of-the-documentation))
+新しいコンテンツを作成するには、ドキュメントのトピックに対応するディレクトリに新しいページを作成してください([ドキュメントのレイアウト](＃layout-of-the-documentation)の段落を参照)
 
-If you have `hugo` locally, you can create a new page with:
+ローカルに `hugo` がインストールされている場合は、次のコマンドで新しいページを作成できます。
 
 ```shell
 hugo new content/about/mypage.md
 ```
 
-otherwise, please create a new page with a header that looks like:
+それ以外の場合は、以下の様なヘッダを付けて新しいページを作成してください:
 
 ```yaml
 ---
@@ -104,75 +104,80 @@ date: 2020-01-31T14:59:03+01:00
 draft: false
 ---
 
-your content
+あなたのコンテンツ
 ```
-Then submit a pull request as explained below.
 
-### Submit a pull request
-Follow these steps to submit a pull request to improve the Gorgonia documentation.
+そして以下で説明するようにプルリクエストを送信します。
 
--  On the page where you see the issue, click the "edit this page" icon at the top right.
-    A new GitHub page appears, with some help text.
--  If you have never created a fork of the Gorgonia documentation repository, you are prompted to do so. 
-    Create the fork under your GitHub username, rather than another organization you may be a member of. 
-    The fork usually has a URL such as `https://github.com/<username>/website`, unless you already have a repository with a conflicting name.
+### プルリクエストの登録
 
-    The reason you are prompted to create a fork is that you do not have access to push a branch directly to the definitive Gorgonia repository.
+次の手順に従って Gorgonia のドキュメントを改善するためのプルリクエストを登録します。
 
--  The GitHub Markdown editor appears with the source Markdown file loaded.
-    Make your changes. Below the editor, fill in the **Propose file change** form. 
-    The first field is the summary of your commit message and should be no more than 50 characters long. 
-    The second field is optional, but can include more detail if appropriate.
-    Click **Propose file change**. The change is saved as a commit in a new branch in your fork, which is automatically named something like `patch-1`.
+- 問題のあるページで、右上の "このページを編集" アイコンをクリックします。
+    新しい GitHub ページが表示され、ヘルプテキストが表示されます。
+- Gorgonia のドキュメントリポジトリのフォークを作成していない場合は、作成するように求められます。
+    メンバになっているかもしれない組織ではなく、GitHub ユーザー名でフォークを作成します。
+    競合する名前のリポジトリがすでにある場合を除き、フォークには通常 `https:
+    //github.com/<username>/website` といった URL になります。
 
-{{% notice info %}}
-Do not include references to other GitHub issues or pull
-requests in your commit message. You can add those to the pull request
-description later.
-{{% /notice %}}
+    フォークを作成するように求められるのは、Gorgonia のリポジトリのブランチに直
+    接プッシュするアクセス権がないためです。
 
-
--  The next screen summarizes the changes you made, by comparing your new branch (the **head fork** and **compare** selection boxes) to the current
-    state of the **base fork** and **base** branch (`develop` on the `gorgonia/gorgonia.github.io` repository by default). You can change any of the
-    selection boxes, but don't do that now. Have a look at the difference viewer on the bottom of the screen, and if everything looks right, click
-    **Create pull request**.
+- GitHub Markdown エディタが表示され、ソースの Markdown ファイルが読み込まれます。
+    変更を加えます。エディタの下でフォーム **ファイル変更の提案** に入力します。
+    最初のフィールドはコミットメッセージの要約であり、50文字を超えてはいけません。
+    2番目のフィールドはオプションですが、必要に応じて詳細を含めることができます。
+    **Propose file change** をクリックします。変更は、フォークの新しいブランチ
+    にコミットとして保存され `patch-1` の様な名前が自動的に付けられます。
 
 {{% notice info %}}
-If you don't want to create the pull request now, you can do it
-later, by browsing to the main URL of the Gorgonia website repository or
-your fork's repository. The GitHub website will prompt you to create the
-pull request if it detects that you pushed a new branch to your fork.
+他の GitHub の issue への参照を含めたりプルリクエストをコミットメッセージで参照しないで下さい。
+それらは後述するプルリクエストの説明で追加できます。
 {{% /notice %}}
 
--  The **Open a pull request** screen appears. The subject of the pull request
-    is the same as the commit summary, but you can change it if needed. The
-    body is populated by your extended commit message (if present) and some
-    template text. Read the template text and fill out the details it asks for,
-    then delete the extra template text. If you add to the description `fixes #<000000>`
-    or `closes #<000000>`, where `#<000000>` is the number of an associated issue,
-    GitHub will automatically close the issue when the PR merges.
-    Leave the **Allow edits from maintainers** checkbox selected. Click
-    **Create pull request**.
-
-    Congratulations! Your pull request is available in
-    [Pull requests](https://github.com/gorgonia/gorgonia.github.io/pulls).
+- 次の画面は新しいブランチ(**head fork** と **compare**の 選択ボックス)と
+    **base fork** と**base** ブランチ(デフォルトでは
+    `gorgonia/gorgonia.github.io` リポジトリ の `develop`)の現在の状態とを比較し
+    てあなたが行った変更を要約しています。いずれの選択ボックスも変更できますが、
+    今は変更しないでください。 画面の下部にある差分ビューアを見て、全てが正しいと
+    思ったら **Create pull request** をクリックして下さい。
 
 {{% notice info %}}
-Please limit pull requests to one language per PR. For example, if you need to make an identical change to the same code sample in multiple languages, open a separate PR for each language.
+今すぐプルリクエストを作成したくない場合でも、Gorgonia のウェブサイトリポジトリ
+またはフォークのリポジトリのメインURLを参照する事で後からでも作成できます。
+GitHub ウェブサイトは fork に新しいブランチを push したことを検出するとプルリク
+エストを作成するように求めてきます。
 {{% /notice %}}
 
--  Wait for review. 
-    If a reviewer asks you to make changes, you can go to the **Files changed**
-    tab and click the pencil icon on any files that have been changed by the
-    pull request. When you save the changed file, a new commit is created in
-    the branch being monitored by the pull request. If you are waiting on a
-    reviewer to review the changes, proactively reach out to the reviewer
-    once every 7 days. You can also drop into `#gorgonia` channel on [gopherslack](https://invite.slack.golangbridge.org/),
-    which is a good place to ask for help regarding PR reviews.
+- **Open a pull request** 画面が表示されます。プルリクエストの件名はコミットサ
+    マリーと同じですが必要に応じて変更できます。本文には拡張コミットメッセージ
+    (存在する場合)といくつかのテンプレートテキストが入力されます。テンプレート
+    テキストを読み、必要な詳細を入力してから余分なテンプレートテキストを削除し
+    ます。説明に `fixes #<000000>` または `closes #<000000>` を追加すると、
+    `#<000000>` は関連する issue の番号となり、GitHub は PR がマージされると同時に
+    に issue を自動的に閉じます。
+    **Allow edits from maintainers** チェックボックスは選択したまま **Create
+    pull request** をクリックします。
 
--  If your change is accepted, a reviewer merges your pull request, and the
-    change is live on the Gorgonia website a few minutes later.
+    おめでとうございます。あなたの pull request が
+    [Pull requests](https://github.com/gorgonia/gorgonia.github.io/pulls) に表
+    示されています。
 
-This is only one way to submit a pull request. If you are already a Git and
-GitHub advanced user, you can use a local GUI or command-line Git client
-instead of using the GitHub UI. 
+{{% notice info %}}
+プルリクエストは PR ごとに1つの言語となる様に制限してください。たとえば複数の言語で同じコードサンプルに同じ変更を加える必要がある場合は、言語ごとに個別の PR を開きます。
+{{% /notice %}}
+
+-  レビューを待つ
+    レビュー担当者から変更を求められた場合は **Files changed** のタブに移動し、
+    プルリクエストによって変更されたファイルの鉛筆アイコンをクリックできます。
+    変更したファイルを保存するとプルリクエストによって監視されているブランチに
+    新しいコミットが作成されます。レビュー担当者が変更を確認するのを待っている
+    場合、7日に1回、レビュー担当者に連絡してください。
+    [gopherslack](https://invite.slack.golangbridge.org/) の `#gorgonia` チャネ
+    ルにアクセスすることもできます。これは PR レビューに関する助言を求めるの
+    に適した場所です。
+
+- 変更が承認されると、レビュー担当者がプルリクエストをマージし、Gorgonia のウェ
+  ブサイトに数分後に変更が反映されます。
+
+これがプルリクエストを送信する唯一の方法です。すでに Git と GitHub の上級ユーザである場合は、GitHub UI を使用する代わりにローカルの GUI やコマンドラインの Git クライアントを使用できます。
