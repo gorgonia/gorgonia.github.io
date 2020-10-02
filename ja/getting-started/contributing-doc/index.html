@@ -1,0 +1,113 @@
+<!doctype html><html lang=ja class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.58.3"><meta name=description content="Gorgonia: Deep learning for Go - Write and evaluate mathematical equations involving multidimensional arrays (tensors) easily - this is the reference website with tutorials and howtos"><meta name=author content="The Gorgonia Authors"><link rel="shortcut icon" href=/images/favicon.png type=image/png><title>ドキュメントへの貢献を始める :: Gorgonia</title><link href=/css/nucleus.css?1601614006 rel=stylesheet><link href=/css/fontawesome-all.min.css?1601614006 rel=stylesheet><link href=/css/hybrid.css?1601614006 rel=stylesheet><link href=/css/featherlight.min.css?1601614006 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1601614006 rel=stylesheet><link href=/css/auto-complete.css?1601614006 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1601614006 rel=stylesheet><link href=/css/theme.css?1601614006 rel=stylesheet><link href=/css/hugo-theme.css?1601614006 rel=stylesheet><link href=/css/theme-gorgonia.css?1601614006 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1601614006></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style><script type=text/x-mathjax-config>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><meta property=og:title content=ドキュメントへの貢献を始める><meta property=og:description content="Gorgonia のドキュメントへの貢献を始めたい場合は、このページとこのページからリンクされたトピックが開始に役立ちます。Gorgonia のドキュメントとユーザ体験に大きな影響を与える様な開発者であったりテクニカルライターである必要はありません。このページのトピックに必要なのは、GitHub アカウントとウェブブラウザだけです。
+Gorgonia のコードリポジトリへの貢献を開始する方法についてお探しの場合、貢献ガイドラインを参照してください。
+ドキュメントに関する基本事項 Gorgonia のドキュメントは Markdown で記述され、Hugo を使って処理および展開されます。ソースは GitHub の https://github.com/gorgonia/gorgonia.github.io にあります。ほぼ全てのドキュメントソースは /content/ に保存されています。
+issue の登録、コンテンツの編集、他のユーザーからの変更のレビュー、その他全てを GitHub のウェブサイトから行えます。GitHub 組み込みの履歴表示や検索ツールを使用することもできます。
+ドキュメントのレイアウト ドキュメントは What nobody tells you about documentation の記事で説明されているレイアウトに沿っています。
+これは4つのセクションに分かれています。各セクションはリポジトリの content/ ディレクトリのサブディレクトリです。
+チュートリアル チュートリアルとは:
+ 学習指向であり 新参の方でも始められ レッスンであること  類似: 小さな子供に料理を教える
+リポジトリ内のコンテンツのソース: content/tutorials
+ハウツーガイド ハウツーガイドとは:
+ 目標指向であり 特定の問題を解決する方法を示しており 一連の手順であること  類似: 料理本のレシピ
+リポジトリ内のコンテンツのソース: content/how-to
+説明 説明とは:
+ 理解志向であり 説明しており 背景とコンテキストを提供すること  類似: 料理の社会史に関する記事
+リポジトリ内のコンテンツのソース: content/about
+リファレンス  情報指向であり 機構について説明しており 正確で完全であること  類似: 参照百科事典の記事"><meta property=og:type content=article><meta property=og:url content=https://gorgonia.org/ja/getting-started/contributing-doc/><meta property=og:image content=https://gorgonia.org/images/opengraph.png><meta property=article:published_time content=2020-01-31T14:59:03+01:00><meta property=article:modified_time content=2020-01-31T14:59:03+01:00><meta property=og:site_name content=Gorgonia><meta name=twitter:card content=summary_large_image><meta name=twitter:image content=https://gorgonia.org/images/opengraph.png><meta name=twitter:title content=ドキュメントへの貢献を始める><meta name=twitter:description content="Gorgonia のドキュメントへの貢献を始めたい場合は、このページとこのページからリンクされたトピックが開始に役立ちます。Gorgonia のドキュメントとユーザ体験に大きな影響を与える様な開発者であったりテクニカルライターである必要はありません。このページのトピックに必要なのは、GitHub アカウントとウェブブラウザだけです。
+Gorgonia のコードリポジトリへの貢献を開始する方法についてお探しの場合、貢献ガイドラインを参照してください。
+ドキュメントに関する基本事項 Gorgonia のドキュメントは Markdown で記述され、Hugo を使って処理および展開されます。ソースは GitHub の https://github.com/gorgonia/gorgonia.github.io にあります。ほぼ全てのドキュメントソースは /content/ に保存されています。
+issue の登録、コンテンツの編集、他のユーザーからの変更のレビュー、その他全てを GitHub のウェブサイトから行えます。GitHub 組み込みの履歴表示や検索ツールを使用することもできます。
+ドキュメントのレイアウト ドキュメントは What nobody tells you about documentation の記事で説明されているレイアウトに沿っています。
+これは4つのセクションに分かれています。各セクションはリポジトリの content/ ディレクトリのサブディレクトリです。
+チュートリアル チュートリアルとは:
+ 学習指向であり 新参の方でも始められ レッスンであること  類似: 小さな子供に料理を教える
+リポジトリ内のコンテンツのソース: content/tutorials
+ハウツーガイド ハウツーガイドとは:
+ 目標指向であり 特定の問題を解決する方法を示しており 一連の手順であること  類似: 料理本のレシピ
+リポジトリ内のコンテンツのソース: content/how-to
+説明 説明とは:
+ 理解志向であり 説明しており 背景とコンテキストを提供すること  類似: 料理の社会史に関する記事
+リポジトリ内のコンテンツのソース: content/about
+リファレンス  情報指向であり 機構について説明しており 正確で完全であること  類似: 参照百科事典の記事"></head><body data-url=/ja/getting-started/contributing-doc/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=https://gorgonia.org/><img src=https://gorgonia.org/images/logo/gorgonia.svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label><input data-search-input id=search-by type=search placeholder=検索...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1601614006></script><script type=text/javascript src=/js/auto-complete.js?1601614006></script><script type=text/javascript>var baseurl="https:\/\/gorgonia.org\/\/ja";</script><script type=text/javascript src=/js/search.js?1601614006></script></div><div class=highlightable><ul class=topics><li data-nav-id=/ja/getting-started/ title=事始め class="dd-item
+        parent"><a href=/ja/getting-started/>事始め
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/getting-started/contributing-doc/ title=ドキュメントへの貢献を始める class="dd-item active"><a href=/ja/getting-started/contributing-doc/>ドキュメントへの貢献を始める
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/ja/about/ title=Gorgoniaの仕組み class=dd-item><a href=/ja/about/>Gorgoniaの仕組み
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/about/computation-graph/ title=計算グラフ class=dd-item><a href=/ja/about/computation-graph/>計算グラフ
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/about/differentiation/ title=微分 class=dd-item><a href=/ja/about/differentiation/>微分
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/about/differentiation/symbolicdiff/ title=数式微分 class=dd-item><a href=/ja/about/differentiation/symbolicdiff/>数式微分
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/about/differentiation/autodiff/ title=自動微分 class=dd-item><a href=/ja/about/differentiation/autodiff/>自動微分
+<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li><li data-nav-id=/ja/tutorials/ title=チュートリアル class=dd-item><a href=/ja/tutorials/>チュートリアル
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/tutorials/hello-world/ title=こんにちわ世界 class=dd-item><a href=/ja/tutorials/hello-world/>こんにちわ世界
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/tutorials/mnist/ title="簡単なニューラルネットの構築 (MNIST)" class=dd-item><a href=/ja/tutorials/mnist/>簡単なニューラルネットの構築 (MNIST)
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/tutorials/iris/ title="Iris データセットでの多変量線形回帰" class=dd-item><a href=/ja/tutorials/iris/>Iris データセットでの多変量線形回帰
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/ja/how-to/ title=ハウツー class=dd-item><a href=/ja/how-to/>ハウツー
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/how-to/dot/ title="Graphviz (dot) を用いた ExprGraph の描画" class=dd-item><a href=/ja/how-to/dot/>Graphviz (dot) を用いた ExprGraph の描画
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/how-to/dataframe/ title="データフレームからテンソルを作成 (gota)" class=dd-item><a href=/ja/how-to/dataframe/>データフレームからテンソルを作成 (gota)
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/how-to/save-weights/ title=Weightsの保存 class=dd-item><a href=/ja/how-to/save-weights/>Weightsの保存
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/ja/reference/ title=リファレンスガイド class=dd-item><a href=/ja/reference/>リファレンスガイド
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/reference/exprgraph/ title="グラフと Exprgraph" class=dd-item><a href=/ja/reference/exprgraph/>グラフと Exprgraph
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/reference/present/ title=発表 class=dd-item><a href=/ja/reference/present/>発表
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/reference/tensor/ title=Tensor class=dd-item><a href=/ja/reference/tensor/>Tensor
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/reference/solver/ title=Solvers class=dd-item><a href=/ja/reference/solver/>Solvers
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/reference/vm/ title=VM class=dd-item><a href=/ja/reference/vm/>VM
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/ja/reference/vm/lispmachine/ title=LispMachine class=dd-item><a href=/ja/reference/vm/lispmachine/>LispMachine
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/ja/reference/vm/tapemachine/ title=Tapemachine class=dd-item><a href=/ja/reference/vm/tapemachine/>Tapemachine
+<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li><li data-nav-id=/ja/misc/ title=その他 class=dd-item><a href=/ja/misc/>その他
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>更に</h3><ul><li><a class=padding href=https://github.com/gorgonia/gorgonia><i class="fab fa-fw fa-github"></i>GitHub</a></li><li><a class=padding href="https://pkg.go.dev/gorgonia.org/gorgonia?tab=doc"><i class="fas fa-fw fa-bookmark"></i>API Doc</a></li><li><a class=padding href=http://gophers.slack.com/messages/gorgonia><i class="fab fa-fw fa-slack"></i>Contact us</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value;">
+<option id=en value=https://gorgonia.org/getting-started/contributing-doc/>English</option>
+<option id=ja value=https://gorgonia.org/ja/getting-started/contributing-doc/ selected>Japanese</option></select><svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><path d="M0 63.75l127.5 127.5L255 63.75z" /></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i>履歴削除</a></li></ul></section><section id=footer><center><a class=github-button href=https://github.com/gorgonia/gorgonia data-icon=octicon-star data-show-count=true aria-label="Star gorgonia/gorgonia on GitHub">Star</a><p>Built with <a href=https://github.com/matcornic/hugo-theme-learn><i class="fas fa-heart"></i></a>from <a href=https://getgrav.org>Grav</a> and <a href=https://gohugo.io/>Hugo</a></p></center><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=top-github-link><a class=github-link title=このページを編集 href=https://github.com/gorgonia/gorgonia.github.io/edit/develop/content/getting-started/contributing-doc.ja.md target=blank><i class="fas fa-code-branch"></i><span id=top-github-link-text>このページを編集</span></a></div><div id=breadcrumbs itemscope itemtype=http://schema.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i></a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span><span class=links><a href=/ja/>main</a> > <a href=/ja/getting-started/>事始め</a> > ドキュメントへの貢献を始める</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#ドキュメントに関する基本事項>ドキュメントに関する基本事項</a></li><li><a href=#ドキュメントのレイアウト>ドキュメントのレイアウト</a><ul><li><a href=#チュートリアル>チュートリアル</a></li><li><a href=#ハウツーガイド>ハウツーガイド</a></li><li><a href=#説明>説明</a></li><li><a href=#リファレンス>リファレンス</a></li></ul></li><li><a href=#複数の言語>複数の言語</a></li></ul></li><li><a href=#ドキュメントの改善>ドキュメントの改善</a><ul><li><a href=#既存のコンテンツの修正>既存のコンテンツの修正</a></li><li><a href=#新しいコンテンツの作成>新しいコンテンツの作成</a></li><li><a href=#プルリクエストの登録>プルリクエストの登録</a></li></ul></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>ドキュメントへの貢献を始める</h1><p>Gorgonia のドキュメントへの貢献を始めたい場合は、このページとこのページからリンクされたトピックが開始に役立ちます。Gorgonia のドキュメントとユーザ体験に大きな影響を与える様な開発者であったりテクニカルライターである必要はありません。このページのトピックに必要なのは、GitHub アカウントとウェブブラウザだけです。</p><p>Gorgonia のコードリポジトリへの貢献を開始する方法についてお探しの場合、<a href=https://github.com/gorgonia/gorgonia/blob/master/CONTRIBUTING.md>貢献ガイドライン</a>を参照してください。</p><h3 id=ドキュメントに関する基本事項>ドキュメントに関する基本事項</h3><p>Gorgonia のドキュメントは Markdown で記述され、Hugo を使って処理および展開されます。ソースは GitHub の <a href=https://github.com/gorgonia/gorgonia.github.io>https://github.com/gorgonia/gorgonia.github.io</a> にあります。ほぼ全てのドキュメントソースは <code>/content/</code> に保存されています。</p><p>issue の登録、コンテンツの編集、他のユーザーからの変更のレビュー、その他全てを GitHub のウェブサイトから行えます。GitHub 組み込みの履歴表示や検索ツールを使用することもできます。</p><h3 id=ドキュメントのレイアウト>ドキュメントのレイアウト</h3><p>ドキュメントは <a href=https://www.divio.com/blog/documentation/>What nobody tells you about documentation</a> の記事で説明されているレイアウトに沿っています。</p><p>これは4つのセクションに分かれています。各セクションはリポジトリの <code>content/</code> ディレクトリのサブディレクトリです。</p><h4 id=チュートリアル>チュートリアル</h4><p>チュートリアルとは:</p><ul><li>学習指向であり</li><li>新参の方でも始められ</li><li>レッスンであること</li></ul><p>類似: 小さな子供に料理を教える</p><p>リポジトリ内のコンテンツのソース: <a href=https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/tutorials><code>content/tutorials</code></a></p><h4 id=ハウツーガイド>ハウツーガイド</h4><p>ハウツーガイドとは:</p><ul><li>目標指向であり</li><li>特定の問題を解決する方法を示しており</li><li>一連の手順であること</li></ul><p>類似: 料理本のレシピ</p><p>リポジトリ内のコンテンツのソース: <a href=https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/how-to><code>content/how-to</code></a></p><h4 id=説明>説明</h4><p>説明とは:</p><ul><li>理解志向であり</li><li>説明しており</li><li>背景とコンテキストを提供すること</li></ul><p>類似: 料理の社会史に関する記事</p><p>リポジトリ内のコンテンツのソース: <a href=https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/about><code>content/about</code></a></p><h4 id=リファレンス>リファレンス</h4><ul><li>情報指向であり</li><li>機構について説明しており</li><li>正確で完全であること</li></ul><p>類似: 参照百科事典の記事</p><p>リポジトリ内のコンテンツのソース: <a href=https://github.com/gorgonia/gorgonia.github.io/tree/develop/content/reference><code>content/reference</code></a></p><h3 id=複数の言語>複数の言語</h3><p>ドキュメントソースは /content/ の中で複数の言語で利用できます。各ページは <a href=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>ISO 639-1 standard</a> で決められた2文字のコードを追加することにより、任意の言語に翻訳できます。
+接尾辞のないファイルのデフォルトは英語です。</p><p>例えばフランス語のドキュメントページの名前は <code>page.fr.md</code> です。</p><h2 id=ドキュメントの改善>ドキュメントの改善</h2><h3 id=既存のコンテンツの修正>既存のコンテンツの修正</h3><p>ドキュメントのバグやタイプミスを修正することでドキュメントを改善できます。
+既存のコンテンツを改善するには <em>fork</em> を作成した後 <em>pull request(PR)</em> を登録します。これらの2つは<a href=https://help.github.com/categories/collaborating-with-issues-and-pull-requests/>GitHub固有</a>の用語です。
+このトピックではウェブブラウザを使ってすべてを遂行できるため、それらに関して全てを知る必要はありません。</p><h3 id=新しいコンテンツの作成>新しいコンテンツの作成</h3><p><div class="notices info"><p>リポジトリのソースは <code>develop</code> ブランチで管理されています。よってこのブランチは新しいブランチのベースである必要があり、PR もこのブランチを指している必要があります。</p></div>新しいコンテンツを作成するには、ドキュメントのトピックに対応するディレクトリに新しいページを作成してください(<a href=＃layout-of-the-documentation>ドキュメントのレイアウト</a>の段落を参照)</p><p>ローカルに <code>hugo</code> がインストールされている場合は、次のコマンドで新しいページを作成できます。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>hugo new content/about/mypage.md</code></pre></div><p>それ以外の場合は、以下の様なヘッダを付けて新しいページを作成してください:</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml>---<span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span>title<span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;The title of the page&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span>date<span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>2020-01-31T14:59:03</span><span style=color:#0000cf;font-weight:700>+01</span><span style=color:#000;font-weight:700>:</span><span style=color:#0000cf;font-weight:700>00</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span>draft<span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#204a87;font-weight:700>false</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span>--<span style=color:#8f5902;font-style:italic>-
+</span><span style=color:#8f5902;font-style:italic>
+</span><span style=color:#8f5902;font-style:italic>あなたのコンテンツ</span></code></pre></div><p>そして以下で説明するようにプルリクエストを送信します。</p><h3 id=プルリクエストの登録>プルリクエストの登録</h3><p>次の手順に従って Gorgonia のドキュメントを改善するためのプルリクエストを登録します。</p><ul><li>問題のあるページで、右上の &ldquo;このページを編集&rdquo; アイコンをクリックします。
+新しい GitHub ページが表示され、ヘルプテキストが表示されます。</li><li><p>Gorgonia のドキュメントリポジトリのフォークを作成していない場合は、作成するように求められます。
+メンバになっているかもしれない組織ではなく、GitHub ユーザー名でフォークを作成します。
+競合する名前のリポジトリがすでにある場合を除き、フォークには通常 <code>https:
+//github.com/&lt;username&gt;/website</code> といった URL になります。</p><p>フォークを作成するように求められるのは、Gorgonia のリポジトリのブランチに直
+接プッシュするアクセス権がないためです。</p></li><li><p>GitHub Markdown エディタが表示され、ソースの Markdown ファイルが読み込まれます。
+変更を加えます。エディタの下でフォーム <strong>ファイル変更の提案</strong> に入力します。
+最初のフィールドはコミットメッセージの要約であり、50文字を超えてはいけません。
+2番目のフィールドはオプションですが、必要に応じて詳細を含めることができます。
+<strong>Propose file change</strong> をクリックします。変更は、フォークの新しいブランチ
+にコミットとして保存され <code>patch-1</code> の様な名前が自動的に付けられます。</p></li></ul><div class="notices info"><p>他の GitHub の issue への参照を含めたりプルリクエストをコミットメッセージで参照しないで下さい。
+それらは後述するプルリクエストの説明で追加できます。</p></div><ul><li>次の画面は新しいブランチ(<strong>head fork</strong> と <strong>compare</strong>の 選択ボックス)と
+<strong>base fork</strong> と<strong>base</strong> ブランチ(デフォルトでは
+<code>gorgonia/gorgonia.github.io</code> リポジトリ の <code>develop</code>)の現在の状態とを比較し
+てあなたが行った変更を要約しています。いずれの選択ボックスも変更できますが、
+今は変更しないでください。 画面の下部にある差分ビューアを見て、全てが正しいと
+思ったら <strong>Create pull request</strong> をクリックして下さい。</li></ul><div class="notices info"><p>今すぐプルリクエストを作成したくない場合でも、Gorgonia のウェブサイトリポジトリ
+またはフォークのリポジトリのメインURLを参照する事で後からでも作成できます。
+GitHub ウェブサイトは fork に新しいブランチを push したことを検出するとプルリク
+エストを作成するように求めてきます。</p></div><ul><li><p><strong>Open a pull request</strong> 画面が表示されます。プルリクエストの件名はコミットサ
+マリーと同じですが必要に応じて変更できます。本文には拡張コミットメッセージ
+(存在する場合)といくつかのテンプレートテキストが入力されます。テンプレート
+テキストを読み、必要な詳細を入力してから余分なテンプレートテキストを削除し
+ます。説明に <code>fixes #&lt;000000&gt;</code> または <code>closes #&lt;000000&gt;</code> を追加すると、
+<code>#&lt;000000&gt;</code> は関連する issue の番号となり、GitHub は PR がマージされると同時に
+に issue を自動的に閉じます。
+<strong>Allow edits from maintainers</strong> チェックボックスは選択したまま <strong>Create
+pull request</strong> をクリックします。</p><p>おめでとうございます。あなたの pull request が
+<a href=https://github.com/gorgonia/gorgonia.github.io/pulls>Pull requests</a> に表
+示されています。</p></li></ul><div class="notices info"><p>プルリクエストは PR ごとに1つの言語となる様に制限してください。たとえば複数の言語で同じコードサンプルに同じ変更を加える必要がある場合は、言語ごとに個別の PR を開きます。</p></div><ul><li><p>レビューを待つ
+レビュー担当者から変更を求められた場合は <strong>Files changed</strong> のタブに移動し、
+プルリクエストによって変更されたファイルの鉛筆アイコンをクリックできます。
+変更したファイルを保存するとプルリクエストによって監視されているブランチに
+新しいコミットが作成されます。レビュー担当者が変更を確認するのを待っている
+場合、7日に1回、レビュー担当者に連絡してください。
+<a href=https://invite.slack.golangbridge.org/>gopherslack</a> の <code>#gorgonia</code> チャネ
+ルにアクセスすることもできます。これは PR レビューに関する助言を求めるの
+に適した場所です。</p></li><li><p>変更が承認されると、レビュー担当者がプルリクエストをマージし、Gorgonia のウェ
+ブサイトに数分後に変更が反映されます。</p></li></ul><p>これがプルリクエストを送信する唯一の方法です。すでに Git と GitHub の上級ユーザである場合は、GitHub UI を使用する代わりにローカルの GUI やコマンドラインの Git クライアントを使用できます。</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/ja/getting-started/ title=事始め><i class="fa fa-chevron-left"></i></a><a class="nav nav-next" href=/ja/about/ title=Gorgoniaの仕組み style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1601614006></script><script src=/js/perfect-scrollbar.min.js?1601614006></script><script src=/js/perfect-scrollbar.jquery.min.js?1601614006></script><script src=/js/jquery.sticky.js?1601614006></script><script src=/js/featherlight.min.js?1601614006></script><script src=/js/modernizr.custom-3.6.0.js?1601614006></script><script src=/js/learn.js?1601614006></script><script src=/js/hugo-learn.js?1601614006></script><link href=/mermaid/mermaid.css?1601614006 rel=stylesheet><script src=/mermaid/mermaid.js?1601614006></script><script>mermaid.initialize({startOnLoad:true});</script></body></html>

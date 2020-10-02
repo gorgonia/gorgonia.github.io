@@ -1,1 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>事始め on Gorgonia</title><link>https://gorgonia.org/ja/getting-started/</link><description>Recent content in 事始め on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 29 Oct 2019 17:42:44 +0100</lastBuildDate><atom:link href="https://gorgonia.org/ja/getting-started/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>事始め on Gorgonia</title><link>https://gorgonia.org/ja/getting-started/</link><description>Recent content in 事始め on Gorgonia</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 29 Oct 2019 17:42:44 +0100</lastBuildDate><atom:link href="https://gorgonia.org/ja/getting-started/index.xml" rel="self" type="application/rss+xml"/><item><title>ドキュメントへの貢献を始める</title><link>https://gorgonia.org/ja/getting-started/contributing-doc/</link><pubDate>Fri, 31 Jan 2020 14:59:03 +0100</pubDate><guid>https://gorgonia.org/ja/getting-started/contributing-doc/</guid><description>Gorgonia のドキュメントへの貢献を始めたい場合は、このページとこのページからリンクされたトピックが開始に役立ちます。Gorgonia のドキュメントとユーザ体験に大きな影響を与える様な開発者であったりテクニカルライターである必要はありません。このページのトピックに必要なのは、GitHub アカウントとウェブブラウザだけです。
+Gorgonia のコードリポジトリへの貢献を開始する方法についてお探しの場合、貢献ガイドラインを参照してください。
+ドキュメントに関する基本事項 Gorgonia のドキュメントは Markdown で記述され、Hugo を使って処理および展開されます。ソースは GitHub の https://github.com/gorgonia/gorgonia.github.io にあります。ほぼ全てのドキュメントソースは /content/ に保存されています。
+issue の登録、コンテンツの編集、他のユーザーからの変更のレビュー、その他全てを GitHub のウェブサイトから行えます。GitHub 組み込みの履歴表示や検索ツールを使用することもできます。
+ドキュメントのレイアウト ドキュメントは What nobody tells you about documentation の記事で説明されているレイアウトに沿っています。
+これは4つのセクションに分かれています。各セクションはリポジトリの content/ ディレクトリのサブディレクトリです。
+チュートリアル チュートリアルとは:
+学習指向であり 新参の方でも始められ レッスンであること 類似: 小さな子供に料理を教える
+リポジトリ内のコンテンツのソース: content/tutorials
+ハウツーガイド ハウツーガイドとは:
+目標指向であり 特定の問題を解決する方法を示しており 一連の手順であること 類似: 料理本のレシピ
+リポジトリ内のコンテンツのソース: content/how-to
+説明 説明とは:
+理解志向であり 説明しており 背景とコンテキストを提供すること 類似: 料理の社会史に関する記事
+リポジトリ内のコンテンツのソース: content/about
+リファレンス 情報指向であり 機構について説明しており 正確で完全であること 類似: 参照百科事典の記事</description></item></channel></rss>

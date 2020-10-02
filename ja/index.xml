@@ -21,7 +21,22 @@ x = gorgonia.</description></item><item><title>簡単なニューラルネット
 データセット このパートではデータセットの読み込みと表示について説明します。ニューラルネットの個所に直接ジャンプしたい場合はスキップして Convolution Neural Net part に進んでください。
 学習およびテストセットは次からダウンロードできます。 Yann LeCun&amp;rsquo;s MNIST website
 train-images-idx3-ubyte.gz: training set images (9912422 bytes) train-labels-idx1-ubyte.gz: training set labels (28881 bytes) t10k-images-idx3-ubyte.gz: test set images (1648877 bytes) t10k-labels-idx1-ubyte.gz: test set labels (4542 bytes) Every image/label starts with a magic number. The encoding/binary package of the standard library of Go makes it easy to read those files.</description></item><item><title>発表</title><link>https://gorgonia.org/ja/reference/present/</link><pubDate>Mon, 04 Nov 2019 09:38:27 +0100</pubDate><guid>https://gorgonia.org/ja/reference/present/</guid><description> このページにはプレゼンテーション内で使用できる資料が含まれています。
-ロゴ Logos logo_g.svg (22 ko) logo_g_square.png (142 ko) logo_horizontal.svg (25 ko) logo_vertical.svg (25 ko)</description></item><item><title>Graphviz (dot) を用いた ExprGraph の描画</title><link>https://gorgonia.org/ja/how-to/dot/</link><pubDate>Sun, 01 Dec 2019 10:14:55 +0100</pubDate><guid>https://gorgonia.org/ja/how-to/dot/</guid><description>Gorgonia の encoding パッケージには、ExprGraph を dot language にマーシャリングする関数が含まれています。
+ロゴ Logos logo_g.svg (22 ko) logo_g_square.png (142 ko) logo_horizontal.svg (25 ko) logo_vertical.svg (25 ko)</description></item><item><title>ドキュメントへの貢献を始める</title><link>https://gorgonia.org/ja/getting-started/contributing-doc/</link><pubDate>Fri, 31 Jan 2020 14:59:03 +0100</pubDate><guid>https://gorgonia.org/ja/getting-started/contributing-doc/</guid><description>Gorgonia のドキュメントへの貢献を始めたい場合は、このページとこのページからリンクされたトピックが開始に役立ちます。Gorgonia のドキュメントとユーザ体験に大きな影響を与える様な開発者であったりテクニカルライターである必要はありません。このページのトピックに必要なのは、GitHub アカウントとウェブブラウザだけです。
+Gorgonia のコードリポジトリへの貢献を開始する方法についてお探しの場合、貢献ガイドラインを参照してください。
+ドキュメントに関する基本事項 Gorgonia のドキュメントは Markdown で記述され、Hugo を使って処理および展開されます。ソースは GitHub の https://github.com/gorgonia/gorgonia.github.io にあります。ほぼ全てのドキュメントソースは /content/ に保存されています。
+issue の登録、コンテンツの編集、他のユーザーからの変更のレビュー、その他全てを GitHub のウェブサイトから行えます。GitHub 組み込みの履歴表示や検索ツールを使用することもできます。
+ドキュメントのレイアウト ドキュメントは What nobody tells you about documentation の記事で説明されているレイアウトに沿っています。
+これは4つのセクションに分かれています。各セクションはリポジトリの content/ ディレクトリのサブディレクトリです。
+チュートリアル チュートリアルとは:
+学習指向であり 新参の方でも始められ レッスンであること 類似: 小さな子供に料理を教える
+リポジトリ内のコンテンツのソース: content/tutorials
+ハウツーガイド ハウツーガイドとは:
+目標指向であり 特定の問題を解決する方法を示しており 一連の手順であること 類似: 料理本のレシピ
+リポジトリ内のコンテンツのソース: content/how-to
+説明 説明とは:
+理解志向であり 説明しており 背景とコンテキストを提供すること 類似: 料理の社会史に関する記事
+リポジトリ内のコンテンツのソース: content/about
+リファレンス 情報指向であり 機構について説明しており 正確で完全であること 類似: 参照百科事典の記事</description></item><item><title>Graphviz (dot) を用いた ExprGraph の描画</title><link>https://gorgonia.org/ja/how-to/dot/</link><pubDate>Sun, 01 Dec 2019 10:14:55 +0100</pubDate><guid>https://gorgonia.org/ja/how-to/dot/</guid><description>Gorgonia の encoding パッケージには、ExprGraph を dot language にマーシャリングする関数が含まれています。
 これにより graphviz プログラムを用いてグラフの png または svg バージョンを生成することができます。
 簡単な方法:
 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;gorgonia.org/gorgonia&amp;#34; &amp;#34;gorgonia.org/gorgonia/encoding/dot&amp;#34; ) func main() { g := gorgonia.NewGraph() var x, y *gorgonia.Node // define the expression x = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName(&amp;#34;x&amp;#34;)) y = gorgonia.NewScalar(g, gorgonia.Float64, gorgonia.WithName(&amp;#34;y&amp;#34;)) gorgonia.Add(x, y) b, err := dot.Marshal(g) if err != nil { log.Fatal(err) } fmt.Println(string(b)) } このプログラムを実行して出力を dot プロセスに送り込むと画像が生成されます。
