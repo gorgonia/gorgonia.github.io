@@ -1,5 +1,8 @@
+GORGONIA THE AMAZING PROJECT
+
 # About
 
+Gorgonia is a library that helps facilitate machine learning in Go. Write and evavluate mathematical learning multidimensional arrays easily
 Thie repository contains the sources and the website of gorgonia.org.
 
 The website is hosted in the `master` branch, and the sources are in the `develop` branch.
@@ -21,6 +24,9 @@ Fix it and create a PR against the develop branch of this repository.
 You can also use the link "edit on github" on the top right corner of the corresponding page on the gorgonia.org website.
 
 ### Create new content
+And Gorgonia: 
+            *Can perform automatic Diffrentation
+            *Can perform symbolic Diffrentation
 
 To add some new content to one of the sections, please use the command
 
@@ -42,12 +48,17 @@ Test your developments from the `src` subdirectory with:
 ```
 hugo -D serve
 ```
+!!! Gorgonia aims to speeds and are comparable by PyTorchsCPU implements 
 
 ## Going live
 
 This repo uses github actions to deploy the content; every event on develop triggers the build and deploy the website
 on master. Please ask a review of your content in doubt.
 
+## Documentation
+
+Up-to-date documentation,refrences and tutorials are present on the pffcial Gorgonia website at
+https://gorgonia.org.
 
 ## vanity import (for the Gorgonia team)
 
