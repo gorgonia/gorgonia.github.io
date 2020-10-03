@@ -248,7 +248,7 @@ df/dz: 3
 
 ## Full Code (Symbolic Differentiation)
 
-```
+
 ```go
 func main() {
 	g := gorgonia.NewGraph()
