@@ -7,17 +7,13 @@ draft: false
 ## Goal
 Consider this simple equation:
 
-$$ f(x,y,z) = ( x + y ) z $$
+$$ f(x,y,z) = ( x + y ) \times z $$
 
 The goal of this article is to show you how Gorgonia can evaluate the gradient $\nabla f$ with its partial derivatives:
 
 $$ \nabla f = [\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}] $$
 
 ### Explanation
-
-To explain this, consider the following equation
-
-$$f = (x + y) * z$$
 
 Using the [chain rule](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/a/chain-rule-review), we can compute the gradient value at each step as illustrated here:
 
