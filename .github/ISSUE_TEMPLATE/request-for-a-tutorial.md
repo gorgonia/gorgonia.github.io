@@ -15,8 +15,10 @@ Please make sure that what you need is a tutorial before submitting the issue. C
 
 ## Are the technical concepts expected in the tutorial covered by `explanation` articles? 
 
-[] yes
-[] no
-[] don't know
+- [ ] yes
+- [ ] no
+- [ ] don't know
 
 If the answer is no, can you consider opening an issue asking for an explanation article please?
+
+_Note for the implementer_: the PR should use the [PR template for tutorial](https://github.com/gorgonia/gorgonia.github.io/blob/develop/.github/PULL_REQUEST_TEMPLATE/pull_request_tutorial_template.md)
