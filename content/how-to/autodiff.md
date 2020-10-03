@@ -110,7 +110,7 @@ if err = m.RunAll(); err != nil {
 
 The values and gradients can now be extracted:
 
-```
+```go
 fmt.Printf("x=%v;y=%v;z=%v\n", x.Value(), y.Value(), z.Value())
 fmt.Printf("f(x,y,z) = %v\n", result.Value())
 
