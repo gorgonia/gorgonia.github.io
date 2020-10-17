@@ -1,16 +1,15 @@
 ---
-title: "Ubiquitous Language and glossary"
+title: "Language dédié et glossaire"
 date: 2020-02-05T16:45:51+01:00
 draft: false
 ---
+Cette page contient diverses définitions et un glossaire vous permettant de comprendre Gorgonia et de communiquer avec l'équipe (via PR ou issues).
 
-This page holds various definitions and glossary that will help you to understand Gorgonia and to communicate with the team (via PR or issues)
+## Tenseurs
 
-## Tensors
-
-* **inner(most) dimension(s)** - given a shape, the inner dimensions tend to the right. e.g. in a shape (2,3,4), the inner dimensions are (3, 4). The innermost dimension is 4.
-* **outer(most) dimension(s)** - given a shape, the outer dimensions tend to the left . e.g. in a shape (2,3,4), the outer dimensions are (2, 3). The outermost dimension is 2.
-* **vector** - a `tensor` of rank-1. e.g. (2), (3) ... Vectors will be written `[...]`
-* **column vector** (or **colvec**) - a `tensor` of rank-2 (i.e. a matrix) with the inner dimension as 1. e.g. (2, 1), (3, 1)...
-* **row vector** - a `tensor` of rank-2 (i.e. a matrix) with the outer dimension as 1. e.g. (1, 2), (1, 3)...
-* **matrix** a `tensor` of rank-2, with arbitrary inner and outer dimensions. e.g (1, 2), (2, 1), (2, 3)... Matrices will be written in full notation in this doc. This includes colvecs and rowvecs.
+* **inner(most) dimension(s)** (dimensions intérieures (maximales))- pour une forme donnée, les dimensions intérieures tendent vers la droite. Par exemple, dans une forme (2,3,4), les dimensions intérieures sont (3, 4). La dimension intérieure maximale est 4.
+* **outer(most) dimension(s)** (dimensions exérieures (maximales))- Pour une forme donnée, les dimensions extérieures tendent vers la gauche. Par exemple, dans une forme (2,3,4), les dimensions extérieures sont (2, 3). La dimension extérieure maximale est 2.
+* **vector** (vecteur) - pour un tenseur de rang 1; par exemple (2), (3) ... les vecteurs vont s'écrire `[...]`
+* **column vector** (or **colvec**) (colonnes de vecteurs) -un tenseur de rang 2 (par exemple une matrice) avec des dimensions intérieures comme 1, par exemple (2, 1), (3, 1)...
+* **row vector** (vecteur de ligne) - un tenseur de rang 2 (par exemple une matrice) avec la dimension extérieure 1; par exemple (1, 2), (1, 3)...
+* **matrix** (matrice) un tenseur de rang -2, avec des dimensions intérieures et extérieures aléatoires; par exemple (1, 2), (2, 1), (2, 3)... les matrices vont être notées en écriture intégrale dans ce doc. Ceci inclut les vecteurs colonnes et les vecteurs lignes.
