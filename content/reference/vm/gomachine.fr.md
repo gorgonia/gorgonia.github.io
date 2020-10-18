@@ -6,9 +6,9 @@ draft: false
 ---
 Cette page explique la tuyauterie à l'intérieur de la Go Machine.
 
-GoMachine est une fonctionnalité expérimentale contenue dans [`xvm` package](https://github.com/gorgonia/gorgonia/tree/master/x/vm). 
-L'API du package et son nom devraient changer.
-Ce document s'appuie sur [commit 7538ab3](https://github.com/gorgonia/gorgonia/tree/7538ab3b58ceae68f162c17d19052324bf1dc587)
+GoMachine est une fonctionnalité expérimentale contenue dans le [package `xvm`](https://github.com/gorgonia/gorgonia/tree/master/x/vm). 
+L'API du package et son nom pourraient changer.
+Ce document s'appuie sur le [commit 7538ab3](https://github.com/gorgonia/gorgonia/tree/7538ab3b58ceae68f162c17d19052324bf1dc587)
 
 ## Les états des noeuds
 
@@ -18,10 +18,10 @@ Comme expliqué dans la vidéo [_Lexical Scanning in Go_](https://www.youtube.co
 
 - un état représente où nous sommes
 - une action représente ce que nous faisons
--les actions activent un nouvel état
+- les actions activent un nouvel état
 
 
-A ce jour, la GoMachine attend un noeud pour être dans ces divers états:
+A ce jour, la GoMachine attend d'un noeud d'être dans ces divers états:
 
 - _waiting for input_
 - _emitting output_
@@ -31,7 +31,7 @@ Si un noeud contient un opérateur, il peut y avoir un nouvel état:
 - _computing_
 
 {{% notice info%}}
-Ultérieurement, un nouvel état va éventuellement être ajouté quand la différenciation automatique sera implémentée: _computing gradient_ 
+Ultérieurement, un nouvel état va être ajouté quand la différenciation automatique sera implémentée
 {{%/notice%}}
 Ceci amène à ce graphique des différents états d'un noeud:
 
@@ -59,13 +59,13 @@ type node struct {
 }
 ```
 
-On définit un type `stateFn` qui représente une action pour éxécuter un noeud (`*node`) dans un contexte spécifique (`context`) et entraine un nouvel état. Ce type est une `func`:
+On définit un type `stateFn` qui représente une action pour éxécuter un noeud (`*node`) dans un contexte spécifique (`context`) et entraine un nouvel état. L'objet  `stateFn` est de type`func`:
 
 ```go
 type stateFn func(context.Context, *node) stateFn
 ```
 
-_Note_: C'est la responsabilité de chaque fonction d'état de maintenir le mécanisme d'annulation du contexte. cela signifie que si un signal d'annulation est reçu, le noeud devrait renvoyer à l'état final. pour faire simple:
+_Note_: C'est la responsabilité de chaque fonction d'état de maintenir le mécanisme d'annulation du contexte. Cela signifie que si un signal d'annulation est reçu, le noeud devrait renvoyer à l'état final. pour faire simple:
 
 ```go
 func mystate(ctx context.Context, *node) stateFn { 
@@ -79,7 +79,7 @@ func mystate(ctx context.Context, *node) stateFn {
 }
 ```
 
-on définit 4 fonctions de type `stateFn` pour implémenter les actions requises par le noeud:
+on définit 4 fonctions de type `stateFn` qui vont implémenter les actions requises par les opérations portées par les noeuds:
 
 ```go
 func defaultState(context.Context, *node) stateFn { ... }
@@ -106,7 +106,7 @@ func (n *node) Compute(ctx context.Context) error {
 	return n.err
 }
 ```
-_Note_: le noeud (`*node`) stocke une erreur qui devrait être écrite par une stateFn. Cette fonction d'état indique la raison pour laquelle la machine d'état a été cassée (par exemple, si une erreur survient durant le calcul, cette erreur contient la raison.)
+_Note_: le noeud (`*node`) stocke une erreur qui devrait être écrite par une `stateFn`. Cette fonction d'état indique la raison pour laquelle la machine d'état a été cassée (par exemple, si une erreur survient durant le calcul, cette erreur contient la raison.)
 
 Puis chaque noeud (`*node`) est déclenché dans sa propre Goroutine par la machine.
 
@@ -122,15 +122,13 @@ Par exemple, prenons un simple calculateur qui calcule `a+b`.
 - $a$ attend une valeur
 - $b$ attend une valeur
 
-Quand on envoie une valeur à $a$
-
-$+$ est notifié de l'événement ($a$ possède sa propre valeur); il reçoit et stocke en interne la valeur
+Quand on envoie une valeur à $a$, $+$ est notifié de l'événement ($a$ possède sa propre valeur); il reçoit et stocke en interne la valeur
 
 Quand on envoie une valeur $b$, $+$ est informé, et reçoit la valeur. Son état change alors en `compute`.
 
 Une fois compilé, le $+$ envoie le résultat à quiconque est intéressé par son usage.
 
-En Go, envoyer et recevoir des valeurs, et programmer des événements nécessitent d'être implémentés avec des canaux.
+En Go, envoyer et recevoir des valeurs, et programmer des événements nécessitent d'être implémentés avec des canaux (channels).
 
 La structure du noyeau possède 2 canaux, un pour recevoir les entrées (`inputC`), et un pour émettre les sorties (`outputC`):
 
@@ -143,7 +141,7 @@ type node struct {
 }
 ```
 
-_Note_: La structure `ioValue` est expliquée plus loin dans ce document; pour le moment, considérons `ioValue` = `gorgonia.Value`
+_Note_: La structure `ioValue` est expliquée plus loin dans ce document; pour le moment, considérons que `ioValue` = `gorgonia.Value`
 
 ## HUB de communication
 
@@ -213,16 +211,15 @@ Chaque noeud qui fournit une sortie via `outputC` est un producteur, et tous les
 
 Chaque noeud qui attend une entrée via son`inputC` est un abonné. Les producteurs sont les noeuds atteints par ce premier noeud dans le `*ExprGraph`
 
-
 #### Fusionner et diffuser
 
-Les producteurs diffusent leurs données à l'abonné par appel. 
+Les producteurs diffusent leurs données à l'abonné en appelant la fonction `broadcast`. 
 
 ```go
 func broadcast(ctx context.Context, globalWG *sync.WaitGroup, ch <-chan gorgonia.Value, cs ...chan<- gorgonia.Value) { ... } 
 ```
 
-Les abonnés fusionnent les résultats issus des producteurs par appel:
+Les abonnés fusionnent les résultats issus des producteurs par appel à la fonction `merge`
 
 ```go
 func merge(ctx context.Context, globalWG *sync.WaitGroup, out chan<- ioValue, cs ...<-chan gorgonia.Value) { ... }
@@ -243,7 +240,7 @@ type pubsub struct {
 
 `pubsub` est chargé de mettre en place le réseau de canaux.
 
-Quand une méthode `run(context.Context)` déclenche le souscrire ( `broadcast`) et publier (`merge`) pour tous les éléments:
+Une méthode `run(context.Context)` déclenche la diffusion ( `broadcast`) et fusion (`merge`) de tous les éléments:
 
 ```go
 func (p *pubsub) run(ctx context.Context) (context.CancelFunc, *sync.WaitGroup) { ... }
@@ -254,7 +251,7 @@ Cett méthode retourne un  `context.CancelFunc` et un `sync.WaitGroup` qui vont 
 #### A propos de `ioValue`
 
 L'abonné a un seul canal d'entrée; la valeur de sortie peut être envoyée dans n'importe quel ordre. 
-La fonction "merge"(fusion) de l'abonné traque l'ordre des abonnés, inclut la valeur dans la structure ioValue, et ajoute la position de l'opérateur qui a émis cette valeur: 
+La fonction `merge` de l'abonné traque l'ordre des abonnés, inclut la valeur dans la structure ioValue, et ajoute la position de l'opérateur qui a émis cette valeur: 
 
 ```go
 type ioValue struct {
@@ -268,7 +265,7 @@ type ioValue struct {
 
 La `Machine` est la seule structure exportée du package.
 
-C'est un suport pour les noeuds et pubsub.
+C'est un support pour les noeuds et pubsub.
 
 ```go
 type Machine struct {
@@ -277,16 +274,16 @@ type Machine struct {
 }
 ```
 
-### Creating a machine
+### Création de la machine
 
-Une machine est créée à partir de `*ExprGraph` par appel 
+Une machine est créée à partir de `*ExprGraph` en appelant la fonction: 
 
 ```go
 func NewMachine(g *gorgonia.ExprGraph) *Machine { ... }
 ```
 
 De manière sous-jascente, il analyse le graphique et génère un noeud (`*node`) pour chaque noeud gorgonia (`*gorgonia.Node`). 
-Si un noeud porte une opération "Op" (= un objet qui implémente une méthode `Do(... Value) Value` ), un pointeur sur l'opération est ajouté à la structure.
+Si un noeud porte une opération `Op` (= un objet qui implémente une méthode `Do(... Value) Value` ), un pointeur sur l'opération est ajouté à la structure.
 
 {{%notice info%}}
 Pour faire la transition, le package déclare une interface `Doer`.
@@ -298,17 +295,18 @@ Deux cas particuliers sont pris en charge:
 - Le noeud de plus haut niveau du graphe `*ExprGraph` contient`outputC = nil`
 - les derniers noeuds du `*ExprGraph` présentent `inputC = nil`
 
- puis la nouvelle machine(`NewMachine`) fait appel aus méthodes de création de réseau pour crééer les éléments`*pubsub`.
+ puis la nouvelle machine(`NewMachine`) fait appel aux méthodes de création de réseau pour créer les éléments `*pubsub`.
 
 ### Exécuter la machine
 
 Un appel à la méthode`Run` de la machine déclenche le calcul.
 L'appel à cette fonction est bloqué.
 Il renvoie une erreur et stoppe le process si:
-- si tous les noeuds ont atteint leur état final
-- si l'état d'éxécution d'un noeud renvoie une erreur
 
-En cas d'erreur, un signal d'annulation est automatiquement envoyé à l'infrastructure `*pubsub` pour éviter les fuites.
+- tous les noeuds ont atteint leur état final
+- ou l'état d'éxécution d'un noeud renvoie une erreur
+
+En cas d'erreur, un signal d'annulation est automatiquement envoyé à l'infrastructure `*pubsub` pour éviter les fuites mémoire.
 
 ### Fermer la machine
 
@@ -330,7 +328,7 @@ fmt.Println(machine.GetResult(add.ID()))
 
 ## Exemple
 
-Voici un exemple trivial qui calcule 2 float 32
+Voici un exemple trivial qui effectue un calcul sur des `float32`
 
 ```go
 func main(){
@@ -356,7 +354,7 @@ func main(){
 }
 ```
 
-prints 
+affiche 
 
 ```shell
 42
