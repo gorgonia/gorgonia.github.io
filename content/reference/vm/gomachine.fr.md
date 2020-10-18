@@ -1,42 +1,39 @@
 ---
 title: "Go Machine"
-description: "This page describes the plumbing inside the Go Machine"
+description: "Cette page explique la tuyauterie à l'intérieur de la Go Machine"
 date: 2019-10-29T19:50:15+01:00
 draft: false
 ---
+Cette page explique la tuyauterie à l'intérieur de la Go Machine.
 
-This page explains the plumbing inside the GoMachine.
+GoMachine est une fonctionnalité expérimentale contenue dans [`xvm` package](https://github.com/gorgonia/gorgonia/tree/master/x/vm). 
+L'API du package et son nom devraient changer.
+Ce document s'appuie sur [commit 7538ab3](https://github.com/gorgonia/gorgonia/tree/7538ab3b58ceae68f162c17d19052324bf1dc587)
 
-GoMachine is an experimental feature hold in the [`xvm` package](https://github.com/gorgonia/gorgonia/tree/master/x/vm). 
-The API of the package and its name may change.
+## Les états des noeuds
 
-This document is based on [commit 7538ab3](https://github.com/gorgonia/gorgonia/tree/7538ab3b58ceae68f162c17d19052324bf1dc587)
+Le principe repose sur les états des noeuds.
 
-## The states of the nodes
+Comme expliqué dans la vidéo [_Lexical Scanning in Go_](https://www.youtube.com/watch?v=HxaD_trXwRE):
 
-The principle relies on the state of the nodes.
-
-As explained in [_Lexical Scanning in Go_](https://www.youtube.com/watch?v=HxaD_trXwRE):
-
-- a state represents where we are
-- an action represents what we do
-- actions result in a new state
+- un état représente où nous sommes
+- une action représente ce que nous faisons
+-les actions activent un nouvel état
 
 
-As of today, the GoMachine expects a node to be in those possible states:
+A ce jour, la GoMachine attend un noeud pour être dans ces divers états:
 
 - _waiting for input_
 - _emitting output_
 
-If a node is carrying an operator may have an extra state:
+Si un noeud contient un opérateur, il peut y avoir un nouvel état: 
 
 - _computing_
 
 {{% notice info%}}
-Later, a new state will eventually be added when implementing automatic differentiation: _computing gradient_ 
+Ultérieurement, un nouvel état va éventuellement être ajouté quand la différenciation automatique sera implémentée: _computing gradient_ 
 {{%/notice%}}
-
-This leads to this state graph of the possible states of a node:
+Ceci amène à ce graphique des différents états d'un noeud:
 
 {{<mermaid align="left">}}
 graph TB;
@@ -52,9 +49,9 @@ graph TB;
     D --> F(end)
 {{< /mermaid >}}
 
-### Implementation
+### Implémentation
 
-The `node` is a private structure:
+Le noeud (`node`) est une structure privée:
 
 ```go
 type node struct {
@@ -62,13 +59,13 @@ type node struct {
 }
 ```
 
-We define a type `stateFn` that represents an action to perform on a `*node` in a specific `context`, and returns a new state. This type is a `func`:
+On définit un type `stateFn` qui représente une action pour éxécuter un noeud (`*node`) dans un contexte spécifique (`context`) et entraine un nouvel état. Ce type est une `func`:
 
 ```go
 type stateFn func(context.Context, *node) stateFn
 ```
 
-_Note_: It is the responsibility of every state function to handle context cancelation mechanism. This means that if a cancelation signal is received, the node should return the end state. For simplicity:
+_Note_: C'est la responsabilité de chaque fonction d'état de maintenir le mécanisme d'annulation du contexte. cela signifie que si un signal d'annulation est reçu, le noeud devrait renvoyer à l'état final. pour faire simple:
 
 ```go
 func mystate(ctx context.Context, *node) stateFn { 
@@ -82,7 +79,7 @@ func mystate(ctx context.Context, *node) stateFn {
 }
 ```
 
-We define four functions of type `stateFn` to implement the actions required by the node:
+on définit 4 fonctions de type `stateFn` pour implémenterles actions requises par le noeud:
 
 ```go
 func defaultState(context.Context, *node) stateFn { ... }
@@ -94,12 +91,12 @@ func computeFwd(context.Context, *node) stateFn { ... }
 func emitOutput(context.Context, *node) stateFn { ... }
 ```
 
-_Note_: the `end` state is `nil` (the zero value of the `stateFn`)
+_Note_: Le statut final est `nil` (la valeur nulle de `stateFn`)
 
-### Running the state machine
+### Exécuter la machine d'état
 
-Each node is a state machine.
-To run it, we set a method `run` that takes a context as an argument.
+Chauqe noeud est une machine d'état.
+Pour l'éxécuter, on fixe une méthode `run` qui utilise le contexte comme argument.
 
 ```go
 func (n *node) Compute(ctx context.Context) error {
@@ -109,33 +106,33 @@ func (n *node) Compute(ctx context.Context) error {
 	return n.err
 }
 ```
-_Note_: the `*node` stores an error that should be set by a stateFn that indicates the reason why it broke the state machine (for example, if an error occurs during the computation, this error contains the reason)
+_Note_: le noeud (`*node`) stocke une erreur qui devrait être écrite par une stateFn. Cette fonction d'état indique la raison pour laquelle la machine d'état a été cassée (par exemple, si une erreur survient durant le calcul, cette erreur contient la raison.)
 
-Then every `*node` is triggered in its own goroutine by the machine.
+Puis chaque noeud (`*node`) est déclenché dans sa propre Goroutine par la machine.
 
-### State modification on event
+### Modification d'état dans un événement
 
-We use the paradigm of reactive programming to switch from a state to another.
+On utilise le paradigme de la programmation réactive pour passer d'un état à un autre.
 
-A change in the `*node` structure triggers an action that induces the change of state.
+Un changement dans la stucture du noeud (`*node`) déclenche un eaction qui va induire un changement d'état.
 
-For example, let's take a simple calculator that computes `a+b`.
+Par exemple, prenons un simplscalculateur qui calcule `a+b`.
 
-- $+$ is waiting for two inputs values to do the sum $a$ and $b$
-- $a$ is waiting for a value
-- $b$ is waiting for a value
+- $+$ attend 2 valeurs d'entrée pour faire la somme de $a$ et $b$
+- $a$ attend une valeur
+- $b$ attend une valeur
 
-When we _send_ a value to $a$
+Quand on envoie une valeur à $a$
 
-$+$ is notified of this event ($a$ owns a value); it receives and stores the value internally. 
+$+$ est notifié de l'événement ($a$ possède sa propre valeur); il reçoit et stocke en interne la valeur
 
-Then we _send_ a value to $b$, $+$ is notified, and _receives_  the value. Then its state changes to `compute`.
+Quand on envoie une valeur $b$, $+$ est informé, et reçoit la valeur. Son état change alors en `compute`.
 
-Once computed, the $+$ _sends_ the result to whoever is interested in using it.
+Une fois compilé, le $+$ envoie le résultat à quiconque est intéressé par son usage.
 
-In Go sending and receiving values, and events programming are implemented with channels.
+En Go, envoyer et recevoir des valeurs, et programmer des événements nécessitent d'être implémentés avec des canaux.
 
-The node structure owns two channels, one to receive the input (`inputC`), and one to emit the output (`outputC`):
+La structure du noyeau possède 2 canaux, un pour recevoir les entrées (`inputC`), et un pour émettre les sorties (`outputC`):
 
 ```go
 type node struct {
@@ -146,15 +143,15 @@ type node struct {
 }
 ```
 
-_Note_: the `ioValue` structure is explained later in this doc; for now, consider `ioValue` = `gorgonia.Value`
+_Note_: La structure `ioValue` est expliquée plus loin dans ce document; pour le moment, considérons `ioValue` = `gorgonia.Value`
 
-## Communication HUB
+## HUB de communication
 
-Now we have all nodes running in goroutines; we need to wire them together actually to compute formulae.
+Désormais, tous les noeuds tournent dans des goroutines; on doit les cabler entre elles pour calculer une formule.
 
-For example, in: $ a\times x+b$, we need to send the result of $a\times x$ into the node carrying the _addition_ operator.
+Par exemple, dans: $ a\times x+b$, on doit envoyer le résultat de $a\times x$ au noeud qui porte l'opération addition.
 
-which is roughly:
+ce qui donne à peu près:
 ```go
 var aTimesX *node{op: mul}
 var aTimesXPlusB *node{op: sum}
