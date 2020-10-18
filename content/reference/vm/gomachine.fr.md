@@ -79,7 +79,7 @@ func mystate(ctx context.Context, *node) stateFn {
 }
 ```
 
-on définit 4 fonctions de type `stateFn` pour implémenterles actions requises par le noeud:
+on définit 4 fonctions de type `stateFn` pour implémenter les actions requises par le noeud:
 
 ```go
 func defaultState(context.Context, *node) stateFn { ... }
@@ -95,7 +95,7 @@ _Note_: Le statut final est `nil` (la valeur nulle de `stateFn`)
 
 ### Exécuter la machine d'état
 
-Chauqe noeud est une machine d'état.
+Chaque noeud est une machine d'état.
 Pour l'éxécuter, on fixe une méthode `run` qui utilise le contexte comme argument.
 
 ```go
@@ -114,9 +114,9 @@ Puis chaque noeud (`*node`) est déclenché dans sa propre Goroutine par la mach
 
 On utilise le paradigme de la programmation réactive pour passer d'un état à un autre.
 
-Un changement dans la stucture du noeud (`*node`) déclenche un eaction qui va induire un changement d'état.
+Un changement dans la stucture du noeud (`*node`) déclenche une action qui va induire un changement d'état.
 
-Par exemple, prenons un simplscalculateur qui calcule `a+b`.
+Par exemple, prenons un simple calculateur qui calcule `a+b`.
 
 - $+$ attend 2 valeurs d'entrée pour faire la somme de $a$ et $b$
 - $a$ attend une valeur
@@ -164,9 +164,9 @@ aTimesXPlusB.inputC <- <- aTimesX.outputC
 aTimesXPlusB.inputC <- <- b
 ```
 
-The problem is that a channel is not a "topic" and it does not handle subscriptions natively. The first consumer takes a value, and drain the channel.
+Le problème est que le canal n'est pas un "topic" et il ne gère pas les abonnements de manière native. Le premier consommateur prend une valeur, et vide le canal.
 
-Therefore if we take this equation $(a + b) \times c + (a + b) \times d$, the implementation would not work:
+Donc si on prend l'équation $(a + b) \times c + (a + b) \times d$, l'implémentation ne devrait pas fonctionner:
 
 {{< highlight go "linenos=table,hl_lines=9 12" >}}
 var aPlusB *node{op: add}
@@ -183,17 +183,17 @@ aPlusBTimesCPlusAPlusB <- <- aPlusBTimesC.outputC
 aPlusBTimesCPlusAPlusB <- <- aPlusB.outputC // Deadlock
 {{< / highlight >}}
 
-This will provide a deadlock because `aPlusB.outputC` is emptied at line 9 and therefore line 12 will never receive value anymore.
+Ceci devrait provoquer une impasse car `aPlusB.outputC` est vide à la ligne 9 et donc la ligne 12 ne recevra plus jamais de valeur.
 
-The solution is to use temporary channels and a broadcast mechanism as described in the article [
+La solution est d'utiliser des canaux temporaires et un mécanisme diffusé comme décrit dans l'article [
 Go Concurrency Patterns: Pipelines and cancellation](https://blog.golang.org/pipelines#TOC_4.).
 
-### Publish / subscribe
+### Publier / souscrire
 
-A node is publishing some content to some subscribers.
-A node is also subscribing to content sent by publishers.
+Un noeud publie du contenu pour des abonnés.
+Le noeud inscrit aussi du contenu pour des producteurs.
 
-We setup two structures:
+On associe 2 structures:
 
 ```go
 type publisher struct {
@@ -209,30 +209,30 @@ type subscriber struct {
 }
 ```
 
-Each node providing output via the `outputC` is a publisher, and all the nodes in the graph reaching this node are its subscriber**s**. This defines a `publisher` object. The ID of the object is the ID of the node providing its output.
+Chaque noeud qui fournit une sortie via `outputC` est un producteur, et tous les noeuds du graphique qui rejoignent ce premier noeud sont ses abonnés. Ceci définit un objet producteur. L'identifiant de l'objet est l'identifiant du noeud qui envoie sa sortie (output).
 
-Each node expecting inputs via its `inputC` is a subscriber. The publisher**s** are the node reached by this node in the `*ExprGraph`
+Chaque noeud qui attend une entrée via son`inputC` est un abonné. Les producteurs sont les noeuds atteints par ce premier noeud dans le `*ExprGraph`
 
 
-#### Merge and broadcast
+#### Fusionner et diffuser
 
-publishers are broadcasting their data to the subscriber by calling 
+Les producteurs diffusent leurs données à l'abonné par appel. 
 
 ```go
 func broadcast(ctx context.Context, globalWG *sync.WaitGroup, ch <-chan gorgonia.Value, cs ...chan<- gorgonia.Value) { ... } 
 ```
 
-subscribers are merging the results from the publishers by calling:
+Les abonnés fusionnent les résultats issus des producteurs par appel:
 
 ```go
 func merge(ctx context.Context, globalWG *sync.WaitGroup, out chan<- ioValue, cs ...<-chan gorgonia.Value) { ... }
 ```
 
-_Note_: both functions are handling context cancelation
+_Note_:les 2 fonctions gèrent l'annulation du contexte
 
 ### pubsub
 
-To wire all the publishers and subscribers, we use a top-level structure: `pubsub`
+Pour cabler les producteurs et les abonnés, on utilise la structure de plus haut niveau: `pubsub`
 
 ```go
 type pubsub struct {
@@ -241,20 +241,20 @@ type pubsub struct {
 }
 ```
 
-`pubsub` is in charge of setting up the network of channels.
+`pubsub` est chargé de mettre en place le réseau de canaux.
 
-Then a `run(context.Context)` method is triggering the `broadcast` and `merge` for all elements:
+Quand une méthode `run(context.Context)` déclenche le souscrire ( `broadcast`) et publier (`merge`) pour tous les éléments:
 
 ```go
 func (p *pubsub) run(ctx context.Context) (context.CancelFunc, *sync.WaitGroup) { ... }
 ```
 
-This method returns a `context.CancelFunc` and a `sync.WaitGroup` that will be down to zero when all pubsubs are settled after a cancelation. 
+Cett méthode retourne un  `context.CancelFunc` et un `sync.WaitGroup` qui vont tomber à 0 quand tous les pubsubs sont colonisés après une annulation. 
 
-#### about `ioValue`
+#### A propos de `ioValue`
 
-The subscriber has a single input channel; the input values can be sent in any order. 
-The subscriber's merge function tracks the order of the subscribers, wraps the value into the ioValue structure, and adds the position of the operator emitting the value:
+L'abonné a un seul canal d'entrée; la valeur de sortie peut être envoyée dans n'importe quel ordre. 
+La fonction "merge"(fusion) de l'abonné traque l'ordre des abonnés, inclut la valeur dans la structure ioValue, et ajoute la position de l'opérateur qui a émis cette valeur: 
 
 ```go
 type ioValue struct {
@@ -264,11 +264,11 @@ type ioValue struct {
 ```
 
 
-## The machine
+## La machine
 
-The `Machine` is the only exported structure of the package.
+La `Machine` est la seule structure exportée du package.
 
-It is a support for nodes and pubsub.
+C'est un suport pour les noeuds et pubsub.
 
 ```go
 type Machine struct {
@@ -279,47 +279,47 @@ type Machine struct {
 
 ### Creating a machine
 
-A machine is created from an `*ExprGraph` by calling 
+Une machine est créée à partir de `*ExprGraph` par appel 
 
 ```go
 func NewMachine(g *gorgonia.ExprGraph) *Machine { ... }
 ```
 
-Under the hood, it parses the graph and generates a `*node` for each `*gorgonia.Node`. 
-If a node carries an Op (= an object that implements a `Do(... Value) Value` method), a pointer to the Op is added to the structure.
+De manière sous-jascente, il analyse le graphique et génère un noeud (`*node`) pour chaque noeud gorgonia (`*gorgonia.Node`). 
+Si un noeud porte une opération "Op" (= un objet qui implémente une méthode `Do(... Value) Value` ), un pointeur sur l'opération est ajouté à la structure.
 
 {{%notice info%}}
-For transitioning, the package declares a `Doer` interface.
-This interface is fulfilled by the `*gorgonia.Node` structure.
+Pour faire la transition, le package déclare une interface `Doer`.
+Cette interface est validée par la strucure `*gorgonia.Node`.
 {{%/notice%}}
 
-Two individual cases are handled:
+Deux cas particuliers sont pris en charge:
 
-- the top-level node of the `*ExprGraph` have `outputC = nil`
-- the bottom nodes of the `*ExprGraph` have `inputC = nil`
+- Le noeud de plus haut niveau du graphe `*ExprGraph` contient`outputC = nil`
+- les derniers noeuds du `*ExprGraph` présentent `inputC = nil`
 
-Then the `NewMachine` calls the `createNetwork` methods to create the `*pubsub` elements.
+ puis la nouvelle machine(`NewMachine`) fait appel aus méthodes de création de réseau pour crééer les éléments`*pubsub`.
 
-### Running the machine
+### Exécuter la machine
 
-A call to the `Run` method of the Machine triggers the computation.
-The call to this function is blocking.
-It returns an error and stops the process if:
-- all the nodes have reached their final states
-- one node's execution state returns an error
+Un appel à la méthode`Run` de la machine déclenche le calcul.
+L'appel à cette fonction est bloqué.
+Il renvoie une erreur et stoppe le process si:
+- si tous les noeuds ont atteint leur état final
+- si l'état d'éxécution d'un noeud renvoie une erreur
 
-In case of error, a cancel signal is automatically sent to the `*pubsub` infrastructure to avoid leakage.
+En cas d'erreur, un signal d'annulation est automatiquement envoyé à l'infrastructure `*pubsub` pour éviter les fuites.
 
-### Closing the machine
+### Fermer la machine
 
-After the computation, it is safe to call `Close` to avoid a memory leak.
-`Close()` closes all the channels hold by the `*node` and the `*pubsub`
+Après le calcul, il est sécuritaire d'appeler `Close` pour éviter une fuite mémoire.
+`Close()` ferme tous les canaux tenus par le noeud `*node` et le `*pubsub`
 
-## Misc
+## Divers
 
-It is important to notice that the machine is independent of the `*ExprGraph`. Therefore the values held by the `*gorgonia.Node` are not updated.
+Il est important de remarquer que la machine est indépendante du `*ExprGraph`. Donc les valeurs contenues par le `*gorgonia.Node` ne sont pas mises à jour.
 
-To access the data, you must call the `GetResult` method of the machine. This method takes a node ID as input (`*node` and `*gorgonia.Node` have the same IDs)
+Pour accéder aux données, on doit appeler la méthode `GetResult` de la machine. cette méthode utilise l'identifiant d'un noeud comme entrée  ( le noeud (`*node`) et noeud gorgonia ( `*gorgonia.Node`)  ont les mêmes identifiants)
 
 Ex:
 
@@ -328,9 +328,9 @@ var add, err := gorgonia.Add(a,b)
 fmt.Println(machine.GetResult(add.ID()))
 ```
 
-## Example
+## Exemple
 
-This is a trivial example that computes two float 32
+Voici un exemple trivial qui calcule 2 float 32
 
 ```go
 func main(){
