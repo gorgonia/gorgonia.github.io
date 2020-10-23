@@ -1,20 +1,20 @@
 ---
-title: "Save Weights"
+title: "Sauver les matrices de poids"
 date: 2019-10-29T20:07:16+01:00
 draft: false
 ---
 
-## Goal
+## But
 
-The goal of this howto is to describe a way to save the [values](/reference/value) of the nodes and to restore them.
+Le but de cet article est de décrire la façon de sauvegarder les valeurs des noeuds [values](/reference/value) et de les restaurer.
 
 ## Implementation
 
-The best thing you can do right now is to save the value of the corresponding nodes and restore them.
+La meilleure chose à faire de suite est de de sauvegarder la valeur des noeuds correspondants et de les restaurer.
 
-The tensors are fulfilling the `GobEncode` and `GobDecode` interface and this is the best option. You can also save the backend as a slice of elements but this is a little bit trickier.
+Les tenseurs remplissent les contrats d'interface `GobEncode` et `GobDecode`, ce qui représente la meilleure option. On peut aussi sauvegarder le tableau d'éléments sous-jascent au tenseur, mais c'est un peu plus complexe.
 
-Here is a sample code to do so (it is not optimized at all, feel free to amend it):
+Voici un simple code à réaliser de cette façon (il n'est pas du tout optimisé, n'hésitez pas à le modifier):
 
 ```go
 package main
@@ -123,7 +123,7 @@ func save(nodes []*gorgonia.Node) error {
 }
 ```
 
-which gives:
+Qui donne:
 
 ```text
 $  go run main.go
