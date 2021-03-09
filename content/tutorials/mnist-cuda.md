@@ -16,7 +16,7 @@ The CUDA binding relies on CGO and the official CUDA toolkit. You can install it
 
 The installation of the CUDA toolkit is out-of-scope of this tutorial. But you must ensure that:
 
-1. [CUDA toolkit](https://developer.nvidia.com/CUDA-toolkit) is installed (version 10 has been tested successfully). Installing this installs the `nvcc` compileri, which is required to run your code with CUDA.
+1. [CUDA toolkit](https://developer.nvidia.com/CUDA-toolkit) is installed (version 10 has been tested successfully). Installing this installs the `nvcc` compiler, which is required to run your code with CUDA.
 2. you run the [post-installation steps](http://docs.nvidia.com/CUDA/CUDA-installation-guide-linux/index.html#post-installation-actions)
 
 ### Using AWS EC2
