@@ -44,7 +44,7 @@ df := dataframe.ReadCSV(f)
 `df` is a [`DataFrame`](https://godoc.org/github.com/kniren/gota/dataframe#DataFrame) that contains all the data present in the file.
 
 {{% notice info %}}
-gota uses te first line of the CSV to reference the columns in the dataframe
+gota uses the first line of the CSV to reference the columns in the dataframe
 {{% /notice %}}
 
 Let's remove the species column:
