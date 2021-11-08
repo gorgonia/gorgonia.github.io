@@ -59,11 +59,7 @@ func main() {
 
 running the program should print the result: `4.5`
 
-<script src="https://katacoda.com/embed.js"></script>
-<div id="katacoda-scenario-1"
-         data-katacoda-id="ysaito/courses/gorgonia-tutorials/gorgonia-tutorial-01"
-         data-katacoda-color="004d7f"
-         style="height: 600px; padding-top: 20px; width:auto;"></div>
+You can run this script on [Katacoda](https://www.katacoda.com/ysaito/courses/gorgonia-tutorials/gorgonia-tutorial-01)
 
 For further explanation, please see the [Hello World tutorial](/tutorials/hello-world).
 

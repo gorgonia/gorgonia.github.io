@@ -83,16 +83,9 @@ $cost = \dfrac{1}{m} \sum_{i=1}^m(X^{(i)}\cdot\Theta-Y^{(i)})^2$
 勾配降下法を使用してコストを下げ $\Theta$ の正確な値を取得します
 
 {{% notice info %}}
-<<<<<<< HEAD
 正規方程式での値として $\theta$ は取得することができます。
 $$ \theta = \left( X^TX \right)^{-1}X^Ty $$
 gonumでの基本的な実装についてはこの[gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go)を参照してください。
-=======
-It is possible to get the exact $\theta$ values with the Normal Equation
-$$ \theta = \left( X^TX \right)^{-1}X^TY $$
-See this [gist](https://gist.github.com/owulveryck/19a5ba9553ff8209b3b4227b5325041b#file-normal-go) for
-a basic implementation with gonum.
->>>>>>> 821b169 (fix: Y is a vector)
 {{% /notice %}}
 
 
