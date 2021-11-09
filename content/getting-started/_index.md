@@ -59,7 +59,7 @@ func main() {
 
 running the program should print the result: `4.5`
 
-youu can run this script on [Katacoda](https://www.katacoda.com/ysaito/courses/gorgonia-tutorials/gorgonia-tutorial-01)
+you can run this script on [Katacoda](https://www.katacoda.com/ysaito/courses/gorgonia-tutorials/gorgonia-tutorial-01)
 
 For further explanation, please see the [Hello World tutorial](/tutorials/hello-world).
 
