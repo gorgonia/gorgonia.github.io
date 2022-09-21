@@ -59,5 +59,17 @@ func main() {
 
 running the program should print the result: `4.5`
 
+If instead you see the following error message:
+
+```
+panic: Something in this program imports go4.org/unsafe/assume-no-moving-gc to declare that it assumes a non-moving garbage collector, but your version of go4.org/unsafe/assume-no-moving-gc hasn't been updated to assert that it's safe against the go1.19 runtime. If you want to risk it, run with environment variable ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.19 set. Notably, if go1.19 adds a moving garbage collector, this program is unsafe to use.
+```
+
+then do 
+
+`export ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.19 ` 
+
+and then run the program again.
+
 For further explanation, please see the [Hello World tutorial](/tutorials/hello-world).
 
