@@ -13,7 +13,7 @@ In this section you will see how Gorgonia can be used to solve various problems.
 Those how-to guides:
 
 * are goal-oriented
-* shows how to solve a specific problem
+* show how to solve a specific problem
 * are made of understandable steps
 
 Analogy: a recipe in a cookery book
