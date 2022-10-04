@@ -12,7 +12,7 @@ Dans cette section, vous verrez comment Gorgonia peut être utilisé pour résou
 
 Ces guides pratiques :
 
-* sont orientés sont droit au but
+* sont droit au but
 * expliquent comment résoudre un problème précis
 * se composent d'étapes compréhensibles
 
