@@ -10,9 +10,9 @@ draft: false
 
 _Note_: this article takes its inspiration from [this blog post](http://gopherdata.io/post/deeplearning_in_go_part_1/)
 
-Like most deep learning libraries such as Tensorflow or Theano, Gorgonia rely on the concept that equations are representable by graphs.
+Like most deep learning libraries such as Tensorflow or Theano, Gorgonia relies on the concept that equations are representable by graphs.
 
-It expose the equation graph as an [ExprGraph](/reference/exprgraph) object that can be manipulated by the programmer.
+It exposes the equation graph as an [ExprGraph](/reference/exprgraph) object that can be manipulated by the programmer.
 
 So instead of writing:
 
@@ -71,13 +71,12 @@ func main() {
 
 Gorgonia takes care of this using the best implementation to assure numerical stability.
 
-
 ### ExpGraph and *Node
 
-The ExprGraph is the object holding the equation. This vertices of this graph are the values or operators that compose the equation we want to materialize.
-Those vertices are represented by a structure called "Node". The graph holds pointer to this structure.
+The ExprGraph is the object holding the equation. The vertices of this graph are the values or operators that compose the equation we want to materialize.
+Those vertices are represented by a structure called "Node". The graph holds a pointer to this structure.
 
-To create the equation, we need to create an ExprGraph, add some *Nodes, it and linked them together.
+To create the equation, we need to create an ExprGraph, add some Nodes to it, and link them together.
 
 Luckily, we don't have to manage the connections between the nodes manually.
 
@@ -86,8 +85,7 @@ Luckily, we don't have to manage the connections between the nodes manually.
 The Node can hold some Values (a [Value](/reference) is a Go interface that represents a concrete type such as a scalar or a tensor).
 But it can also hold [Operators](/reference/operator).
 
-At computation time, the values will flow along the graphs and each node containing an Operator will execute the corresponding code and set the value to the
-corresponding node.
+At computation time, the values will flow along the graphs and each node containing an Operator will execute the corresponding code and set the value to the corresponding node.
 
 ### Gradient computation
 
