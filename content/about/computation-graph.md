@@ -10,7 +10,7 @@ draft: false
 
 _Note_: this article takes its inspiration from [this blog post](http://gopherdata.io/post/deeplearning_in_go_part_1/)
 
-Like most deep learning libraries such as Tensorflow or Theano, Gorgonia rely on the concept that equations are representable by graphs.
+Like most deep learning libraries such as Tensorflow or Theano, Gorgonia relies on the concept that equations are representable by graphs.
 
 It expose the equation graph as an [ExprGraph](/reference/exprgraph) object that can be manipulated by the programmer.
 
