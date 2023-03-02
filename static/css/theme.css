@@ -85,7 +85,6 @@ b, strong, label, th {
 }
 #sidebar {
     border: 1px solid #dadce0;
-    font-weight: 200 !important;
 }
 fieldset {
     border: 1px solid #ddd;
@@ -180,7 +179,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     width: 250px;
     bottom: 0;
     left: 0;
-    font-weight: 200;
     font-size: 15px;
 }
 #sidebar a {
