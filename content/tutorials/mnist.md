@@ -218,7 +218,7 @@ type convnet struct {
 #### Definition of the learnables
 
 The convolution is using a standard $3\times3$ kernel, and 32 filters.
-As the images of the dataset are in black and white, we are using only one channel. This lead to the following definition of the weights:
+As the images of the dataset are in black and white, we are using only one channel. This leads to the following definition of the weights:
 
 * $W_0 \in \mathbb{R}^{32\times 1\times3\times3}$ for the first convolution operator
 * $W_1 \in \mathbb{R}^{64\times 32\times3\times3}$ for the second convolution operator
